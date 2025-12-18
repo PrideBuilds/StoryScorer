@@ -125,7 +125,7 @@ export async function GET(_request: NextRequest) {
       .eq("user_id", user.id)
       .maybeSingle();
 
-    const subscriptionData: any = {
+    const subscriptionData: Record<string, unknown> = {
       stripe_customer_id: customerId,
       stripe_subscription_id: stripeSubscription.id,
       plan_type: planType,
@@ -139,7 +139,7 @@ export async function GET(_request: NextRequest) {
       // Update existing subscription
       const result = await adminSupabase
         .from("subscriptions")
-        // @ts-ignore - Admin client types are not fully inferred
+        // @ts-expect-error - Admin client types are not fully inferred
         .update(subscriptionData)
         .eq("user_id", user.id);
       updateError = result.error;
@@ -147,7 +147,7 @@ export async function GET(_request: NextRequest) {
       // Insert new subscription
       const result = await adminSupabase
         .from("subscriptions")
-        // @ts-ignore - Admin client types are not fully inferred
+        // @ts-expect-error - Admin client types are not fully inferred
         .insert({
           ...subscriptionData,
           user_id: user.id,

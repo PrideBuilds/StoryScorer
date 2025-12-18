@@ -92,7 +92,7 @@ export async function POST(request: NextRequest) {
       console.log(
         `Price verified: ${price.id} - ${price.unit_amount ? `$${(price.unit_amount / 100).toFixed(2)}` : "N/A"}`
       );
-    } catch (priceError: any) {
+    } catch (priceError: unknown) {
       console.error("Price verification error:", priceError);
       if (priceError.code === "resource_missing") {
         return NextResponse.json(
@@ -154,7 +154,7 @@ export async function POST(request: NextRequest) {
           },
         });
         customerId = customer.id;
-      } catch (stripeCustomerError: any) {
+      } catch (stripeCustomerError: unknown) {
         console.error("Error creating Stripe customer:", stripeCustomerError);
         return NextResponse.json(
           {
@@ -192,7 +192,7 @@ export async function POST(request: NextRequest) {
           email: user.email!,
         },
       });
-    } catch (stripeError: any) {
+    } catch (stripeError: unknown) {
       console.error("Stripe API error:", stripeError);
       return NextResponse.json(
         {

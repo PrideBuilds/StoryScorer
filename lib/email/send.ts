@@ -76,7 +76,7 @@ export async function sendWelcomeEmail(
       })
     );
 
-    const result = await retryOperation(async () => {
+    await retryOperation(async () => {
       return await resend.emails.send({
         from: fromEmail,
         to: data.userEmail,
@@ -113,7 +113,7 @@ export async function sendPasswordResetEmail(
       })
     );
 
-    const result = await retryOperation(async () => {
+    await retryOperation(async () => {
       return await resend.emails.send({
         from: fromEmail,
         to: data.userEmail,
@@ -154,7 +154,7 @@ export async function sendSubscriptionEmail(
       })
     );
 
-    const result = await retryOperation(async () => {
+    await retryOperation(async () => {
       return await resend.emails.send({
         from: fromEmail,
         to: data.userEmail,
@@ -201,7 +201,7 @@ export async function sendUsageWarningEmail(
         ? "⚠️ You've Reached Your Usage Limit"
         : `Usage Limit Warning: ${data.percentage}% Used`;
 
-    const result = await retryOperation(async () => {
+    await retryOperation(async () => {
       return await resend.emails.send({
         from: fromEmail,
         to: data.userEmail,
@@ -245,7 +245,7 @@ export async function sendPaymentFailedEmail(
       })
     );
 
-    const result = await retryOperation(async () => {
+    await retryOperation(async () => {
       return await resend.emails.send({
         from: fromEmail,
         to: data.userEmail,

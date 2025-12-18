@@ -117,16 +117,16 @@ export async function POST(request: NextRequest) {
           subscriptionStatus = "incomplete";
         }
 
-        const subscriptionData: any = {
+        const subscriptionData: Record<string, unknown> = {
           stripe_customer_id: customerId,
           stripe_subscription_id: subscriptionId,
           plan_type: planType,
           status: subscriptionStatus,
           current_period_start: new Date(
-            (subscription as any).current_period_start * 1000
+            subscription.current_period_start * 1000
           ).toISOString(),
           current_period_end: new Date(
-            (subscription as any).current_period_end * 1000
+            subscription.current_period_end * 1000
           ).toISOString(),
         };
 
@@ -135,7 +135,7 @@ export async function POST(request: NextRequest) {
           // Update existing subscription
           const result = await supabase
             .from("subscriptions")
-            // @ts-ignore - Admin client types are not fully inferred
+            // @ts-expect-error - Admin client types are not fully inferred
             .update(subscriptionData)
             .eq("user_id", userId);
           updateError = result.error;
@@ -143,7 +143,7 @@ export async function POST(request: NextRequest) {
           // Insert new subscription
           const result = await supabase
             .from("subscriptions")
-            // @ts-ignore - Admin client types are not fully inferred
+            // @ts-expect-error - Admin client types are not fully inferred
             .insert({
               ...subscriptionData,
               user_id: userId,
@@ -238,20 +238,20 @@ export async function POST(request: NextRequest) {
         }
 
         // Update subscription
-        const updateData: any = {
+        const updateData: Record<string, unknown> = {
           stripe_subscription_id: subscription.id,
           plan_type: planType,
           status: subscriptionStatus,
           current_period_start: new Date(
-            (subscription as any).current_period_start * 1000
+            subscription.current_period_start * 1000
           ).toISOString(),
           current_period_end: new Date(
-            (subscription as any).current_period_end * 1000
+            subscription.current_period_end * 1000
           ).toISOString(),
         };
         await supabase
           .from("subscriptions")
-          // @ts-ignore - Admin client types are not fully inferred
+          // @ts-expect-error - Admin client types are not fully inferred
           .update(updateData)
           .eq("stripe_customer_id", customerId);
 
@@ -264,10 +264,10 @@ export async function POST(request: NextRequest) {
         const customerId = subscription.customer as string;
 
         // Update subscription status to canceled
-        const cancelData: any = { status: "canceled" };
+        const cancelData: Record<string, unknown> = { status: "canceled" };
         await supabase
           .from("subscriptions")
-          // @ts-ignore - Admin client types are not fully inferred
+          // @ts-expect-error - Admin client types are not fully inferred
           .update(cancelData)
           .eq("stripe_customer_id", customerId);
 
@@ -277,8 +277,10 @@ export async function POST(request: NextRequest) {
 
       case "invoice.payment_succeeded": {
         const invoice = event.data.object as Stripe.Invoice;
-        const customerId = invoice.customer as string;
-        const subscriptionId = (invoice as any).subscription as string;
+        const subscriptionId =
+          typeof invoice.subscription === "string"
+            ? invoice.subscription
+            : invoice.subscription?.id || null;
 
         if (subscriptionId) {
           // Update subscription period if needed
@@ -286,18 +288,18 @@ export async function POST(request: NextRequest) {
           const subscription: Stripe.Subscription =
             await stripe.subscriptions.retrieve(subscriptionId as string);
 
-          const paymentData: any = {
+          const paymentData: Record<string, unknown> = {
             status: "active",
             current_period_start: new Date(
-              (subscription as any).current_period_start * 1000
+              subscription.current_period_start * 1000
             ).toISOString(),
             current_period_end: new Date(
-              (subscription as any).current_period_end * 1000
+              subscription.current_period_end * 1000
             ).toISOString(),
           };
           await supabase
             .from("subscriptions")
-            // @ts-ignore - Admin client types are not fully inferred
+            // @ts-expect-error - Admin client types are not fully inferred
             .update(paymentData)
             .eq("stripe_subscription_id", subscriptionId);
 
@@ -310,10 +312,10 @@ export async function POST(request: NextRequest) {
         const invoice = event.data.object as Stripe.Invoice;
         const customerId = invoice.customer as string;
 
-        const pastDueData: any = { status: "past_due" };
+        const pastDueData: Record<string, unknown> = { status: "past_due" };
         await supabase
           .from("subscriptions")
-          // @ts-ignore - Admin client types are not fully inferred
+          // @ts-expect-error - Admin client types are not fully inferred
           .update(pastDueData)
           .eq("stripe_customer_id", customerId);
 
