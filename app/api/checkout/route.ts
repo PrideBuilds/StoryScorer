@@ -3,7 +3,6 @@ import { createClient } from "@/lib/supabase/server";
 import { getStripeClient } from "@/lib/stripe/client";
 import { getPlanById } from "@/lib/config/pricing";
 import { checkRateLimit, RATE_LIMITS } from "@/lib/security/rateLimit";
-import { isValidUUID } from "@/lib/security/validation";
 
 export async function POST(request: NextRequest) {
   try {
@@ -49,7 +48,7 @@ export async function POST(request: NextRequest) {
     let body;
     try {
       body = await request.json();
-    } catch (error) {
+    } catch {
       return NextResponse.json(
         { error: "Invalid JSON in request body" },
         { status: 400 }

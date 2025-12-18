@@ -65,7 +65,7 @@ export function UsageMeter({ current, limit, planType }: UsageMeterProps) {
         <Alert>
           <AlertTriangle className="h-4 w-4" />
           <AlertDescription>
-            You're approaching your monthly limit.{" "}
+            You&apos;re approaching your monthly limit.{" "}
             <Button variant="link" className="p-0 h-auto" asChild>
               <Link href="/pricing">Upgrade your plan</Link>
             </Button>{" "}
@@ -78,7 +78,7 @@ export function UsageMeter({ current, limit, planType }: UsageMeterProps) {
         <Alert variant="destructive">
           <AlertTriangle className="h-4 w-4" />
           <AlertDescription>
-            You've reached your monthly limit.{" "}
+            You&apos;ve reached your monthly limit.{" "}
             <Button variant="link" className="p-0 h-auto text-inherit" asChild>
               <Link href="/pricing">Upgrade your plan</Link>
             </Button>{" "}

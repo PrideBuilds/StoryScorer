@@ -23,7 +23,7 @@ export default function PrivacyPolicyPage() {
           </CardHeader>
           <CardContent className="space-y-4">
             <p>
-              StoryScorer ("we," "our," or "us") is committed to protecting your
+              StoryScorer (&quot;we,&quot; &quot;our,&quot; or &quot;us&quot;) is committed to protecting your
               privacy. This Privacy Policy explains how we collect, use,
               disclose, and safeguard your information when you use our website
               and services.
@@ -138,7 +138,7 @@ export default function PrivacyPolicyPage() {
               <p>
                 We use Supabase for authentication, database storage, and
                 backend services. Your account data and user stories are stored
-                securely in Supabase's infrastructure. View Supabase's privacy
+                securely in Supabase&apos;s infrastructure. View Supabase&apos;s privacy
                 policy at{" "}
                 <a
                   href="https://supabase.com/privacy"
@@ -156,7 +156,7 @@ export default function PrivacyPolicyPage() {
               <p>
                 We use Stripe to process payments. Stripe handles all payment
                 information securely and we do not store your credit card
-                details. View Stripe's privacy policy at{" "}
+                details. View Stripe&apos;s privacy policy at{" "}
                 <a
                   href="https://stripe.com/privacy"
                   target="_blank"
@@ -320,7 +320,7 @@ export default function PrivacyPolicyPage() {
 
         <Card>
           <CardHeader>
-            <CardTitle>9. Children's Privacy</CardTitle>
+            <CardTitle>9. Children&apos;s Privacy</CardTitle>
           </CardHeader>
           <CardContent>
             <p>
@@ -354,7 +354,7 @@ export default function PrivacyPolicyPage() {
             <p>
               We may update this Privacy Policy from time to time. We will
               notify you of any material changes by posting the new policy on
-              this page and updating the "Last updated" date. Your continued use
+              this page and updating the &quot;Last updated&quot; date. Your continued use
               of our service after changes become effective constitutes
               acceptance of the updated policy.
             </p>

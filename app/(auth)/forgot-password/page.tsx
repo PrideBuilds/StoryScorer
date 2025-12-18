@@ -57,7 +57,7 @@ export default function ForgotPasswordPage() {
         <Alert className="mb-4">
           <CheckCircle2 className="h-4 w-4" />
           <AlertDescription>
-            If an account exists with that email, you'll receive a password
+            If an account exists with that email, you&apos;ll receive a password
             reset link shortly. Please check your inbox and spam folder.
           </AlertDescription>
         </Alert>

@@ -14,7 +14,7 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Check, X, Loader2 } from "lucide-react";
+import { Check, Loader2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 export default function PricingPage() {
@@ -98,7 +98,7 @@ export default function PricingPage() {
       <div className="text-center mb-12">
         <h1 className="text-4xl font-bold mb-4">Pricing Plans</h1>
         <p className="text-xl text-muted-foreground mb-8">
-          Choose the plan that's right for you
+          Choose the plan that&apos;s right for you
         </p>
 
         {/* Billing Period Toggle */}
@@ -203,7 +203,7 @@ export default function PricingPage() {
               What happens if I exceed my limit?
             </h3>
             <p className="text-sm text-muted-foreground">
-              You'll be notified when you're approaching your limit and can
+              You&apos;ll be notified when you&apos;re approaching your limit and can
               upgrade to continue using the service.
             </p>
           </div>
@@ -216,7 +216,7 @@ export default function PricingPage() {
           <div>
             <h3 className="font-semibold mb-2">Can I cancel anytime?</h3>
             <p className="text-sm text-muted-foreground">
-              Yes, you can cancel your subscription at any time. You'll retain
+              Yes, you can cancel your subscription at any time. You&apos;ll retain
               access until the end of your billing period.
             </p>
           </div>

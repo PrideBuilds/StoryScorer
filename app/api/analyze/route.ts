@@ -4,7 +4,6 @@ import type { INVESTAnalysisResult } from "@/types/database";
 import {
   checkRateLimit,
   RATE_LIMITS,
-  getClientIP,
 } from "@/lib/security/rateLimit";
 import { validateStoryInput } from "@/lib/security/validation";
 
@@ -233,7 +232,7 @@ export async function POST(request: NextRequest) {
     let body;
     try {
       body = await request.json();
-    } catch (error) {
+    } catch {
       return NextResponse.json(
         { error: "Invalid JSON in request body" },
         { status: 400 }

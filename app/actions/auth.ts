@@ -124,7 +124,7 @@ export async function resetPassword(formData: FormData) {
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
   const redirectTo = `${siteUrl}/reset-password`;
 
-  const { data, error } = await supabase.auth.resetPasswordForEmail(email, {
+  const { error } = await supabase.auth.resetPasswordForEmail(email, {
     redirectTo: redirectTo,
   });
 
@@ -225,8 +225,6 @@ export async function updatePassword(formData: FormData) {
 }
 
 export async function resendVerificationEmail(formData: FormData) {
-  const supabase = await createClient();
-
   const email = formData.get("email") as string;
 
   if (!email) {

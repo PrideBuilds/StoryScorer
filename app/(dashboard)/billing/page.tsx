@@ -146,7 +146,7 @@ export default async function BillingPage() {
         <CardHeader>
           <CardTitle>Plan Features</CardTitle>
           <CardDescription>
-            What's included in your current plan
+            What&apos;s included in your current plan
           </CardDescription>
         </CardHeader>
         <CardContent>

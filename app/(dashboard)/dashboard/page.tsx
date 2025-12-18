@@ -51,7 +51,7 @@ export default async function DashboardHomePage() {
           Welcome back, {displayName}!
         </h1>
         <p className="text-muted-foreground">
-          Here's an overview of your story analysis activity
+          Here&apos;s an overview of your story analysis activity
         </p>
       </div>
 

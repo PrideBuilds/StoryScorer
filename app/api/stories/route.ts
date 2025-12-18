@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 import { createStory, getStories } from "@/lib/db/stories";
-import { storyInputSchema } from "@/lib/validations/story";
 import { checkRateLimit, RATE_LIMITS } from "@/lib/security/rateLimit";
 import { validateStoryInput } from "@/lib/security/validation";
 
@@ -39,7 +38,7 @@ export async function POST(request: NextRequest) {
     let body;
     try {
       body = await request.json();
-    } catch (error) {
+    } catch {
       return NextResponse.json(
         { error: "Invalid JSON in request body" },
         { status: 400 }

@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import { User, Settings, LogOut, Loader2 } from "lucide-react";
+import { Settings, LogOut, Loader2 } from "lucide-react";
 
 interface UserMenuProps {
   user: {
