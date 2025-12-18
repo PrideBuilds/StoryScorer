@@ -12,7 +12,7 @@ export function PreferencesSettings() {
   const [language, setLanguage] = useState("en");
   const { toast } = useToast();
 
-  const handlePreferenceChange = (key: string, _value: boolean | string) => {
+  const handlePreferenceChange = (key: string) => {
     // In a real app, you'd save this to the database
     toast({
       title: "Preference Updated",

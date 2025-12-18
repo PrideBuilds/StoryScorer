@@ -9,7 +9,7 @@ import Stripe from "stripe";
  *
  * GET /api/sync-subscription
  */
-export async function GET(_request: NextRequest) {
+export async function GET() {
   try {
     const supabase = await createClient();
 
@@ -113,10 +113,9 @@ export async function GET(_request: NextRequest) {
       subscriptionStatus = "incomplete";
     }
 
-    // Extract period dates (TypeScript workaround)
-    const periodStart = (stripeSubscription as any)
-      .current_period_start as number;
-    const periodEnd = (stripeSubscription as any).current_period_end as number;
+    // Extract period dates
+    const periodStart = stripeSubscription.current_period_start;
+    const periodEnd = stripeSubscription.current_period_end;
 
     // Check if subscription already exists for this user
     const { data: existingSub } = await adminSupabase
