@@ -55,7 +55,7 @@ function parseFrontmatter(content: string): {
             .filter((t) => t.length > 0);
         }
       } else {
-        (frontmatter as any)[key] = value;
+        (frontmatter as Record<string, unknown>)[key] = value;
       }
     }
   });
