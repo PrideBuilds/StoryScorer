@@ -19,6 +19,7 @@ import {
   TrendingUp,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import type { Profile, UserStory } from "@/types/database";
 
 export default async function DashboardHomePage() {
   const supabase = await createClient();
@@ -37,11 +38,15 @@ export default async function DashboardHomePage() {
     .eq("id", user.id)
     .single();
 
+  // Type assertion to fix TypeScript inference issue
+  const typedProfile = (profile as Pick<Profile, "full_name"> | null) ?? null;
+
   // Fetch stats
   const stats = await getUserStats();
   const recentStories = await getRecentStories(5);
 
-  const displayName = profile?.full_name || user.email?.split("@")[0] || "User";
+  const displayName =
+    typedProfile?.full_name || user.email?.split("@")[0] || "User";
 
   return (
     <div className="space-y-8">
@@ -184,7 +189,12 @@ export default async function DashboardHomePage() {
             </div>
           ) : (
             <div className="space-y-4">
-              {recentStories.data.map((story) => (
+              {(
+                recentStories.data as Pick<
+                  UserStory,
+                  "id" | "title" | "score" | "created_at"
+                >[]
+              ).map((story) => (
                 <Link
                   key={story.id}
                   href={`/history?story=${story.id}`}

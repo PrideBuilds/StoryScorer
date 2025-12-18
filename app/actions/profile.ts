@@ -21,14 +21,13 @@ export async function updateProfile(formData: FormData) {
   const company = formData.get("company") as string;
   const jobTitle = formData.get("jobTitle") as string;
 
-  const { error } = await supabase
-    .from("profiles")
-    .update({
+  const { error } = await (
+    supabase.from("profiles").update({
       full_name: fullName || null,
       company: company || null,
       job_title: jobTitle || null,
-    })
-    .eq("id", user.id);
+    }) as any
+  ).eq("id", user.id);
 
   if (error) {
     return {

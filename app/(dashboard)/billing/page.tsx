@@ -33,7 +33,8 @@ export default async function BillingPage() {
     .eq("user_id", user.id)
     .single();
 
-  const typedSubscription: Subscription | null = subscription;
+  // Type assertion to fix TypeScript inference issue
+  const typedSubscription = (subscription as Subscription | null) ?? null;
 
   // Get stats
   const stats = await getUserStats();

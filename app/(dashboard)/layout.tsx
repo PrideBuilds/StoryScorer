@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Sidebar } from "@/components/dashboard/Sidebar";
 import { UserMenu } from "@/components/dashboard/UserMenu";
 import { MobileNav } from "@/components/dashboard/MobileNav";
+import type { Profile } from "@/types/database";
 
 export default async function DashboardLayout({
   children,
@@ -26,6 +27,11 @@ export default async function DashboardLayout({
     .eq("id", user.id)
     .single();
 
+  // Type assertion to fix TypeScript inference issue
+  const typedProfile =
+    (profile as Pick<Profile, "full_name" | "company" | "job_title"> | null) ??
+    null;
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
       {/* Header */}
@@ -46,7 +52,7 @@ export default async function DashboardLayout({
             <UserMenu
               user={{
                 email: user.email,
-                fullName: profile?.full_name || null,
+                fullName: typedProfile?.full_name || null,
               }}
             />
           </div>

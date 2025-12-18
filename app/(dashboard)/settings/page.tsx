@@ -11,6 +11,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import type { Profile } from "@/types/database";
 
 export default async function SettingsPage() {
   const supabase = await createClient();
@@ -28,6 +29,11 @@ export default async function SettingsPage() {
     .select("full_name, company, job_title")
     .eq("id", user.id)
     .single();
+
+  // Type assertion to fix TypeScript inference issue
+  const typedProfile =
+    (profile as Pick<Profile, "full_name" | "company" | "job_title"> | null) ??
+    null;
 
   return (
     <div className="space-y-6">
@@ -56,9 +62,9 @@ export default async function SettingsPage() {
             <CardContent>
               <ProfileSettings
                 initialData={{
-                  fullName: profile?.full_name || "",
-                  company: profile?.company || "",
-                  jobTitle: profile?.job_title || "",
+                  fullName: typedProfile?.full_name || "",
+                  company: typedProfile?.company || "",
+                  jobTitle: typedProfile?.job_title || "",
                   email: user.email || "",
                 }}
               />

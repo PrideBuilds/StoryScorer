@@ -152,24 +152,24 @@ export default async function BlogPage({
           {totalPages > 1 && (
             <div className="flex justify-center items-center gap-4">
               {currentPage > 1 && (
-                <Button
-                  asChild
-                  variant="outline"
-                  href={`/blog?page=${currentPage - 1}${searchQuery ? `&search=${searchQuery}` : ""}`}
-                >
-                  Previous
+                <Button asChild variant="outline">
+                  <Link
+                    href={`/blog?page=${currentPage - 1}${searchQuery ? `&search=${searchQuery}` : ""}`}
+                  >
+                    Previous
+                  </Link>
                 </Button>
               )}
               <span className="text-sm text-muted-foreground">
                 Page {currentPage} of {totalPages}
               </span>
               {currentPage < totalPages && (
-                <Button
-                  asChild
-                  variant="outline"
-                  href={`/blog?page=${currentPage + 1}${searchQuery ? `&search=${searchQuery}` : ""}`}
-                >
-                  Next
+                <Button asChild variant="outline">
+                  <Link
+                    href={`/blog?page=${currentPage + 1}${searchQuery ? `&search=${searchQuery}` : ""}`}
+                  >
+                    Next
+                  </Link>
                 </Button>
               )}
             </div>
