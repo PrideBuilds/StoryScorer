@@ -14,6 +14,7 @@ import { UsageMeter } from "@/components/billing/UsageMeter";
 import { CreditCard, Calendar, CheckCircle2 } from "lucide-react";
 import { getPlanById } from "@/lib/config/pricing";
 import { getUserStats } from "@/lib/db/stats";
+import type { Subscription } from "@/types/database";
 
 export default async function BillingPage() {
   const supabase = await createClient();
@@ -32,15 +33,17 @@ export default async function BillingPage() {
     .eq("user_id", user.id)
     .single();
 
+  const typedSubscription: Subscription | null = subscription;
+
   // Get stats
   const stats = await getUserStats();
 
-  const plan = subscription
-    ? getPlanById(subscription.plan_type as "free" | "pro" | "enterprise")
+  const plan = typedSubscription
+    ? getPlanById(typedSubscription.plan_type)
     : getPlanById("free");
 
-  const currentPlan = subscription?.plan_type || "free";
-  const isActive = subscription?.status === "active";
+  const currentPlan = typedSubscription?.plan_type || "free";
+  const isActive = typedSubscription?.status === "active";
 
   return (
     <div className="space-y-6">
@@ -60,7 +63,7 @@ export default async function BillingPage() {
               <CardDescription>Your active subscription plan</CardDescription>
             </div>
             <Badge variant={isActive ? "default" : "secondary"}>
-              {subscription?.status || "Free"}
+              {typedSubscription?.status || "Free"}
             </Badge>
           </div>
         </CardHeader>
@@ -77,22 +80,22 @@ export default async function BillingPage() {
             <p className="text-sm text-muted-foreground">{plan?.description}</p>
           </div>
 
-          {subscription && (
+          {typedSubscription && (
             <div className="grid gap-4 md:grid-cols-2 pt-4 border-t">
               <div className="flex items-center gap-3">
                 <Calendar className="h-5 w-5 text-muted-foreground" />
                 <div>
                   <p className="text-sm font-medium">Next Billing Date</p>
                   <p className="text-sm text-muted-foreground">
-                    {subscription.current_period_end
+                    {typedSubscription.current_period_end
                       ? new Date(
-                          subscription.current_period_end
+                          typedSubscription.current_period_end
                         ).toLocaleDateString()
                       : "N/A"}
                   </p>
                 </div>
               </div>
-              {subscription.stripe_customer_id && (
+              {typedSubscription.stripe_customer_id && (
                 <div className="flex items-center gap-3">
                   <CreditCard className="h-5 w-5 text-muted-foreground" />
                   <div>
@@ -106,7 +109,7 @@ export default async function BillingPage() {
             </div>
           )}
 
-          {subscription && subscription.status === "active" && (
+          {typedSubscription && typedSubscription.status === "active" && (
             <div className="pt-4">
               <ManageBillingButton />
             </div>
