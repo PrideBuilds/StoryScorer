@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useLayoutEffect, useCallback, useRef } from "react";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
-import dynamic from "next/dynamic";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { storyInputSchema, type StoryInput } from "@/lib/validations/story";
@@ -14,19 +13,7 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Loader2, Sparkles, X } from "lucide-react";
 import type { INVESTAnalysisResult } from "@/types/database";
 import type { UserStory } from "@/types/database";
-
-// Lazy load AnalysisResults component for code splitting
-const AnalysisResults = dynamic(
-  () => import("@/components/feature/AnalysisResults").then((mod) => ({ default: mod.AnalysisResults })),
-  {
-    loading: () => (
-      <div className="flex items-center justify-center p-8">
-        <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
-      </div>
-    ),
-    ssr: false,
-  }
-);
+import { AnalysisResults } from "@/components/feature/AnalysisResults";
 
 const MAX_STORY_LENGTH = 5000;
 const MAX_ACCEPTANCE_CRITERIA_LENGTH = 2000;
