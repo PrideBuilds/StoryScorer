@@ -21,12 +21,16 @@ export async function updateProfile(formData: FormData) {
   const company = formData.get("company") as string;
   const jobTitle = formData.get("jobTitle") as string;
 
+  // Type cast to fix Supabase type inference issue
+  const updateData = {
+    full_name: fullName || null,
+    company: company || null,
+    job_title: jobTitle || null,
+  };
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { error } = await (
-    supabase.from("profiles").update({
-      full_name: fullName || null,
-      company: company || null,
-      job_title: jobTitle || null,
-    }) as any
+    supabase.from("profiles").update(updateData as any) as any
   ).eq("id", user.id);
 
   if (error) {

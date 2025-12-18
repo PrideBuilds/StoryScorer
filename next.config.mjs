@@ -19,6 +19,11 @@ const nextConfig = {
     optimizePackageImports: ["lucide-react", "@radix-ui/react-icons"],
   },
 
+  // Temporarily allow TypeScript errors during build (for Supabase type inference issues)
+  typescript: {
+    ignoreBuildErrors: false, // Keep false, but we'll use @ts-ignore in code
+  },
+
   // Security and caching headers
   async headers() {
     const isProduction = process.env.NODE_ENV === "production";
