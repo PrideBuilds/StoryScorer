@@ -30,17 +30,13 @@ export async function checkAndSendUsageWarning(): Promise<void> {
     ) {
       // Check if we've already sent a warning for this usage level
       // (to avoid spamming users)
-      const warningThreshold = Math.floor(usageResult.percentage / 10) * 10; // Round to nearest 10%
+      const _warningThreshold = Math.floor(usageResult.percentage / 10) * 10; // Round to nearest 10%
       // TODO: Implement warning deduplication logic
-      // const warningKey = `usage_warning_${warningThreshold}`;
+      // const warningKey = `usage_warning_${_warningThreshold}`;
 
       // Check user metadata for last warning sent
       // TODO: Check if warning was already sent for this threshold
-      await supabase
-        .from("profiles")
-        .select("id")
-        .eq("id", user.id)
-        .single();
+      await supabase.from("profiles").select("id").eq("id", user.id).single();
 
       // For now, we'll send the warning (in production, you'd track this in a separate table)
       // to avoid sending multiple warnings for the same threshold
