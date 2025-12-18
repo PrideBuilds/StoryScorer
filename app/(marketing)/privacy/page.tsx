@@ -23,10 +23,10 @@ export default function PrivacyPolicyPage() {
           </CardHeader>
           <CardContent className="space-y-4">
             <p>
-              StoryScorer (&quot;we,&quot; &quot;our,&quot; or &quot;us&quot;) is committed to protecting your
-              privacy. This Privacy Policy explains how we collect, use,
-              disclose, and safeguard your information when you use our website
-              and services.
+              StoryScorer (&quot;we,&quot; &quot;our,&quot; or &quot;us&quot;)
+              is committed to protecting your privacy. This Privacy Policy
+              explains how we collect, use, disclose, and safeguard your
+              information when you use our website and services.
             </p>
             <p>
               By using StoryScorer, you agree to the collection and use of
@@ -138,8 +138,8 @@ export default function PrivacyPolicyPage() {
               <p>
                 We use Supabase for authentication, database storage, and
                 backend services. Your account data and user stories are stored
-                securely in Supabase&apos;s infrastructure. View Supabase&apos;s privacy
-                policy at{" "}
+                securely in Supabase&apos;s infrastructure. View Supabase&apos;s
+                privacy policy at{" "}
                 <a
                   href="https://supabase.com/privacy"
                   target="_blank"
@@ -354,9 +354,9 @@ export default function PrivacyPolicyPage() {
             <p>
               We may update this Privacy Policy from time to time. We will
               notify you of any material changes by posting the new policy on
-              this page and updating the &quot;Last updated&quot; date. Your continued use
-              of our service after changes become effective constitutes
-              acceptance of the updated policy.
+              this page and updating the &quot;Last updated&quot; date. Your
+              continued use of our service after changes become effective
+              constitutes acceptance of the updated policy.
             </p>
           </CardContent>
         </Card>

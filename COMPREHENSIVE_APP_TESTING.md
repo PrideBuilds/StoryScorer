@@ -658,9 +658,9 @@ If you find issues, document them with:
 
 ## ✅ SIGN-OFF
 
-**Tester Name:** ********\_********
+**Tester Name:** **\*\*\*\***\_**\*\*\*\***
 
-**Date:** ********\_********
+**Date:** **\*\*\*\***\_**\*\*\*\***
 
 **Overall Status:**
 

@@ -24,8 +24,8 @@ export default function VerifyEmailPage() {
         <Alert>
           <CheckCircle2 className="h-4 w-4" />
           <AlertDescription>
-            If you don&apos;t see the email, check your spam folder or try signing up
-            again.
+            If you don&apos;t see the email, check your spam folder or try
+            signing up again.
           </AlertDescription>
         </Alert>
 

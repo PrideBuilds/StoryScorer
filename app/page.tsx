@@ -290,8 +290,8 @@ export default async function Home() {
                     ))}
                   </div>
                   <p className="text-muted-foreground mb-4">
-                    &quot;StoryScorer has transformed how I write user stories. The
-                    AI analysis catches issues I would have missed, and my
+                    &quot;StoryScorer has transformed how I write user stories.
+                    The AI analysis catches issues I would have missed, and my
                     stories are now consistently INVEST-compliant.&quot;
                   </p>
                   <div className="flex items-center gap-3">
@@ -320,8 +320,8 @@ export default async function Home() {
                   </div>
                   <p className="text-muted-foreground mb-4">
                     &quot;The detailed scoring and suggestions are incredibly
-                    helpful. I&apos;ve improved my story quality significantly since
-                    using StoryScorer. Highly recommend!&quot;
+                    helpful. I&apos;ve improved my story quality significantly
+                    since using StoryScorer. Highly recommend!&quot;
                   </p>
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 bg-gradient-to-br from-green-400 to-blue-400 rounded-full flex items-center justify-center text-white font-semibold">
@@ -348,9 +348,9 @@ export default async function Home() {
                     ))}
                   </div>
                   <p className="text-muted-foreground mb-4">
-                    &quot;As a team lead, StoryScorer helps me ensure consistency
-                    across all our user stories. The tracking feature is perfect
-                    for maintaining quality standards.&quot;
+                    &quot;As a team lead, StoryScorer helps me ensure
+                    consistency across all our user stories. The tracking
+                    feature is perfect for maintaining quality standards.&quot;
                   </p>
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 bg-gradient-to-br from-purple-400 to-pink-400 rounded-full flex items-center justify-center text-white font-semibold">

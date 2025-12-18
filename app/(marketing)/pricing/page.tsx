@@ -203,8 +203,8 @@ export default function PricingPage() {
               What happens if I exceed my limit?
             </h3>
             <p className="text-sm text-muted-foreground">
-              You&apos;ll be notified when you&apos;re approaching your limit and can
-              upgrade to continue using the service.
+              You&apos;ll be notified when you&apos;re approaching your limit
+              and can upgrade to continue using the service.
             </p>
           </div>
           <div>
@@ -216,8 +216,8 @@ export default function PricingPage() {
           <div>
             <h3 className="font-semibold mb-2">Can I cancel anytime?</h3>
             <p className="text-sm text-muted-foreground">
-              Yes, you can cancel your subscription at any time. You&apos;ll retain
-              access until the end of your billing period.
+              Yes, you can cancel your subscription at any time. You&apos;ll
+              retain access until the end of your billing period.
             </p>
           </div>
         </div>

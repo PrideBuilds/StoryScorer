@@ -379,17 +379,13 @@ Use this checklist to manually test all features of StoryScorer before release.
 
 Document any issues found during testing:
 
-1. **Critical Issues:** (Must fix before launch)
-   -
+1. ## **Critical Issues:** (Must fix before launch)
 
-2. **High Priority Issues:** (Should fix soon)
-   -
+2. ## **High Priority Issues:** (Should fix soon)
 
-3. **Medium Priority Issues:** (Nice to have)
-   -
+3. ## **Medium Priority Issues:** (Nice to have)
 
-4. **Low Priority Issues:** (Future improvements)
-   -
+4. ## **Low Priority Issues:** (Future improvements)
 
 ## Test Results
 

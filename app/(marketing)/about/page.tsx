@@ -31,10 +31,10 @@ export default function AboutPage() {
               time-consuming, and often inconsistent across teams.
             </p>
             <p className="text-muted-foreground mb-4">
-              As Business Analysts ourselves, we&apos;ve experienced the frustration
-              of spending hours crafting user stories, only to have them
-              rejected or require multiple revisions. We knew there had to be a
-              better way.
+              As Business Analysts ourselves, we&apos;ve experienced the
+              frustration of spending hours crafting user stories, only to have
+              them rejected or require multiple revisions. We knew there had to
+              be a better way.
             </p>
             <p className="text-muted-foreground">
               Our mission is to empower Business Analysts with intelligent tools
@@ -120,8 +120,8 @@ export default function AboutPage() {
               <div>
                 <h3 className="font-semibold mb-2">Quality First</h3>
                 <p className="text-muted-foreground text-sm">
-                  We&apos;re committed to providing accurate, helpful analysis that
-                  truly improves story quality.
+                  We&apos;re committed to providing accurate, helpful analysis
+                  that truly improves story quality.
                 </p>
               </div>
               <div>
@@ -134,8 +134,8 @@ export default function AboutPage() {
               <div>
                 <h3 className="font-semibold mb-2">Continuous Improvement</h3>
                 <p className="text-muted-foreground text-sm">
-                  We&apos;re always learning and improving our AI models and features
-                  based on user feedback.
+                  We&apos;re always learning and improving our AI models and
+                  features based on user feedback.
                 </p>
               </div>
               <div>
@@ -154,10 +154,10 @@ export default function AboutPage() {
           <CardContent className="p-8 text-center">
             <h2 className="text-2xl font-bold mb-4">Join Us on This Journey</h2>
             <p className="mb-6 text-blue-100">
-              Whether you&apos;re a seasoned Business Analyst or just starting out,
-              StoryScorer can help you write better user stories. Start your
-              free trial today and see the difference AI-powered analysis can
-              make.
+              Whether you&apos;re a seasoned Business Analyst or just starting
+              out, StoryScorer can help you write better user stories. Start
+              your free trial today and see the difference AI-powered analysis
+              can make.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" variant="secondary" asChild>
@@ -180,8 +180,8 @@ export default function AboutPage() {
           <CardContent className="p-8">
             <h2 className="text-2xl font-bold mb-4">Get in Touch</h2>
             <p className="text-muted-foreground mb-6">
-              Have questions, feedback, or want to learn more? We&apos;d love to hear
-              from you.
+              Have questions, feedback, or want to learn more? We&apos;d love to
+              hear from you.
             </p>
             <div className="flex flex-wrap gap-4">
               <a

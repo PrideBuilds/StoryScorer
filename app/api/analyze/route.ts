@@ -1,10 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 import type { INVESTAnalysisResult } from "@/types/database";
-import {
-  checkRateLimit,
-  RATE_LIMITS,
-} from "@/lib/security/rateLimit";
+import { checkRateLimit, RATE_LIMITS } from "@/lib/security/rateLimit";
 import { validateStoryInput } from "@/lib/security/validation";
 
 async function analyzeWithOpenAI(

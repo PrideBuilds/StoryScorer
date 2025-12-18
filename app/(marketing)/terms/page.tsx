@@ -23,9 +23,10 @@ export default function TermsOfServicePage() {
           </CardHeader>
           <CardContent>
             <p>
-              By accessing or using StoryScorer (&quot;Service&quot;), you agree to be
-              bound by these Terms of Service (&quot;Terms&quot;). If you disagree with
-              any part of these terms, you may not access the Service.
+              By accessing or using StoryScorer (&quot;Service&quot;), you agree
+              to be bound by these Terms of Service (&quot;Terms&quot;). If you
+              disagree with any part of these terms, you may not access the
+              Service.
             </p>
             <p>
               These Terms apply to all visitors, users, and others who access or
@@ -272,10 +273,11 @@ export default function TermsOfServicePage() {
           </CardHeader>
           <CardContent>
             <p>
-              THE SERVICE IS PROVIDED &quot;AS IS&quot; AND &quot;AS AVAILABLE&quot; WITHOUT
-              WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING BUT
-              NOT LIMITED TO IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR
-              A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
+              THE SERVICE IS PROVIDED &quot;AS IS&quot; AND &quot;AS
+              AVAILABLE&quot; WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR
+              IMPLIED, INCLUDING BUT NOT LIMITED TO IMPLIED WARRANTIES OF
+              MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND
+              NON-INFRINGEMENT.
             </p>
             <p>
               We do not warrant that the Service will be uninterrupted, secure,
