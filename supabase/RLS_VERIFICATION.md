@@ -7,7 +7,7 @@ This document helps verify that RLS policies are correctly configured and workin
 Run this query in Supabase SQL Editor to verify RLS is enabled on all tables:
 
 ```sql
-SELECT 
+SELECT
   schemaname,
   tablename,
   rowsecurity
@@ -24,11 +24,13 @@ All tables should show `rowsecurity = true`.
 ### 1. Profiles Table
 
 **Expected Behavior:**
+
 - Users can read their own profile
 - Users can update their own profile
 - Users cannot access other users' profiles
 
 **Test Query:**
+
 ```sql
 -- As authenticated user, should only see own profile
 SELECT * FROM profiles WHERE id = auth.uid();
@@ -40,11 +42,13 @@ SELECT * FROM profiles WHERE id != auth.uid();
 ### 2. Subscriptions Table
 
 **Expected Behavior:**
+
 - Users can read their own subscription
 - Users can update their own subscription
 - Users cannot access other users' subscriptions
 
 **Test Query:**
+
 ```sql
 -- Should only see own subscription
 SELECT * FROM subscriptions WHERE user_id = auth.uid();
@@ -56,10 +60,12 @@ SELECT * FROM subscriptions WHERE user_id != auth.uid();
 ### 3. User Stories Table
 
 **Expected Behavior:**
+
 - Users can CRUD their own stories
 - Users cannot access other users' stories
 
 **Test Query:**
+
 ```sql
 -- Should only see own stories
 SELECT * FROM user_stories WHERE user_id = auth.uid();
@@ -71,10 +77,12 @@ SELECT * FROM user_stories WHERE user_id != auth.uid();
 ### 4. Usage Tracking Table
 
 **Expected Behavior:**
+
 - Users can read their own usage
 - Users cannot access other users' usage
 
 **Test Query:**
+
 ```sql
 -- Should only see own usage
 SELECT * FROM usage_tracking WHERE user_id = auth.uid();
@@ -86,19 +94,21 @@ SELECT * FROM usage_tracking WHERE user_id != auth.uid();
 ### 5. Story History Table
 
 **Expected Behavior:**
+
 - Users can read history of their own stories
 - Users cannot access history of other users' stories
 
 **Test Query:**
+
 ```sql
 -- Should only see history of own stories
-SELECT sh.* 
+SELECT sh.*
 FROM story_history sh
 JOIN user_stories us ON sh.story_id = us.id
 WHERE us.user_id = auth.uid();
 
 -- Should return 0 rows
-SELECT sh.* 
+SELECT sh.*
 FROM story_history sh
 JOIN user_stories us ON sh.story_id = us.id
 WHERE us.user_id != auth.uid();
@@ -115,7 +125,7 @@ The service role key should bypass RLS for webhook operations. This is handled b
 View all RLS policies:
 
 ```sql
-SELECT 
+SELECT
   schemaname,
   tablename,
   policyname,
@@ -152,6 +162,7 @@ ORDER BY tablename, policyname;
 ### Automated Testing (Recommended)
 
 Create test scripts that:
+
 - Create test users
 - Create resources for each user
 - Attempt cross-user access
@@ -162,6 +173,7 @@ Create test scripts that:
 ### Issue: Users can see other users' data
 
 **Solution:**
+
 - Verify RLS is enabled: `ALTER TABLE table_name ENABLE ROW LEVEL SECURITY;`
 - Check policy conditions use `auth.uid()` correctly
 - Ensure policies are created for all operations (SELECT, INSERT, UPDATE, DELETE)
@@ -169,6 +181,7 @@ Create test scripts that:
 ### Issue: Service role cannot access data
 
 **Solution:**
+
 - Service role should bypass RLS automatically
 - Verify you're using `SUPABASE_SERVICE_ROLE_KEY` (not anon key)
 - Check that `createAdminClient()` is used for admin operations
@@ -176,6 +189,7 @@ Create test scripts that:
 ### Issue: Policies not applying
 
 **Solution:**
+
 - Check policy conditions are correct
 - Verify `auth.uid()` is available (user is authenticated)
 - Check for conflicting policies
@@ -193,9 +207,9 @@ Create test scripts that:
 ## Policy Maintenance
 
 When adding new tables:
+
 1. Create the table
 2. Enable RLS: `ALTER TABLE table_name ENABLE ROW LEVEL SECURITY;`
 3. Create policies for SELECT, INSERT, UPDATE, DELETE
 4. Test policies with multiple users
 5. Document policies in this file
-

@@ -1,6 +1,7 @@
 # Fix "next-flight-client-entry-loader" Error
 
 ## Problem
+
 ```
 Module not found: Error: Can't resolve 'next-flight-client-entry-loader'
 ```
@@ -71,6 +72,7 @@ node --version
 ```
 
 If you're on an incompatible version:
+
 - Install Node 18 or 20 using nvm or download from nodejs.org
 
 ## Why This Happens
@@ -94,7 +96,7 @@ npm install
 ```
 
 Then restart your dev server:
+
 ```bash
 npm run dev
 ```
-

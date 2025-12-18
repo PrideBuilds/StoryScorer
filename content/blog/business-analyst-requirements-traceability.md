@@ -13,6 +13,7 @@ Requirements traceability is the ability to track requirements throughout the so
 ## What is Requirements Traceability?
 
 Requirements traceability establishes links between:
+
 - **Business requirements** and user stories
 - **User stories** and acceptance criteria
 - **Acceptance criteria** and test cases
@@ -27,6 +28,7 @@ Many industries (healthcare, finance, aerospace) require traceability for regula
 ### 2. Impact Analysis
 
 When requirements change, traceability helps you understand:
+
 - Which user stories are affected
 - What tests need to be updated
 - What code needs to be modified
@@ -34,6 +36,7 @@ When requirements change, traceability helps you understand:
 ### 3. Quality Assurance
 
 Traceability ensures that:
+
 - Every requirement has corresponding tests
 - No requirements are forgotten
 - All features are properly validated
@@ -43,6 +46,7 @@ Traceability ensures that:
 ### 1. Use Consistent Naming Conventions
 
 Establish clear naming patterns:
+
 - User stories: `US-001`, `US-002`
 - Acceptance criteria: `AC-001`, `AC-002`
 - Test cases: `TC-001`, `TC-002`
@@ -50,6 +54,7 @@ Establish clear naming patterns:
 ### 2. Link Requirements in Your Tools
 
 Most agile tools support linking:
+
 - Link user stories to epics
 - Link acceptance criteria to user stories
 - Link test cases to acceptance criteria
@@ -65,6 +70,7 @@ Create a simple matrix tracking:
 ### 4. Use Tags and Labels
 
 Tag related items:
+
 - Tag user stories with feature areas
 - Tag test cases with the stories they verify
 - Use consistent tag naming
@@ -72,6 +78,7 @@ Tag related items:
 ### 5. Document Assumptions and Dependencies
 
 Maintain clear documentation of:
+
 - Assumptions made during requirements gathering
 - Dependencies between requirements
 - Rationale for requirement decisions
@@ -79,16 +86,19 @@ Maintain clear documentation of:
 ## Tools for Traceability
 
 ### Agile Project Management Tools
+
 - **Jira**: Link issues, create traceability reports
 - **Azure DevOps**: Work item linking and traceability views
 - **Rally**: Requirement hierarchies and traceability
 
 ### Specialized Requirements Tools
+
 - **DOORS**: Enterprise requirements management
 - **ReqView**: Lightweight requirements management
 - **StoryScorer**: Analyze and track user story quality
 
 ### Documentation Tools
+
 - **Confluence**: Requirements documentation and linking
 - **Notion**: Collaborative requirements management
 - **GitHub Wiki**: Version-controlled documentation
@@ -98,6 +108,7 @@ Maintain clear documentation of:
 ### Step 1: Define Your Traceability Model
 
 Decide what needs to be traced:
+
 - Business requirements → User stories
 - User stories → Acceptance criteria
 - Acceptance criteria → Test cases
@@ -106,6 +117,7 @@ Decide what needs to be traced:
 ### Step 2: Establish Workflows
 
 Create clear processes for:
+
 - Creating and linking requirements
 - Updating traceability when requirements change
 - Reviewing traceability during sprint reviews
@@ -113,6 +125,7 @@ Create clear processes for:
 ### Step 3: Train Your Team
 
 Ensure everyone understands:
+
 - Why traceability matters
 - How to maintain traceability
 - Where to find traceability information
@@ -120,6 +133,7 @@ Ensure everyone understands:
 ### Step 4: Automate Where Possible
 
 Use tools and scripts to:
+
 - Generate traceability reports
 - Validate traceability completeness
 - Alert on broken links
@@ -143,4 +157,3 @@ Use tools and scripts to:
 Requirements traceability is essential for quality software development, especially in regulated industries. By following these best practices and using appropriate tools, business analysts can maintain effective traceability without slowing down agile development.
 
 [Learn how StoryScorer can help improve your requirements process](/pricing) and ensure your user stories meet quality standards.
-

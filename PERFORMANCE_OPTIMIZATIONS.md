@@ -5,57 +5,67 @@ This document outlines the performance optimizations implemented in StoryScorer.
 ## 1. Next.js Configuration
 
 ### Image Optimization
+
 - Configured Next.js Image component with WebP and AVIF support
 - Set up proper image sizes and device breakpoints
 - Enabled image compression and caching
 
 ### Caching Headers
+
 - Static assets: 1 year cache with immutable flag
 - API responses: Stale-while-revalidate strategy
 - Security headers: DNS prefetch, frame options, content type options
 
 ### Bundle Optimization
+
 - Enabled package import optimization for `lucide-react` and Radix UI icons
 - Removed `X-Powered-By` header for security
 
 ## 2. Code Splitting
 
 ### Dynamic Imports
+
 - **AnalysisResults Component**: Lazy loaded with dynamic import
   - Only loads when analysis results are displayed
   - Includes loading state with spinner
   - Disabled SSR for client-only component
 
 ### Route-Based Splitting
+
 - Next.js automatically splits code by route
 - Marketing pages and dashboard pages are separate bundles
 
 ## 3. Caching Strategies
 
 ### API Route Caching
+
 - **GET /api/stories**: Implements stale-while-revalidate
   - Cache for 60 seconds
   - Revalidate in background after 5 minutes
   - Private cache (user-specific data)
 
 ### React Server Components
+
 - Landing page uses Server Components where possible
 - Dashboard pages use Server Components for initial data fetching
 
 ## 4. Loading States
 
 ### Skeleton Screens
+
 - **StoryCardSkeleton**: Reusable skeleton for story cards
 - **History Page**: Shows 5 skeleton cards while loading
 - Better UX than spinner-only loading states
 
 ### Component Loading States
+
 - AnalysisResults component shows spinner while loading
 - All async operations have loading indicators
 
 ## 5. Database Optimizations
 
 ### Indexes
+
 The database schema includes comprehensive indexes:
 
 - **user_stories table**:
@@ -78,11 +88,13 @@ The database schema includes comprehensive indexes:
 ## 6. Performance Monitoring
 
 ### Recommended Tools
+
 - **Lighthouse**: Run audits on all major pages
 - **Web Vitals**: Monitor Core Web Vitals in production
 - **Bundle Analyzer**: Use `@next/bundle-analyzer` to analyze bundle sizes
 
 ### Performance Targets
+
 - Lighthouse Performance Score: 90+
 - Lighthouse Accessibility Score: 90+
 - Lighthouse Best Practices Score: 90+
@@ -91,6 +103,7 @@ The database schema includes comprehensive indexes:
 ## 7. Future Optimizations
 
 ### Potential Improvements
+
 1. **Service Worker**: Implement offline support and caching
 2. **React Query/SWR**: Add for better data fetching and caching
 3. **Image CDN**: Use a CDN for static images
@@ -102,6 +115,7 @@ The database schema includes comprehensive indexes:
 ## 8. Monitoring
 
 ### Metrics to Track
+
 - Time to First Byte (TTFB)
 - First Contentful Paint (FCP)
 - Largest Contentful Paint (LCP)
@@ -110,7 +124,7 @@ The database schema includes comprehensive indexes:
 - First Input Delay (FID)
 
 ### Tools
+
 - Vercel Analytics (if deployed on Vercel)
 - Google Analytics 4
 - Custom performance monitoring
-

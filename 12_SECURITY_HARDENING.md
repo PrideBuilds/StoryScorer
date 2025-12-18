@@ -10,36 +10,39 @@
 
 \f0\fs24 \cf2 \expnd0\expndtw0\kerning0
 \outl0\strokewidth0 \strokec3 \shad\shadx0\shady-20\shadr0\shado0 \shadc0 Implement security headers:\
+
 - Configure security headers in next.config.js or middleware:\
-  * Content-Security-Policy\
-  * X-Frame-Options: DENY\
-  * X-Content-Type-Options: nosniff\
-  * Referrer-Policy: strict-origin-when-cross-origin\
-  * Permissions-Policy\
+  - Content-Security-Policy\
+  - X-Frame-Options: DENY\
+  - X-Content-Type-Options: nosniff\
+  - Referrer-Policy: strict-origin-when-cross-origin\
+  - Permissions-Policy\
 - Test headers with securityheaders.com\
 - Ensure HTTPS redirect is enforced\
 - Add HSTS header for production\
-\pard\pardeftab720\qc\partightenfactor0
+  \pard\pardeftab720\qc\partightenfactor0
 
 \f1\fs22 \cf2 \strokec4 \shad0 \
 \pard\pardeftab720\partightenfactor0
 
 \f0\fs24 \cf2 \strokec3 \shad\shadx0\shady-20\shadr0\shado0 \shadc0 Add rate limiting:\
+
 - Install rate limiting library (upstash/ratelimit or similar)\
 - Implement rate limiting on API routes:\
-  * /api/analyze - 20 requests per hour per user\
-  * /api/auth/* - 5 requests per 15 minutes per IP\
-  * /api/checkout - 3 requests per hour per user\
+  - /api/analyze - 20 requests per hour per user\
+  - /api/auth/\* - 5 requests per 15 minutes per IP\
+  - /api/checkout - 3 requests per hour per user\
 - Return appropriate 429 errors when exceeded\
 - Add user-friendly error messages\
 - Log rate limit violations\
 - Consider IP-based limiting for public endpoints
-\f1\fs22 \cf2 \strokec4 \shad0 \
-\pard\pardeftab720\qc\partightenfactor0
-\cf2 \strokec4 \
-\pard\pardeftab720\partightenfactor0
+  \f1\fs22 \cf2 \strokec4 \shad0 \
+  \pard\pardeftab720\qc\partightenfactor0
+  \cf2 \strokec4 \
+  \pard\pardeftab720\partightenfactor0
 
 \f0\fs24 \cf2 \strokec3 \shad\shadx0\shady-20\shadr0\shado0 \shadc0 Secure API routes and server actions:\
+
 - Verify user authentication on all protected routes\
 - Validate all input data with Zod schemas\
 - Sanitize user inputs to prevent XSS\
@@ -48,12 +51,13 @@
 - Add CSRF protection to forms\
 - Implement proper error handling without exposing sensitive data\
 - Log security events
-\f1\fs22 \cf2 \strokec4 \shad0 \
-\pard\pardeftab720\qc\partightenfactor0
-\cf2 \strokec4 \
-\pard\pardeftab720\partightenfactor0
+  \f1\fs22 \cf2 \strokec4 \shad0 \
+  \pard\pardeftab720\qc\partightenfactor0
+  \cf2 \strokec4 \
+  \pard\pardeftab720\partightenfactor0
 
 \f0\fs24 \cf2 \strokec3 \shad\shadx0\shady-20\shadr0\shado0 \shadc0 Review and test Row Level Security policies:\
+
 - Verify RLS is enabled on all tables\
 - Test that users can only access their own data\
 - Test that users cannot modify others' data\
@@ -61,4 +65,4 @@
 - Check for any policy gaps\
 - Add policies for new tables immediately\
 - Document all RLS policies\
-}
+  }

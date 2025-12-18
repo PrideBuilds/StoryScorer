@@ -22,4 +22,3 @@ export interface BlogPostFrontmatter {
   tags?: string[];
   metaDescription?: string;
 }
-

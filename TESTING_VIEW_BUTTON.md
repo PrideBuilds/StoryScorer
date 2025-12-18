@@ -1,9 +1,11 @@
 # Testing Guide: View Button Functionality
 
 ## Overview
+
 This guide helps you verify that the "View" button on the `/history` page correctly loads and displays story analysis results.
 
 ## Prerequisites
+
 1. You have at least one story with analysis results in your database
 2. You are logged in to the application
 3. The development server is running (`npm run dev`)
@@ -11,7 +13,9 @@ This guide helps you verify that the "View" button on the `/history` page correc
 ## Test Scenarios
 
 ### ✅ Test 1: Basic View Button Functionality
+
 **Steps:**
+
 1. Navigate to `/history` page
 2. Find a story that has an analysis result (score should be visible)
 3. Click the "View" button
@@ -27,7 +31,9 @@ This guide helps you verify that the "View" button on the `/history` page correc
 ---
 
 ### ✅ Test 2: Direct URL Access
+
 **Steps:**
+
 1. Copy a story ID from the history page
 2. Open a new browser tab
 3. Navigate directly to `http://localhost:3000/analyzer?story={story-id}`
@@ -41,7 +47,9 @@ This guide helps you verify that the "View" button on the `/history` page correc
 ---
 
 ### ✅ Test 3: Browser Back/Forward Navigation
+
 **Steps:**
+
 1. Navigate to `/history`
 2. Click "View" on a story
 3. Wait for analysis to load
@@ -57,7 +65,9 @@ This guide helps you verify that the "View" button on the `/history` page correc
 ---
 
 ### ✅ Test 4: Multiple Story Views
+
 **Steps:**
+
 1. Navigate to `/history`
 2. Click "View" on Story A
 3. Wait for analysis to load
@@ -73,7 +83,9 @@ This guide helps you verify that the "View" button on the `/history` page correc
 ---
 
 ### ✅ Test 5: Page Refresh
+
 **Steps:**
+
 1. Navigate to `/analyzer?story={story-id}` (with a valid story ID)
 2. Wait for analysis to load
 3. Press `F5` or `Cmd+R` to refresh the page
@@ -88,7 +100,9 @@ This guide helps you verify that the "View" button on the `/history` page correc
 ---
 
 ### ✅ Test 6: Story Without Analysis Result
+
 **Steps:**
+
 1. Navigate to `/history`
 2. Find or create a story that doesn't have an `analysis_result`
 3. Click "View" button
@@ -103,7 +117,9 @@ This guide helps you verify that the "View" button on the `/history` page correc
 ---
 
 ### ✅ Test 7: Invalid Story ID
+
 **Steps:**
+
 1. Navigate to `/analyzer?story=invalid-id-12345`
 2. **Expected Result:**
    - Error message appears: "Story not found" or "Failed to load story"
@@ -115,7 +131,9 @@ This guide helps you verify that the "View" button on the `/history` page correc
 ---
 
 ### ✅ Test 8: Logout/Login Flow
+
 **Steps:**
+
 1. Navigate to `/history`
 2. Click "View" on a story
 3. Wait for analysis to load
@@ -133,7 +151,9 @@ This guide helps you verify that the "View" button on the `/history` page correc
 ---
 
 ### ✅ Test 9: Network Tab Verification
+
 **Steps:**
+
 1. Open browser DevTools → Network tab
 2. Navigate to `/history`
 3. Click "View" on a story
@@ -148,7 +168,9 @@ This guide helps you verify that the "View" button on the `/history` page correc
 ---
 
 ### ✅ Test 10: Console Error Check
+
 **Steps:**
+
 1. Open browser DevTools → Console tab
 2. Navigate to `/history`
 3. Click "View" on a story
@@ -164,7 +186,9 @@ This guide helps you verify that the "View" button on the `/history` page correc
 ---
 
 ### ✅ Test 11: "Analyze Another Story" Button
+
 **Steps:**
+
 1. View a story analysis
 2. Click "Analyze Another Story" button
 3. **Expected Result:**
@@ -178,7 +202,9 @@ This guide helps you verify that the "View" button on the `/history` page correc
 ---
 
 ### ✅ Test 12: Concurrent Navigation Prevention
+
 **Steps:**
+
 1. Navigate to `/history`
 2. Rapidly click "View" on the same story multiple times (5-10 clicks)
 3. **Expected Result:**
@@ -194,10 +220,12 @@ This guide helps you verify that the "View" button on the `/history` page correc
 ## Performance Checks
 
 ### ✅ Load Time
+
 - Story analysis should load within 1-2 seconds on a good connection
 - Loading spinner should appear immediately when clicking "View"
 
 ### ✅ Memory Leaks
+
 - Navigate between stories 10+ times
 - Check browser memory usage (should not continuously increase)
 - No console warnings about memory leaks
@@ -205,7 +233,9 @@ This guide helps you verify that the "View" button on the `/history` page correc
 ---
 
 ## Browser Compatibility
+
 Test on:
+
 - ✅ Chrome/Edge (Chromium)
 - ✅ Firefox
 - ✅ Safari (if on Mac)
@@ -215,18 +245,22 @@ Test on:
 ## Common Issues to Watch For
 
 ### ❌ Issue: Redirects to login page
+
 **Cause:** Authentication cookies not being sent
 **Fix:** Ensure `credentials: 'include'` is in fetch requests
 
 ### ❌ Issue: Shows form instead of analysis
+
 **Cause:** `storyId` not being read from URL correctly
 **Fix:** Check `getStoryIdFromUrl()` function
 
 ### ❌ Issue: Duplicate API calls
+
 **Cause:** `useEffect` dependencies triggering multiple times
 **Fix:** Check ref-based loading prevention logic
 
 ### ❌ Issue: Analysis doesn't load after logout/login
+
 **Cause:** State not resetting properly
 **Fix:** Verify `useEffect` cleanup and state reset
 
@@ -235,6 +269,7 @@ Test on:
 ## Quick Test Script
 
 Run this quick test sequence:
+
 1. ✅ View button works
 2. ✅ Direct URL works
 3. ✅ Browser back/forward works
@@ -244,4 +279,3 @@ Run this quick test sequence:
 7. ✅ No console errors
 
 If all pass, the feature is production-ready! 🎉
-

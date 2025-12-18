@@ -17,7 +17,7 @@ This hook uses `window.location.search` as the source of truth instead of `useSe
 ### Usage
 
 ```typescript
-import { useStoryIdFromUrl } from '@/lib/hooks/useStoryIdFromUrl';
+import { useStoryIdFromUrl } from "@/lib/hooks/useStoryIdFromUrl";
 
 function MyComponent() {
   const storyId = useStoryIdFromUrl();
@@ -42,6 +42,7 @@ function MyComponent() {
 ### Testing
 
 To verify this hook works correctly:
+
 1. Navigate to `/history`
 2. Click "View" on any story
 3. Should immediately load the story analysis (not show the form)
@@ -50,6 +51,7 @@ To verify this hook works correctly:
 6. Works on page refresh
 
 If the View button stops working, check:
+
 - Is the hook still being used in `analyzer/page.tsx`?
 - Has the hook logic been modified?
 - Are there any new effects that might interfere?
@@ -57,6 +59,7 @@ If the View button stops working, check:
 ### Maintenance
 
 If you need to modify this hook:
+
 1. Test thoroughly with the View button from history page
 2. Test after logout/login
 3. Test browser navigation (back/forward)
@@ -67,4 +70,3 @@ If you need to modify this hook:
 
 **Last Updated:** 2025-01-16
 **Reason:** Permanent fix for View button reliability issue
-

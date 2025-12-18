@@ -24,6 +24,7 @@ User stories are the foundation of agile development, but many teams struggle to
 **The Problem:** Stories that violate INVEST principles (Independent, Negotiable, Valuable, Estimable, Small, Testable) lead to poor planning and execution.
 
 **The Solution:** Use tools like StoryScorer to analyze your stories against INVEST criteria. Ensure each story:
+
 - Can be developed independently
 - Has clear value for the user
 - Can be estimated accurately
@@ -40,6 +41,7 @@ User stories are the foundation of agile development, but many teams struggle to
 **The Problem:** Stories without clear acceptance criteria lead to misunderstandings and rework.
 
 **The Solution:** Every story should include Given-When-Then scenarios that define:
+
 - Preconditions (Given)
 - Actions (When)
 - Expected outcomes (Then)
@@ -49,6 +51,7 @@ User stories are the foundation of agile development, but many teams struggle to
 **The Problem:** Epic-sized stories that span multiple sprints make it impossible to deliver value incrementally.
 
 **The Solution:** Break down large stories using techniques like:
+
 - Story mapping
 - Identifying user journey steps
 - Separating concerns (UI, API, business logic)
@@ -58,4 +61,3 @@ User stories are the foundation of agile development, but many teams struggle to
 Writing effective user stories is a skill that improves with practice. By avoiding these common mistakes and using tools like [StoryScorer](/pricing) to analyze your stories, you can significantly improve your requirements process and deliver better software faster.
 
 Ready to improve your user stories? [Start analyzing your stories with StoryScorer today](/signup).
-

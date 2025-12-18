@@ -1,4 +1,5 @@
 # Comprehensive Application Testing Guide
+
 ## StoryScorer - End-to-End Testing Checklist
 
 This guide covers all features and functionality of the StoryScorer application. Use this before deploying to production.
@@ -8,6 +9,7 @@ This guide covers all features and functionality of the StoryScorer application.
 ## 🎯 Pre-Testing Setup
 
 ### Environment Check
+
 - [ ] Development server is running (`npm run dev`)
 - [ ] Database is connected (Supabase)
 - [ ] Environment variables are set:
@@ -23,6 +25,7 @@ This guide covers all features and functionality of the StoryScorer application.
 - [ ] Browser DevTools are open (Console & Network tabs)
 
 ### Test Accounts
+
 - [ ] Create a test account for full testing
 - [ ] Have a second test account ready (for edge cases)
 - [ ] Note: Use test email addresses you can access
@@ -32,6 +35,7 @@ This guide covers all features and functionality of the StoryScorer application.
 ## 1️⃣ AUTHENTICATION FLOW
 
 ### 1.1 Sign Up
+
 **Location:** `/signup`
 
 - [ ] Navigate to signup page
@@ -47,6 +51,7 @@ This guide covers all features and functionality of the StoryScorer application.
 - [ ] **Expected:** Redirects to dashboard after verification
 
 **Error Cases:**
+
 - [ ] Test with invalid email format → Shows validation error
 - [ ] Test with weak password → Shows password requirements
 - [ ] Test with missing fields → Shows field-specific errors
@@ -58,6 +63,7 @@ This guide covers all features and functionality of the StoryScorer application.
 ---
 
 ### 1.2 Login
+
 **Location:** `/login`
 
 - [ ] Navigate to login page
@@ -70,6 +76,7 @@ This guide covers all features and functionality of the StoryScorer application.
 - [ ] Close browser and reopen → Session persists (if "Remember me" implemented)
 
 **Protected Route Test:**
+
 - [ ] Logout
 - [ ] Try to access `/dashboard` directly
 - [ ] **Expected:** Redirects to login page
@@ -81,6 +88,7 @@ This guide covers all features and functionality of the StoryScorer application.
 ---
 
 ### 1.3 Password Reset
+
 **Location:** `/forgot-password` → `/reset-password`
 
 - [ ] Navigate to forgot password page
@@ -98,6 +106,7 @@ This guide covers all features and functionality of the StoryScorer application.
 - [ ] Login with new password → Should succeed
 
 **Error Cases:**
+
 - [ ] Test with non-existent email → Shows appropriate message
 - [ ] Test with expired reset link → Shows error
 - [ ] Test with invalid reset link → Shows error
@@ -108,6 +117,7 @@ This guide covers all features and functionality of the StoryScorer application.
 ---
 
 ### 1.4 Logout
+
 **Location:** Any authenticated page (usually in navigation)
 
 - [ ] While logged in, click logout button
@@ -123,9 +133,11 @@ This guide covers all features and functionality of the StoryScorer application.
 ## 2️⃣ CORE FEATURES
 
 ### 2.1 Story Analysis
+
 **Location:** `/analyzer`
 
 #### Input Form
+
 - [ ] Navigate to analyzer page (while logged in)
 - [ ] Enter story title → Character counter works (if implemented)
 - [ ] Enter user story text → Character counter shows (max 5000 chars)
@@ -142,6 +154,7 @@ This guide covers all features and functionality of the StoryScorer application.
 - [ ] Click "Clear" button → Form resets
 
 #### Analysis Execution
+
 - [ ] Submit story for analysis
 - [ ] **Expected:** Loading state appears (spinner, "Analyzing..." text)
 - [ ] **Expected:** Analysis completes (within reasonable time)
@@ -160,6 +173,7 @@ This guide covers all features and functionality of the StoryScorer application.
 - [ ] **Expected:** Usage is tracked
 
 **Error Cases:**
+
 - [ ] Test with API failure → Shows error message
 - [ ] Test when usage limit exceeded → Shows upgrade message
 - [ ] Test with network interruption → Handles gracefully
@@ -169,9 +183,11 @@ This guide covers all features and functionality of the StoryScorer application.
 ---
 
 ### 2.2 Story History
+
 **Location:** `/history`
 
 #### Viewing Stories
+
 - [ ] Navigate to history page
 - [ ] **Expected:** List of saved stories displays
 - [ ] **Expected:** Each story shows:
@@ -186,6 +202,7 @@ This guide covers all features and functionality of the StoryScorer application.
 - [ ] **Expected:** Returns to history page
 
 #### Search & Filter
+
 - [ ] Use search box to find a story
 - [ ] **Expected:** Results filter in real-time
 - [ ] Search by title → Works
@@ -193,6 +210,7 @@ This guide covers all features and functionality of the StoryScorer application.
 - [ ] Clear search → Shows all stories
 
 #### Sorting (if implemented)
+
 - [ ] Sort by date (newest first) → Works
 - [ ] Sort by date (oldest first) → Works
 - [ ] Sort by score (highest first) → Works
@@ -200,12 +218,14 @@ This guide covers all features and functionality of the StoryScorer application.
 - [ ] Sort by title (A-Z) → Works
 
 #### Pagination (if implemented)
+
 - [ ] If more than 20 stories, pagination appears
 - [ ] Click next page → Loads next set
 - [ ] Click previous page → Works
 - [ ] Click page number → Works
 
 #### Delete Story
+
 - [ ] Click delete button on a story
 - [ ] **Expected:** Confirmation dialog appears (if implemented)
 - [ ] Confirm deletion
@@ -213,6 +233,7 @@ This guide covers all features and functionality of the StoryScorer application.
 - [ ] **Expected:** Story removed from database
 
 #### Empty State
+
 - [ ] Delete all stories (or use new account)
 - [ ] **Expected:** Empty state message displays
 - [ ] **Expected:** "Create your first story" CTA appears
@@ -222,6 +243,7 @@ This guide covers all features and functionality of the StoryScorer application.
 ---
 
 ### 2.3 Dashboard
+
 **Location:** `/dashboard`
 
 - [ ] Navigate to dashboard
@@ -246,6 +268,7 @@ This guide covers all features and functionality of the StoryScorer application.
 ## 3️⃣ MARKETING PAGES
 
 ### 3.1 Home/Landing Page
+
 **Location:** `/` or `/marketing`
 
 - [ ] Navigate to home page (while logged out)
@@ -266,6 +289,7 @@ This guide covers all features and functionality of the StoryScorer application.
 ---
 
 ### 3.2 Pricing Page
+
 **Location:** `/pricing`
 
 - [ ] Navigate to pricing page
@@ -288,9 +312,11 @@ This guide covers all features and functionality of the StoryScorer application.
 ---
 
 ### 3.3 Blog
+
 **Location:** `/blog`
 
 #### Blog Listing
+
 - [ ] Navigate to blog page
 - [ ] **Expected:** List of blog posts displays
 - [ ] **Expected:** Each post shows:
@@ -304,6 +330,7 @@ This guide covers all features and functionality of the StoryScorer application.
 - [ ] Click on a blog post → Opens post detail
 
 #### Blog Post Detail
+
 **Location:** `/blog/[slug]`
 
 - [ ] Click on a blog post
@@ -329,6 +356,7 @@ This guide covers all features and functionality of the StoryScorer application.
 ---
 
 ### 3.4 About Page
+
 **Location:** `/about`
 
 - [ ] Navigate to about page
@@ -341,6 +369,7 @@ This guide covers all features and functionality of the StoryScorer application.
 ---
 
 ### 3.5 Privacy & Terms
+
 **Location:** `/privacy` and `/terms`
 
 - [ ] Navigate to privacy page
@@ -356,6 +385,7 @@ This guide covers all features and functionality of the StoryScorer application.
 ## 4️⃣ SUBSCRIPTION & BILLING
 
 ### 4.1 Checkout Flow
+
 **Location:** `/pricing` → Checkout
 
 - [ ] Navigate to pricing page (while logged in)
@@ -375,6 +405,7 @@ This guide covers all features and functionality of the StoryScorer application.
 ---
 
 ### 4.2 Billing Page
+
 **Location:** `/billing`
 
 - [ ] Navigate to billing page (while logged in)
@@ -394,6 +425,7 @@ This guide covers all features and functionality of the StoryScorer application.
 ---
 
 ### 4.3 Usage Limits
+
 - [ ] Use free plan account
 - [ ] Analyze stories until limit is reached
 - [ ] **Expected:** Warning message appears when approaching limit
@@ -410,6 +442,7 @@ This guide covers all features and functionality of the StoryScorer application.
 ## 5️⃣ EMAIL NOTIFICATIONS
 
 ### 5.1 Welcome Email
+
 - [ ] Sign up for new account
 - [ ] **Expected:** Welcome email received
 - [ ] **Expected:** Email renders correctly:
@@ -422,6 +455,7 @@ This guide covers all features and functionality of the StoryScorer application.
 ---
 
 ### 5.2 Password Reset Email
+
 - [ ] Request password reset
 - [ ] **Expected:** Password reset email received
 - [ ] **Expected:** Reset link works
@@ -432,6 +466,7 @@ This guide covers all features and functionality of the StoryScorer application.
 ---
 
 ### 5.3 Subscription Emails
+
 - [ ] Complete subscription checkout
 - [ ] **Expected:** Subscription confirmation email received
 - [ ] **Expected:** Email includes subscription details
@@ -441,6 +476,7 @@ This guide covers all features and functionality of the StoryScorer application.
 ---
 
 ### 5.4 Usage Warning Email
+
 - [ ] Approach usage limit (80%+)
 - [ ] **Expected:** Usage warning email received (if implemented)
 - [ ] **Expected:** Email shows current usage and limit
@@ -472,30 +508,35 @@ This guide covers all features and functionality of the StoryScorer application.
 ## 7️⃣ ERROR HANDLING & EDGE CASES
 
 ### 7.1 Network Errors
+
 - [ ] Disconnect internet
 - [ ] Try to analyze a story
 - [ ] **Expected:** Error message appears
 - [ ] **Expected:** User can retry
 
 ### 7.2 Invalid Data
+
 - [ ] Try to access `/analyzer?story=invalid-id`
 - [ ] **Expected:** Error message or graceful fallback
 - [ ] Try to delete non-existent story
 - [ ] **Expected:** Handles gracefully
 
 ### 7.3 Authentication Edge Cases
+
 - [ ] Try to access protected route while logged out
 - [ ] **Expected:** Redirects to login
 - [ ] Login, then let session expire
 - [ ] **Expected:** Redirects to login when accessing protected route
 
 ### 7.4 Browser Compatibility
+
 - [ ] Test in Chrome/Edge
 - [ ] Test in Firefox
 - [ ] Test in Safari (if on Mac)
 - [ ] **Expected:** All features work in all browsers
 
 ### 7.5 Mobile Responsiveness
+
 - [ ] Test on mobile device (or browser dev tools)
 - [ ] **Expected:** All pages are responsive
 - [ ] **Expected:** Navigation works on mobile
@@ -508,17 +549,20 @@ This guide covers all features and functionality of the StoryScorer application.
 ## 8️⃣ PERFORMANCE & OPTIMIZATION
 
 ### 8.1 Page Load Times
+
 - [ ] Check initial page load → Should be < 3 seconds
 - [ ] Check navigation between pages → Should be < 1 second
 - [ ] Check analysis completion → Should be < 10 seconds
 
 ### 8.2 API Response Times
+
 - [ ] Open Network tab
 - [ ] Navigate through app
 - [ ] **Expected:** API calls complete quickly
 - [ ] **Expected:** No unnecessary duplicate calls
 
 ### 8.3 Memory Leaks
+
 - [ ] Navigate between pages 20+ times
 - [ ] **Expected:** No memory warnings in console
 - [ ] **Expected:** Performance doesn't degrade
@@ -530,18 +574,21 @@ This guide covers all features and functionality of the StoryScorer application.
 ## 9️⃣ SECURITY CHECKS
 
 ### 9.1 Authentication
+
 - [ ] Try to access API routes directly without auth
 - [ ] **Expected:** Returns 401 Unauthorized
 - [ ] Try to access another user's stories
 - [ ] **Expected:** Cannot access (403 or empty results)
 
 ### 9.2 Input Validation
+
 - [ ] Try SQL injection in form fields
 - [ ] **Expected:** Handled safely
 - [ ] Try XSS in form fields
 - [ ] **Expected:** Sanitized correctly
 
 ### 9.3 Environment Variables
+
 - [ ] Verify sensitive keys are not exposed in client code
 - [ ] **Expected:** No API keys in browser console
 
@@ -552,17 +599,20 @@ This guide covers all features and functionality of the StoryScorer application.
 ## 🔟 INTEGRATION TESTS
 
 ### 10.1 Stripe Webhooks
+
 - [ ] Complete test subscription
 - [ ] **Expected:** Webhook received and processed
 - [ ] **Expected:** Subscription status updated in database
 - [ ] **Expected:** User access updated
 
 ### 10.2 Email Service
+
 - [ ] Trigger all email types
 - [ ] **Expected:** All emails sent successfully
 - [ ] **Expected:** Emails render correctly
 
 ### 10.3 Database
+
 - [ ] Create, read, update, delete operations
 - [ ] **Expected:** All CRUD operations work
 - [ ] **Expected:** Data persists correctly
@@ -608,26 +658,30 @@ If you find issues, document them with:
 
 ## ✅ SIGN-OFF
 
-**Tester Name:** _________________
+**Tester Name:** ********\_********
 
-**Date:** _________________
+**Date:** ********\_********
 
 **Overall Status:**
+
 - [ ] ✅ Ready for Production
 - [ ] ⚠️ Minor Issues (List below)
 - [ ] ❌ Major Issues (List below)
 
 **Issues Found:**
-1. 
-2. 
-3. 
+
+1.
+2.
+3.
 
 **Notes:**
-_________________________________________________________________
-_________________________________________________________________
-_________________________________________________________________
+
+---
+
+---
+
+---
 
 ---
 
 **Happy Testing! 🚀**
-

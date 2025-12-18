@@ -23,7 +23,9 @@ export function EmptyState({
   action,
   className,
 }: EmptyStateProps) {
-  const IconComponent = icon || <FileText className="h-12 w-12 text-muted-foreground" />;
+  const IconComponent = icon || (
+    <FileText className="h-12 w-12 text-muted-foreground" />
+  );
 
   return (
     <Card className={className}>
@@ -50,4 +52,3 @@ export function EmptyState({
     </Card>
   );
 }
-

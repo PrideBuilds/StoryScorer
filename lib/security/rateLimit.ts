@@ -16,10 +16,7 @@ interface RateLimitResult {
 }
 
 // In-memory rate limit store (use Redis in production)
-const rateLimitStore = new Map<
-  string,
-  { count: number; resetTime: number }
->();
+const rateLimitStore = new Map<string, { count: number; resetTime: number }>();
 
 /**
  * Check rate limit for a given key
@@ -119,4 +116,3 @@ export const RATE_LIMITS = {
     windowMs: 60 * 1000, // 1 minute
   },
 } as const;
-

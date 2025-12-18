@@ -32,7 +32,9 @@ export default function HistoryPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [search, setSearch] = useState("");
-  const [sortBy, setSortBy] = useState<"created_at" | "score" | "title">("created_at");
+  const [sortBy, setSortBy] = useState<"created_at" | "score" | "title">(
+    "created_at"
+  );
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("desc");
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
@@ -155,7 +157,10 @@ export default function HistoryPage() {
                 />
               </div>
             </div>
-            <Select value={sortBy} onValueChange={(v) => setSortBy(v as typeof sortBy)}>
+            <Select
+              value={sortBy}
+              onValueChange={(v) => setSortBy(v as typeof sortBy)}
+            >
               <SelectTrigger className="w-full sm:w-[180px]">
                 <SelectValue placeholder="Sort by" />
               </SelectTrigger>
@@ -198,7 +203,9 @@ export default function HistoryPage() {
           <CardContent className="py-12 text-center">
             <FileText className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
             <p className="text-muted-foreground mb-4">
-              {search ? "No stories found matching your search." : "No stories yet."}
+              {search
+                ? "No stories found matching your search."
+                : "No stories yet."}
             </p>
             {!search && (
               <Button asChild>
@@ -215,7 +222,9 @@ export default function HistoryPage() {
                 <CardHeader>
                   <div className="flex items-start justify-between">
                     <div className="flex-1">
-                      <CardTitle className="text-lg mb-2">{story.title}</CardTitle>
+                      <CardTitle className="text-lg mb-2">
+                        {story.title}
+                      </CardTitle>
                       <div className="flex flex-wrap gap-2 items-center">
                         {story.score !== null && (
                           <Badge variant={getScoreColor(story.score)}>
@@ -228,7 +237,11 @@ export default function HistoryPage() {
                         {story.tags && story.tags.length > 0 && (
                           <div className="flex flex-wrap gap-1">
                             {story.tags.map((tag, idx) => (
-                              <Badge key={idx} variant="outline" className="text-xs">
+                              <Badge
+                                key={idx}
+                                variant="outline"
+                                className="text-xs"
+                              >
                                 {tag}
                               </Badge>
                             ))}
@@ -243,7 +256,9 @@ export default function HistoryPage() {
                       <Button
                         variant="outline"
                         size="sm"
-                        onClick={() => router.push(`/analyzer?story=${story.id}`)}
+                        onClick={() =>
+                          router.push(`/analyzer?story=${story.id}`)
+                        }
                       >
                         <Eye className="h-4 w-4 mr-2" />
                         View
@@ -303,4 +318,3 @@ export default function HistoryPage() {
     </div>
   );
 }
-

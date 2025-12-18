@@ -56,4 +56,3 @@ export async function checkAndSendUsageWarning(): Promise<void> {
     // Don't throw - this is a background task
   }
 }
-

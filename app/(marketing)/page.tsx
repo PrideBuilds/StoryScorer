@@ -25,14 +25,20 @@ export default function LandingPage() {
               Elevate Your User Stories with AI-Powered Analysis
             </h1>
             <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-              Transform your user stories into high-quality, INVEST-compliant requirements
-              with intelligent AI analysis designed for Business Analysts.
+              Transform your user stories into high-quality, INVEST-compliant
+              requirements with intelligent AI analysis designed for Business
+              Analysts.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
               <Button size="lg" asChild className="text-lg px-8">
                 <Link href="/signup">Get Started Free</Link>
               </Button>
-              <Button size="lg" variant="outline" asChild className="text-lg px-8">
+              <Button
+                size="lg"
+                variant="outline"
+                asChild
+                className="text-lg px-8"
+              >
                 <Link href="/#how-it-works">See How It Works</Link>
               </Button>
             </div>
@@ -74,10 +80,13 @@ export default function LandingPage() {
                 <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
                   <Brain className="h-6 w-6 text-blue-600" />
                 </div>
-                <h3 className="text-xl font-semibold mb-2">AI-Powered Analysis</h3>
+                <h3 className="text-xl font-semibold mb-2">
+                  AI-Powered Analysis
+                </h3>
                 <p className="text-muted-foreground">
-                  Get instant, comprehensive analysis of your user stories against INVEST criteria
-                  with actionable suggestions for improvement.
+                  Get instant, comprehensive analysis of your user stories
+                  against INVEST criteria with actionable suggestions for
+                  improvement.
                 </p>
               </CardContent>
             </Card>
@@ -89,8 +98,9 @@ export default function LandingPage() {
                 </div>
                 <h3 className="text-xl font-semibold mb-2">Detailed Scoring</h3>
                 <p className="text-muted-foreground">
-                  Receive detailed scores for each INVEST criterion with explanations and
-                  recommendations to improve your story quality.
+                  Receive detailed scores for each INVEST criterion with
+                  explanations and recommendations to improve your story
+                  quality.
                 </p>
               </CardContent>
             </Card>
@@ -102,8 +112,8 @@ export default function LandingPage() {
                 </div>
                 <h3 className="text-xl font-semibold mb-2">Track Progress</h3>
                 <p className="text-muted-foreground">
-                  Save and track your stories over time to see improvements and maintain
-                  a history of your analysis work.
+                  Save and track your stories over time to see improvements and
+                  maintain a history of your analysis work.
                 </p>
               </CardContent>
             </Card>
@@ -115,8 +125,8 @@ export default function LandingPage() {
                 </div>
                 <h3 className="text-xl font-semibold mb-2">Lightning Fast</h3>
                 <p className="text-muted-foreground">
-                  Get analysis results in seconds, not minutes. No more waiting around
-                  for manual reviews.
+                  Get analysis results in seconds, not minutes. No more waiting
+                  around for manual reviews.
                 </p>
               </CardContent>
             </Card>
@@ -128,8 +138,8 @@ export default function LandingPage() {
                 </div>
                 <h3 className="text-xl font-semibold mb-2">INVEST Compliant</h3>
                 <p className="text-muted-foreground">
-                  Built specifically to evaluate stories against the INVEST framework,
-                  ensuring your requirements meet industry standards.
+                  Built specifically to evaluate stories against the INVEST
+                  framework, ensuring your requirements meet industry standards.
                 </p>
               </CardContent>
             </Card>
@@ -139,10 +149,12 @@ export default function LandingPage() {
                 <div className="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4">
                   <Sparkles className="h-6 w-6 text-indigo-600" />
                 </div>
-                <h3 className="text-xl font-semibold mb-2">Smart Suggestions</h3>
+                <h3 className="text-xl font-semibold mb-2">
+                  Smart Suggestions
+                </h3>
                 <p className="text-muted-foreground">
-                  Receive intelligent, context-aware suggestions to improve clarity,
-                  completeness, and testability of your stories.
+                  Receive intelligent, context-aware suggestions to improve
+                  clarity, completeness, and testability of your stories.
                 </p>
               </CardContent>
             </Card>
@@ -157,10 +169,15 @@ export default function LandingPage() {
       </section>
 
       {/* How It Works Section */}
-      <section id="how-it-works" className="py-20 bg-gradient-to-br from-blue-50 to-purple-50">
+      <section
+        id="how-it-works"
+        className="py-20 bg-gradient-to-br from-blue-50 to-purple-50"
+      >
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">How It Works</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              How It Works
+            </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               Get started in minutes with our simple, intuitive process
             </p>
@@ -184,7 +201,8 @@ export default function LandingPage() {
                 </div>
                 <h3 className="text-lg font-semibold mb-2">Input Your Story</h3>
                 <p className="text-sm text-muted-foreground">
-                  Paste your user story and acceptance criteria into our simple form.
+                  Paste your user story and acceptance criteria into our simple
+                  form.
                 </p>
               </div>
 
@@ -204,7 +222,8 @@ export default function LandingPage() {
                 </div>
                 <h3 className="text-lg font-semibold mb-2">Get Insights</h3>
                 <p className="text-sm text-muted-foreground">
-                  Review detailed scores, suggestions, and save for future reference.
+                  Review detailed scores, suggestions, and save for future
+                  reference.
                 </p>
               </div>
             </div>
@@ -245,9 +264,9 @@ export default function LandingPage() {
                   ))}
                 </div>
                 <p className="text-muted-foreground mb-4">
-                  "StoryScorer has transformed how I write user stories. The AI analysis
-                  catches issues I would have missed, and my stories are now consistently
-                  INVEST-compliant."
+                  "StoryScorer has transformed how I write user stories. The AI
+                  analysis catches issues I would have missed, and my stories
+                  are now consistently INVEST-compliant."
                 </p>
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 bg-gradient-to-br from-blue-400 to-purple-400 rounded-full flex items-center justify-center text-white font-semibold">
@@ -274,9 +293,9 @@ export default function LandingPage() {
                   ))}
                 </div>
                 <p className="text-muted-foreground mb-4">
-                  "The detailed scoring and suggestions are incredibly helpful. I've
-                  improved my story quality significantly since using StoryScorer. Highly
-                  recommend!"
+                  "The detailed scoring and suggestions are incredibly helpful.
+                  I've improved my story quality significantly since using
+                  StoryScorer. Highly recommend!"
                 </p>
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 bg-gradient-to-br from-green-400 to-blue-400 rounded-full flex items-center justify-center text-white font-semibold">
@@ -303,9 +322,9 @@ export default function LandingPage() {
                   ))}
                 </div>
                 <p className="text-muted-foreground mb-4">
-                  "As a team lead, StoryScorer helps me ensure consistency across all
-                  our user stories. The tracking feature is perfect for maintaining
-                  quality standards."
+                  "As a team lead, StoryScorer helps me ensure consistency
+                  across all our user stories. The tracking feature is perfect
+                  for maintaining quality standards."
                 </p>
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 bg-gradient-to-br from-purple-400 to-pink-400 rounded-full flex items-center justify-center text-white font-semibold">
@@ -332,11 +351,17 @@ export default function LandingPage() {
               Ready to Write Better User Stories?
             </h2>
             <p className="text-xl mb-8 text-blue-100">
-              Join hundreds of Business Analysts who trust StoryScorer to improve their
-              user story quality. Start your free trial today—no credit card required.
+              Join hundreds of Business Analysts who trust StoryScorer to
+              improve their user story quality. Start your free trial today—no
+              credit card required.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-              <Button size="lg" variant="secondary" asChild className="text-lg px-8">
+              <Button
+                size="lg"
+                variant="secondary"
+                asChild
+                className="text-lg px-8"
+              >
                 <Link href="/signup">Start Free Trial</Link>
               </Button>
               <Button
@@ -368,4 +393,3 @@ export default function LandingPage() {
     </>
   );
 }
-

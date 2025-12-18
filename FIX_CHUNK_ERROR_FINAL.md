@@ -7,9 +7,11 @@ The error `ChunkLoadError: Loading chunk _app-pages-browser_components_feature_A
 ## Complete Fix
 
 ### Step 1: Stop Dev Server
+
 Press `Ctrl+C` in terminal.
 
 ### Step 2: Clear ALL Caches
+
 ```bash
 cd /Users/creativerod/Desktop/StoryScorer/storyscorer
 
@@ -24,11 +26,13 @@ rm -rf .swc
 ```
 
 ### Step 3: Restart Dev Server
+
 ```bash
 npm run dev
 ```
 
 **Wait for it to fully compile** - you should see:
+
 ```
 ✓ Compiled /analyzer in Xms
 ```
@@ -36,6 +40,7 @@ npm run dev
 ### Step 4: Clear Browser Cache COMPLETELY
 
 **Method 1: DevTools Application Tab**
+
 1. Open DevTools (F12)
 2. Go to **Application** tab
 3. Click **"Clear site data"** button (top)
@@ -44,11 +49,13 @@ npm run dev
 6. Close and reopen browser tab
 
 **Method 2: Use Incognito/Private Window**
+
 - Open new incognito window
 - Navigate to `http://localhost:3000`
 - Test View button
 
 **Method 3: Hard Refresh**
+
 - After clearing cache, press:
   - Mac: `Cmd + Shift + R`
   - Windows: `Ctrl + Shift + R`
@@ -75,4 +82,3 @@ npm run dev
 ```
 
 Then use a **completely fresh browser** (incognito/private window) to test.
-

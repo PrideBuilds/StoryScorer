@@ -18,6 +18,7 @@ All responses include the following security headers:
 ### CSP Configuration
 
 The Content Security Policy allows:
+
 - Scripts from `self`, Stripe, and necessary inline scripts
 - Styles from `self` and inline styles
 - Images from `self`, data URIs, and HTTPS sources
@@ -28,12 +29,12 @@ The Content Security Policy allows:
 
 ### Rate Limit Configurations
 
-| Endpoint | Limit | Window | Type |
-|----------|-------|--------|------|
-| `/api/analyze` | 20 requests | 1 hour | Per user |
-| `/api/auth/*` | 5 requests | 15 minutes | Per IP |
-| `/api/checkout` | 3 requests | 1 hour | Per user |
-| `/api/stories` | 100 requests | 1 minute | Per user |
+| Endpoint        | Limit        | Window     | Type     |
+| --------------- | ------------ | ---------- | -------- |
+| `/api/analyze`  | 20 requests  | 1 hour     | Per user |
+| `/api/auth/*`   | 5 requests   | 15 minutes | Per IP   |
+| `/api/checkout` | 3 requests   | 1 hour     | Per user |
+| `/api/stories`  | 100 requests | 1 minute   | Per user |
 
 ### Implementation
 
@@ -48,6 +49,7 @@ The Content Security Policy allows:
 ### Rate Limit Responses
 
 When rate limited, API routes return:
+
 - Status code: `429 Too Many Requests`
 - Error message with retry time
 - `Retry-After` header indicating seconds to wait
@@ -57,6 +59,7 @@ When rate limited, API routes return:
 ### Validation Utilities
 
 All user inputs are validated using:
+
 - **Zod schemas** for type-safe validation
 - **Custom sanitization** functions to prevent XSS
 - **Length limits** on all text inputs
@@ -80,6 +83,7 @@ All user inputs are validated using:
 ### Authentication Checks
 
 All protected API routes verify:
+
 1. User is authenticated (valid session)
 2. User ID matches resource ownership (for user-specific data)
 3. Request contains valid authentication tokens
@@ -126,6 +130,7 @@ All tables have RLS enabled with policies:
 ### Testing RLS
 
 To verify RLS is working:
+
 1. Test that users cannot access other users' data
 2. Verify service role can bypass RLS when needed (webhooks)
 3. Check that unauthenticated users cannot access protected data
@@ -252,4 +257,3 @@ To verify RLS is working:
 - Follows OWASP Top 10 security best practices
 - Implements defense in depth
 - Regular security reviews recommended
-

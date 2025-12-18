@@ -151,4 +151,3 @@ export async function trackUsage(featureName: string) {
 
   return { success: true };
 }
-

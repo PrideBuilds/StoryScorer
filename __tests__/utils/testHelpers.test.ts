@@ -24,4 +24,3 @@ describe("Test Helpers", () => {
     expect(mockSubscription.plan_type).toBeDefined();
   });
 });
-

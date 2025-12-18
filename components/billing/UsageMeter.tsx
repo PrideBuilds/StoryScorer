@@ -52,8 +52,8 @@ export function UsageMeter({ current, limit, planType }: UsageMeterProps) {
               isAtLimit
                 ? "text-red-600"
                 : isNearLimit
-                ? "text-yellow-600"
-                : "text-green-600"
+                  ? "text-yellow-600"
+                  : "text-green-600"
             }`}
           >
             {percentage.toFixed(0)}% used
@@ -89,4 +89,3 @@ export function UsageMeter({ current, limit, planType }: UsageMeterProps) {
     </div>
   );
 }
-

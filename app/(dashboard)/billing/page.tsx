@@ -1,6 +1,12 @@
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ManageBillingButton } from "@/components/billing/ManageBillingButton";
@@ -79,7 +85,9 @@ export default async function BillingPage() {
                   <p className="text-sm font-medium">Next Billing Date</p>
                   <p className="text-sm text-muted-foreground">
                     {subscription.current_period_end
-                      ? new Date(subscription.current_period_end).toLocaleDateString()
+                      ? new Date(
+                          subscription.current_period_end
+                        ).toLocaleDateString()
                       : "N/A"}
                   </p>
                 </div>
@@ -137,7 +145,9 @@ export default async function BillingPage() {
       <Card>
         <CardHeader>
           <CardTitle>Plan Features</CardTitle>
-          <CardDescription>What's included in your current plan</CardDescription>
+          <CardDescription>
+            What's included in your current plan
+          </CardDescription>
         </CardHeader>
         <CardContent>
           <ul className="space-y-2">
@@ -153,4 +163,3 @@ export default async function BillingPage() {
     </div>
   );
 }
-

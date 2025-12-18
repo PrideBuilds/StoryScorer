@@ -111,4 +111,3 @@ export function PreferencesSettings() {
     </div>
   );
 }
-

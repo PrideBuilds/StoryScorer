@@ -10,6 +10,7 @@
 
 \f0\fs24 \cf2 \expnd0\expndtw0\kerning0
 \outl0\strokewidth0 \strokec3 \shad\shadx0\shady-20\shadr0\shado0 \shadc0 Prepare for production deployment:\
+
 - Review all environment variables needed\
 - Set up production database in Supabase\
 - Create production Stripe account and products\
@@ -18,12 +19,13 @@
 - Generate production API keys for all services\
 - Document all configuration steps\
 - Create deployment checklist\
-\pard\pardeftab720\qc\partightenfactor0
+  \pard\pardeftab720\qc\partightenfactor0
 
 \f1\fs22 \cf2 \strokec4 \shad0 \
 \pard\pardeftab720\partightenfactor0
 
 \f0\fs24 \cf2 \strokec3 \shad\shadx0\shady-20\shadr0\shado0 \shadc0 Deploy to Vercel:\
+
 - Connect GitHub repository to Vercel\
 - Configure project settings in Vercel\
 - Add all production environment variables in Vercel dashboard\
@@ -32,12 +34,13 @@
 - Set up production and preview environments\
 - Configure build settings and optimization\
 - Deploy and verify deployment succeeds
-\f1\fs22 \cf2 \strokec4 \shad0 \
-\pard\pardeftab720\qc\partightenfactor0
-\cf2 \strokec4 \
-\pard\pardeftab720\partightenfactor0
+  \f1\fs22 \cf2 \strokec4 \shad0 \
+  \pard\pardeftab720\qc\partightenfactor0
+  \cf2 \strokec4 \
+  \pard\pardeftab720\partightenfactor0
 
 \f0\fs24 \cf2 \strokec3 \shad\shadx0\shady-20\shadr0\shado0 \shadc0 Configure production database:\
+
 - Run all database migrations on production Supabase\
 - Set up database backups (automatic in Supabase)\
 - Configure connection pooling if needed\
@@ -45,27 +48,29 @@
 - Enable Point-in-Time Recovery\
 - Verify all RLS policies are active\
 - Test database connectivity from production app
-\f1\fs22 \cf2 \strokec4 \shad0 \
-\pard\pardeftab720\qc\partightenfactor0
-\cf2 \strokec4 \
-\pard\pardeftab720\partightenfactor0
+  \f1\fs22 \cf2 \strokec4 \shad0 \
+  \pard\pardeftab720\qc\partightenfactor0
+  \cf2 \strokec4 \
+  \pard\pardeftab720\partightenfactor0
 
 \f0\fs24 \cf2 \strokec3 \shad\shadx0\shady-20\shadr0\shado0 \shadc0 Set up domain and SSL:\
+
 - Purchase domain name (Namecheap, Google Domains)\
 - Add domain to Vercel project\
 - Configure DNS records:\
-  * A record pointing to Vercel\
-  * CNAME for www subdomain\
+  - A record pointing to Vercel\
+  - CNAME for www subdomain\
 - Verify SSL certificate is active\
 - Set up redirect from www to non-www (or vice versa)\
 - Test HTTPS is working\
 - Configure email DNS records (SPF, DKIM, DMARC)
-\f1\fs22 \cf2 \strokec4 \shad0 \
-\pard\pardeftab720\qc\partightenfactor0
-\cf2 \strokec4 \
-\pard\pardeftab720\partightenfactor0
+  \f1\fs22 \cf2 \strokec4 \shad0 \
+  \pard\pardeftab720\qc\partightenfactor0
+  \cf2 \strokec4 \
+  \pard\pardeftab720\partightenfactor0
 
 \f0\fs24 \cf2 \strokec3 \shad\shadx0\shady-20\shadr0\shado0 \shadc0 Production smoke tests:\
+
 - Test signup flow in production\
 - Test login flow in production\
 - Test password reset\
@@ -77,4 +82,4 @@
 - Verify analytics are tracking\
 - Test error tracking is working\
 - Check performance with Lighthouse\
-}
+  }

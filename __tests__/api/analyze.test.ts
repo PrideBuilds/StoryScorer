@@ -5,7 +5,10 @@
 
 import { POST } from "@/app/api/analyze/route";
 import { NextRequest } from "next/server";
-import { createMockRequest, createMockFetchResponse } from "../helpers/testHelpers";
+import {
+  createMockRequest,
+  createMockFetchResponse,
+} from "../helpers/testHelpers";
 
 // Mock dependencies
 jest.mock("@/lib/supabase/server", () => ({
@@ -100,4 +103,3 @@ describe("/api/analyze", () => {
     expect(data.error).toBe("Rate limit exceeded");
   });
 });
-

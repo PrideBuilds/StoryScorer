@@ -4,7 +4,13 @@ import { ProfileSettings } from "@/components/settings/ProfileSettings";
 import { AccountSettings } from "@/components/settings/AccountSettings";
 import { PreferencesSettings } from "@/components/settings/PreferencesSettings";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 export default async function SettingsPage() {
   const supabase = await createClient();
@@ -91,4 +97,3 @@ export default async function SettingsPage() {
     </div>
   );
 }
-

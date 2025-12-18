@@ -111,7 +111,9 @@ export default function SignUpPage() {
         </Button>
 
         <div className="text-center text-sm">
-          <span className="text-muted-foreground">Already have an account? </span>
+          <span className="text-muted-foreground">
+            Already have an account?{" "}
+          </span>
           <Link href="/login" className="text-primary hover:underline">
             Sign in
           </Link>
@@ -120,4 +122,3 @@ export default function SignUpPage() {
     </AuthCard>
   );
 }
-

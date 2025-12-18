@@ -103,4 +103,3 @@ export function useSubscription() {
 
   return subscriptionData;
 }
-

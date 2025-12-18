@@ -1,50 +1,58 @@
-import fs from 'fs';
-import path from 'path';
-import { BlogPost, BlogPostFrontmatter } from './types';
+import fs from "fs";
+import path from "path";
+import { BlogPost, BlogPostFrontmatter } from "./types";
 
-const BLOG_DIR = path.join(process.cwd(), 'content', 'blog');
+const BLOG_DIR = path.join(process.cwd(), "content", "blog");
 
 /**
  * Parse frontmatter from markdown file
  * Simple parser - in production, use gray-matter
  */
-function parseFrontmatter(content: string): { frontmatter: BlogPostFrontmatter; body: string } {
+function parseFrontmatter(content: string): {
+  frontmatter: BlogPostFrontmatter;
+  body: string;
+} {
   const frontmatterRegex = /^---\s*\n([\s\S]*?)\n---\s*\n([\s\S]*)$/;
   const match = content.match(frontmatterRegex);
 
   if (!match) {
-    throw new Error('Invalid frontmatter format');
+    throw new Error("Invalid frontmatter format");
   }
 
   const frontmatterText = match[1];
   const body = match[2];
 
   const frontmatter: Partial<BlogPostFrontmatter> = {};
-  
-  frontmatterText.split('\n').forEach((line) => {
-    const colonIndex = line.indexOf(':');
+
+  frontmatterText.split("\n").forEach((line) => {
+    const colonIndex = line.indexOf(":");
     if (colonIndex > 0) {
       const key = line.substring(0, colonIndex).trim();
       let value = line.substring(colonIndex + 1).trim();
-      
+
       // Remove quotes if present
-      if ((value.startsWith('"') && value.endsWith('"')) || 
-          (value.startsWith("'") && value.endsWith("'"))) {
+      if (
+        (value.startsWith('"') && value.endsWith('"')) ||
+        (value.startsWith("'") && value.endsWith("'"))
+      ) {
         value = value.slice(1, -1);
       }
-      
-      if (key === 'tags') {
+
+      if (key === "tags") {
         // Handle tags as array: ["tag1", "tag2"] or "tag1, tag2"
-        if (value.startsWith('[') && value.endsWith(']')) {
+        if (value.startsWith("[") && value.endsWith("]")) {
           // Array format
           const tagsStr = value.slice(1, -1);
           frontmatter.tags = tagsStr
-            .split(',')
-            .map(t => t.trim().replace(/^["']|["']$/g, ''))
-            .filter(t => t.length > 0);
+            .split(",")
+            .map((t) => t.trim().replace(/^["']|["']$/g, ""))
+            .filter((t) => t.length > 0);
         } else {
           // Comma-separated format
-          frontmatter.tags = value.split(',').map(t => t.trim()).filter(t => t.length > 0);
+          frontmatter.tags = value
+            .split(",")
+            .map((t) => t.trim())
+            .filter((t) => t.length > 0);
         }
       } else {
         (frontmatter as any)[key] = value;
@@ -80,14 +88,14 @@ export async function getAllBlogPosts(): Promise<BlogPost[]> {
     const posts: BlogPost[] = [];
 
     for (const file of files) {
-      if (file.endsWith('.md') || file.endsWith('.mdx')) {
+      if (file.endsWith(".md") || file.endsWith(".mdx")) {
         const filePath = path.join(BLOG_DIR, file);
-        const fileContent = fs.readFileSync(filePath, 'utf-8');
-        
+        const fileContent = fs.readFileSync(filePath, "utf-8");
+
         try {
           const { frontmatter, body } = parseFrontmatter(fileContent);
-          const slug = file.replace(/\.(md|mdx)$/, '');
-          
+          const slug = file.replace(/\.(md|mdx)$/, "");
+
           posts.push({
             slug,
             ...frontmatter,
@@ -105,7 +113,7 @@ export async function getAllBlogPosts(): Promise<BlogPost[]> {
       return new Date(b.date).getTime() - new Date(a.date).getTime();
     });
   } catch (error) {
-    console.error('Error reading blog posts:', error);
+    console.error("Error reading blog posts:", error);
     return [];
   }
 }
@@ -129,7 +137,7 @@ export async function getBlogPost(slug: string): Promise<BlogPost | null> {
       return null;
     }
 
-    const fileContent = fs.readFileSync(filePath, 'utf-8');
+    const fileContent = fs.readFileSync(filePath, "utf-8");
     const { frontmatter, body } = parseFrontmatter(fileContent);
 
     return {
@@ -152,23 +160,22 @@ export async function getRelatedPosts(
   limit: number = 3
 ): Promise<BlogPost[]> {
   const allPosts = await getAllBlogPosts();
-  
+
   return allPosts
     .filter((post) => {
       if (post.slug === currentPost.slug) return false;
-      
+
       // Match by category first
       if (currentPost.category && post.category === currentPost.category) {
         return true;
       }
-      
+
       // Then match by tags
       if (currentPost.tags && post.tags) {
         return currentPost.tags.some((tag) => post.tags?.includes(tag));
       }
-      
+
       return false;
     })
     .slice(0, limit);
 }
-

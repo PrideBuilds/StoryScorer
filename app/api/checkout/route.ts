@@ -90,7 +90,9 @@ export async function POST(request: NextRequest) {
     const stripe = getStripeClient();
     try {
       const price = await stripe.prices.retrieve(priceId);
-      console.log(`Price verified: ${price.id} - ${price.unit_amount ? `$${(price.unit_amount / 100).toFixed(2)}` : 'N/A'}`);
+      console.log(
+        `Price verified: ${price.id} - ${price.unit_amount ? `$${(price.unit_amount / 100).toFixed(2)}` : "N/A"}`
+      );
     } catch (priceError: any) {
       console.error("Price verification error:", priceError);
       if (priceError.code === "resource_missing") {
@@ -114,13 +116,17 @@ export async function POST(request: NextRequest) {
         return NextResponse.json(
           {
             error: "Stripe authentication failed",
-            message: "Invalid Stripe API key. Please check your STRIPE_SECRET_KEY.",
+            message:
+              "Invalid Stripe API key. Please check your STRIPE_SECRET_KEY.",
           },
           { status: 401 }
         );
       }
       // For other errors, log but continue (might be temporary)
-      console.warn("Price verification warning, continuing anyway:", priceError.message);
+      console.warn(
+        "Price verification warning, continuing anyway:",
+        priceError.message
+      );
     }
 
     // Get or create Stripe customer
@@ -133,7 +139,9 @@ export async function POST(request: NextRequest) {
       .eq("user_id", user.id)
       .maybeSingle();
 
-    const subscriptionData = existingSubscription as { stripe_customer_id?: string } | null;
+    const subscriptionData = existingSubscription as {
+      stripe_customer_id?: string;
+    } | null;
     if (subscriptionData?.stripe_customer_id) {
       customerId = subscriptionData.stripe_customer_id;
     } else {
@@ -152,7 +160,8 @@ export async function POST(request: NextRequest) {
         return NextResponse.json(
           {
             error: "Failed to create customer",
-            message: stripeCustomerError.message || "Stripe customer creation failed",
+            message:
+              stripeCustomerError.message || "Stripe customer creation failed",
           },
           { status: 500 }
         );
@@ -215,4 +224,3 @@ export async function POST(request: NextRequest) {
     );
   }
 }
-

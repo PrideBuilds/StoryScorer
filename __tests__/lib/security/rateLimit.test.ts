@@ -1,4 +1,8 @@
-import { checkRateLimit, getClientIP, RATE_LIMITS } from "@/lib/security/rateLimit";
+import {
+  checkRateLimit,
+  getClientIP,
+  RATE_LIMITS,
+} from "@/lib/security/rateLimit";
 
 describe("Rate Limiting", () => {
   beforeEach(() => {

@@ -87,12 +87,18 @@ export function MarketingNav() {
                 ))}
                 <div className="flex flex-col gap-2 pt-4 border-t">
                   <Button variant="ghost" asChild>
-                    <Link href="/login" onClick={() => setMobileMenuOpen(false)}>
+                    <Link
+                      href="/login"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
                       Sign In
                     </Link>
                   </Button>
                   <Button asChild>
-                    <Link href="/signup" onClick={() => setMobileMenuOpen(false)}>
+                    <Link
+                      href="/signup"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
                       Get Started
                     </Link>
                   </Button>
@@ -105,4 +111,3 @@ export function MarketingNav() {
     </header>
   );
 }
-

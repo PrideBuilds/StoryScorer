@@ -20,4 +20,3 @@ export function getStripeClient(): Stripe {
 
 // Export for backward compatibility
 export const stripe = getStripeClient();
-

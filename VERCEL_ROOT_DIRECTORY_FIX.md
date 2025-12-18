@@ -26,6 +26,7 @@ Vercel is building from the repository root, but your Next.js app is in the `sto
 ### Step 3: Verify Root Directory is Set
 
 After saving, you should see:
+
 - Root Directory: `storyscorer`
 - A note saying "Builds will run from this directory"
 
@@ -42,6 +43,7 @@ After saving, you should see:
 After redeploy starts, check the logs. You should see:
 
 **✅ CORRECT (what you want to see):**
+
 ```
 Cloning github.com/PrideBuilds/StoryScorer
 Installing dependencies...
@@ -53,6 +55,7 @@ Creating an optimized production build ...
 ```
 
 **❌ WRONG (what you're seeing now):**
+
 ```
 Module not found: Can't resolve 'react-hook-form'
 Module not found: Can't resolve '@/components/ui/button'
@@ -89,6 +92,7 @@ If setting root directory doesn't work, you can restructure:
 ## Verify Your Repository Structure
 
 Run this locally to see your structure:
+
 ```bash
 cd /path/to/your/repo
 find . -name "package.json" -type f
@@ -118,4 +122,3 @@ This will show you where `package.json` is located. The root directory in Vercel
 - [ ] Redeployed with cache disabled
 - [ ] Checked build logs show correct directory
 - [ ] Verified `package.json` exists in `storyscorer/` on GitHub
-

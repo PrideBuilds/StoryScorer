@@ -13,6 +13,7 @@ Writing effective user stories is time-consuming and requires expertise. StorySc
 ## The Challenge of Writing Good User Stories
 
 Teams often struggle with:
+
 - **Inconsistent quality** across user stories
 - **Time-consuming reviews** to ensure stories meet INVEST criteria
 - **Lack of expertise** in requirements writing
@@ -36,6 +37,7 @@ For each user story, StoryScorer evaluates:
 ### Detailed Feedback
 
 StoryScorer provides:
+
 - **Scores** for each INVEST criterion (0-100)
 - **Specific feedback** on what's working and what needs improvement
 - **Recommendations** for enhancing your stories
@@ -50,6 +52,7 @@ Upload or paste your user story and get results in seconds. No more waiting for 
 ### 2. Comprehensive Reports
 
 Get detailed breakdowns of:
+
 - Individual criterion scores
 - Overall story quality
 - Actionable improvement suggestions
@@ -58,6 +61,7 @@ Get detailed breakdowns of:
 ### 3. Story History
 
 Track your stories over time:
+
 - View analysis history
 - Compare different versions
 - Monitor quality improvements
@@ -66,6 +70,7 @@ Track your stories over time:
 ### 4. Acceptance Criteria Analysis
 
 StoryScorer also analyzes your acceptance criteria to ensure they're:
+
 - Clear and specific
 - Testable
 - Complete
@@ -74,18 +79,21 @@ StoryScorer also analyzes your acceptance criteria to ensure they're:
 ## Real-World Benefits
 
 ### For Product Owners
+
 - **Save time** on story reviews
 - **Improve consistency** across your backlog
 - **Train team members** with AI feedback
 - **Maintain quality** at scale
 
 ### For Business Analysts
+
 - **Validate requirements** before development
 - **Get instant feedback** on story quality
 - **Learn best practices** through recommendations
 - **Document analysis** automatically
 
 ### For Development Teams
+
 - **Receive clearer requirements** from the start
 - **Reduce clarification meetings** and rework
 - **Better sprint planning** with well-estimated stories
@@ -120,6 +128,7 @@ Monitor your story scores to see improvements and identify areas that need more 
 ## Integration with Your Workflow
 
 StoryScorer works alongside your existing tools:
+
 - **Export reports** to Jira, Azure DevOps, or other tools
 - **Copy analysis results** for documentation
 - **Share links** with team members
@@ -130,4 +139,3 @@ StoryScorer works alongside your existing tools:
 StoryScorer automates the tedious work of analyzing user stories, allowing teams to focus on what matters: delivering value to users. By providing instant, AI-powered feedback on INVEST criteria, StoryScorer helps teams write better requirements faster.
 
 [Start analyzing your user stories today](/signup) and see the difference AI-powered analysis can make.
-

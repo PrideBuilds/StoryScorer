@@ -12,4 +12,3 @@ export {
   isAuthenticatedServer,
   signOut,
 } from "./helpers";
-

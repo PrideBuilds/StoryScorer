@@ -6,7 +6,7 @@ import Stripe from "stripe";
 /**
  * Manual sync endpoint to update subscription from Stripe
  * Useful for testing when webhooks aren't configured yet
- * 
+ *
  * GET /api/sync-subscription
  */
 export async function GET(request: NextRequest) {
@@ -33,7 +33,8 @@ export async function GET(request: NextRequest) {
       .maybeSingle();
 
     let customerId: string | null =
-      (subscription as { stripe_customer_id?: string } | null)?.stripe_customer_id || null;
+      (subscription as { stripe_customer_id?: string } | null)
+        ?.stripe_customer_id || null;
 
     // If no customer ID in database, try to find it in Stripe by email
     if (!customerId && user.email) {
@@ -52,7 +53,9 @@ export async function GET(request: NextRequest) {
 
     if (!customerId) {
       return NextResponse.json(
-        { error: "No Stripe customer found. Please complete a checkout first." },
+        {
+          error: "No Stripe customer found. Please complete a checkout first.",
+        },
         { status: 404 }
       );
     }
@@ -90,9 +93,14 @@ export async function GET(request: NextRequest) {
 
     // Update subscription using admin client (bypasses RLS)
     const adminSupabase = await createAdminClient();
-    
+
     // Determine status with proper type casting
-    let subscriptionStatus: "active" | "canceled" | "past_due" | "trialing" | "incomplete" = "active";
+    let subscriptionStatus:
+      | "active"
+      | "canceled"
+      | "past_due"
+      | "trialing"
+      | "incomplete" = "active";
     if (stripeSubscription.status === "active") {
       subscriptionStatus = "active";
     } else if (stripeSubscription.status === "trialing") {
@@ -106,7 +114,8 @@ export async function GET(request: NextRequest) {
     }
 
     // Extract period dates (TypeScript workaround)
-    const periodStart = (stripeSubscription as any).current_period_start as number;
+    const periodStart = (stripeSubscription as any)
+      .current_period_start as number;
     const periodEnd = (stripeSubscription as any).current_period_end as number;
 
     // Check if subscription already exists for this user
@@ -188,4 +197,3 @@ export async function GET(request: NextRequest) {
     );
   }
 }
-

@@ -14,6 +14,7 @@
 5. **Click "Deploy"** (don't add env vars yet)
 
 **⚠️ IMPORTANT - If you get "Module not found" errors:**
+
 - Go to **Project Settings → General → Root Directory**
 - Set it to `storyscorer` (the folder containing your `package.json`)
 - Save and redeploy
@@ -47,7 +48,8 @@ NEXT_PUBLIC_APP_EMAIL=noreply@yourdomain.com
 NEXT_PUBLIC_APP_ENV=beta
 ```
 
-**Important:** 
+**Important:**
+
 - ✅ Use Stripe **TEST MODE** keys (starts with `sk_test_` and `pk_test_`)
 - ✅ Update `NEXT_PUBLIC_SITE_URL` to your actual Vercel URL after deployment
 
@@ -89,6 +91,7 @@ Your beta is live! Share the URL with testers.
 ## 📝 Test Card Info
 
 For Stripe test payments:
+
 - **Card:** `4242 4242 4242 4242`
 - **Expiry:** Any future date (e.g., `12/25`)
 - **CVC:** Any 3 digits (e.g., `123`)
@@ -103,16 +106,19 @@ For Stripe test payments:
 ## 🆘 Troubleshooting
 
 **Build fails?**
+
 - Check build logs in Vercel
 - Verify all env vars are set
 - Check for TypeScript errors
 
 **Stripe not working?**
+
 - Verify test mode keys (`sk_test_...`)
 - Check webhook URL is correct
 - Verify webhook secret matches
 
 **Can't access site?**
+
 - Check deployment status in Vercel
 - Verify domain is correct
 - Check browser console for errors
@@ -120,4 +126,3 @@ For Stripe test payments:
 ## 📚 Full Guide
 
 See `BETA_DEPLOYMENT_GUIDE.md` for detailed instructions, custom domains, access restrictions, and more.
-

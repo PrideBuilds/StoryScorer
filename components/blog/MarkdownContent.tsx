@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef } from "react";
 
 interface MarkdownContentProps {
   content: string;
@@ -20,29 +20,35 @@ export function MarkdownContent({ content }: MarkdownContentProps) {
     // For production, use a library like react-markdown or marked
     let html = content
       // Headers
-      .replace(/^### (.*$)/gim, '<h3>$1</h3>')
-      .replace(/^## (.*$)/gim, '<h2>$1</h2>')
-      .replace(/^# (.*$)/gim, '<h1>$1</h1>')
+      .replace(/^### (.*$)/gim, "<h3>$1</h3>")
+      .replace(/^## (.*$)/gim, "<h2>$1</h2>")
+      .replace(/^# (.*$)/gim, "<h1>$1</h1>")
       // Bold
-      .replace(/\*\*(.*?)\*\*/gim, '<strong>$1</strong>')
+      .replace(/\*\*(.*?)\*\*/gim, "<strong>$1</strong>")
       // Italic
-      .replace(/\*(.*?)\*/gim, '<em>$1</em>')
+      .replace(/\*(.*?)\*/gim, "<em>$1</em>")
       // Links
-      .replace(/\[([^\]]+)\]\(([^)]+)\)/gim, '<a href="$2" class="text-primary hover:underline">$1</a>')
+      .replace(
+        /\[([^\]]+)\]\(([^)]+)\)/gim,
+        '<a href="$2" class="text-primary hover:underline">$1</a>'
+      )
       // Lists
-      .replace(/^\* (.*$)/gim, '<li>$1</li>')
-      .replace(/^- (.*$)/gim, '<li>$1</li>')
+      .replace(/^\* (.*$)/gim, "<li>$1</li>")
+      .replace(/^- (.*$)/gim, "<li>$1</li>")
       // Code blocks (simple)
-      .replace(/`([^`]+)`/gim, '<code class="bg-muted px-1 py-0.5 rounded text-sm">$1</code>')
+      .replace(
+        /`([^`]+)`/gim,
+        '<code class="bg-muted px-1 py-0.5 rounded text-sm">$1</code>'
+      )
       // Paragraphs
-      .split('\n\n')
+      .split("\n\n")
       .map((para) => {
-        if (para.trim().startsWith('<')) {
+        if (para.trim().startsWith("<")) {
           return para;
         }
-        return para.trim() ? `<p>${para.trim()}</p>` : '';
+        return para.trim() ? `<p>${para.trim()}</p>` : "";
       })
-      .join('\n');
+      .join("\n");
 
     // Wrap consecutive <li> elements in <ul>
     html = html.replace(/(<li>.*<\/li>\n?)+/gim, (match) => {
@@ -59,4 +65,3 @@ export function MarkdownContent({ content }: MarkdownContentProps) {
     />
   );
 }
-

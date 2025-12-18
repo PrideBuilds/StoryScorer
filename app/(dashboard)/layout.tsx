@@ -37,7 +37,9 @@ export default async function DashboardLayout({
               <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
                 <span className="text-white font-bold text-sm">SS</span>
               </div>
-              <span className="font-bold text-lg hidden sm:inline">StoryScorer</span>
+              <span className="font-bold text-lg hidden sm:inline">
+                StoryScorer
+              </span>
             </Link>
           </div>
           <div className="ml-auto flex items-center gap-4">

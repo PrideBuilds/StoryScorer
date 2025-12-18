@@ -10,6 +10,7 @@
 
 \f0\fs24 \cf2 \expnd0\expndtw0\kerning0
 \outl0\strokewidth0 \strokec3 \shad\shadx0\shady-20\shadr0\shado0 \shadc0 Set up testing framework:\
+
 - Install Jest and React Testing Library\
 - Configure jest.config.js for Next.js\
 - Create test utilities and helpers\
@@ -17,12 +18,13 @@
 - Create mock data factories\
 - Configure test coverage reporting\
 - Add test scripts to package.json
-\f1\fs22 \cf2 \strokec4 \shad0 \
-\pard\pardeftab720\qc\partightenfactor0
-\cf2 \strokec4 \
-\pard\pardeftab720\partightenfactor0
+  \f1\fs22 \cf2 \strokec4 \shad0 \
+  \pard\pardeftab720\qc\partightenfactor0
+  \cf2 \strokec4 \
+  \pard\pardeftab720\partightenfactor0
 
 \f0\fs24 \cf2 \strokec3 \shad\shadx0\shady-20\shadr0\shado0 \shadc0 Write unit tests for critical functions:\
+
 - Test authentication helpers\
 - Test database query functions\
 - Test API route handlers\
@@ -30,12 +32,13 @@
 - Test form validation schemas\
 - Aim for 70%+ code coverage on critical paths\
 - Run tests in CI/CD pipeline\
-\pard\pardeftab720\qc\partightenfactor0
+  \pard\pardeftab720\qc\partightenfactor0
 
 \f1\fs22 \cf2 \strokec4 \shad0 \
 \pard\pardeftab720\partightenfactor0
 
 \f0\fs24 \cf2 \strokec3 \shad\shadx0\shady-20\shadr0\shado0 \shadc0 Perform manual testing checklist:\
+
 - Test user signup flow completely\
 - Test login with correct and incorrect credentials\
 - Test password reset flow end-to-end\
@@ -48,12 +51,13 @@
 - Test on iOS and Android mobile devices\
 - Test with screen reader for accessibility\
 - Test with slow network connection
-\f1\fs22 \cf2 \strokec4 \shad0 \
-\pard\pardeftab720\qc\partightenfactor0
-\cf2 \strokec4 \
-\pard\pardeftab720\partightenfactor0
+  \f1\fs22 \cf2 \strokec4 \shad0 \
+  \pard\pardeftab720\qc\partightenfactor0
+  \cf2 \strokec4 \
+  \pard\pardeftab720\partightenfactor0
 
 \f0\fs24 \cf2 \strokec3 \shad\shadx0\shady-20\shadr0\shado0 \shadc0 Conduct user acceptance testing (UAT):\
+
 - Recruit 5-10 beta testers from your network\
 - Create testing guide with key scenarios\
 - Collect feedback via form or interviews\
@@ -62,4 +66,4 @@
 - Fix all critical and high priority bugs\
 - Implement top requested features if feasible\
 - Conduct second round of testing after fixes\
-}
+  }

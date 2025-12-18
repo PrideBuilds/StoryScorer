@@ -4,7 +4,10 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
-import { resetPasswordSchema, type ResetPasswordInput } from "@/lib/validations/auth";
+import {
+  resetPasswordSchema,
+  type ResetPasswordInput,
+} from "@/lib/validations/auth";
 import { resetPassword } from "@/app/actions/auth";
 import { AuthCard } from "@/components/auth/AuthCard";
 import { Button } from "@/components/ui/button";
@@ -54,8 +57,8 @@ export default function ForgotPasswordPage() {
         <Alert className="mb-4">
           <CheckCircle2 className="h-4 w-4" />
           <AlertDescription>
-            If an account exists with that email, you'll receive a password reset
-            link shortly. Please check your inbox and spam folder.
+            If an account exists with that email, you'll receive a password
+            reset link shortly. Please check your inbox and spam folder.
           </AlertDescription>
         </Alert>
         <Button asChild className="w-full">
@@ -111,4 +114,3 @@ export default function ForgotPasswordPage() {
     </AuthCard>
   );
 }
-

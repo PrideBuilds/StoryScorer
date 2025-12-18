@@ -12,7 +12,8 @@ NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_...  # Your Stripe publishable key (s
 NEXT_PUBLIC_SITE_URL=http://localhost:3000  # Your site URL
 ```
 
-**Important:** 
+**Important:**
+
 - Use `sk_test_...` for development (test mode)
 - Use `sk_live_...` for production (live mode)
 - Make sure you're using the correct keys for your environment
@@ -29,6 +30,7 @@ Check that your Price IDs in `/lib/config/pricing.ts` match your Stripe dashboar
 ## 3. Check Stripe API Key Format
 
 Your Stripe secret key should:
+
 - Start with `sk_test_` (test mode) or `sk_live_` (live mode)
 - Be the full key, not truncated
 - Have no extra spaces or quotes
@@ -36,6 +38,7 @@ Your Stripe secret key should:
 ## 4. Check Server Logs
 
 Check your terminal/console where `npm run dev` is running for detailed error messages. Look for:
+
 - "Stripe API error:" messages
 - "Error creating Stripe customer:" messages
 - Any authentication errors
@@ -53,18 +56,21 @@ You can test if Stripe is working by checking the server logs when clicking "Get
 ## Common Error Messages
 
 ### "Stripe is not configured"
+
 - **Solution:** Add `STRIPE_SECRET_KEY` to `.env.local`
 
 ### "Invalid API Key provided"
+
 - **Solution:** Check that your Stripe secret key is correct and complete
 
-### "No such price: 'price_...'"
+### "No such price: 'price\_...'"
+
 - **Solution:** Verify the Price ID exists in your Stripe dashboard and matches the config
 
 ### "Failed to create customer"
+
 - **Solution:** Check Stripe account status and API key permissions
 
 ## Quick Test
 
 To verify your Stripe setup is working, you can check the browser console (F12) and server logs when clicking "Get Started". The error message will show the specific Stripe error.
-

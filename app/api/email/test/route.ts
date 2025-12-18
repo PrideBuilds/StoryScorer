@@ -5,14 +5,14 @@ import { sendWelcomeEmail } from "@/lib/email/send";
 /**
  * Test endpoint for email functionality
  * Only accessible in development or by authenticated admins
- * 
+ *
  * Usage: POST /api/email/test
  * Body: { type: "welcome", email: "test@example.com", name: "Test User" }
  */
 export async function POST(request: NextRequest) {
   // Only allow in development or for authenticated users
   const isDevelopment = process.env.NODE_ENV === "development";
-  
+
   if (!isDevelopment) {
     const supabase = await createClient();
     const {
@@ -20,10 +20,7 @@ export async function POST(request: NextRequest) {
     } = await supabase.auth.getUser();
 
     if (!user) {
-      return NextResponse.json(
-        { error: "Unauthorized" },
-        { status: 401 }
-      );
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
   }
 
@@ -32,10 +29,7 @@ export async function POST(request: NextRequest) {
     const { type, email, name } = body;
 
     if (!email) {
-      return NextResponse.json(
-        { error: "Email is required" },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: "Email is required" }, { status: 400 });
     }
 
     switch (type) {
@@ -74,4 +68,3 @@ export async function POST(request: NextRequest) {
     );
   }
 }
-

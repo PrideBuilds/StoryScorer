@@ -39,6 +39,7 @@ export async function GET(request: NextRequest) {
   }
 
   // If there's an error or no code/hash, redirect to login
-  return NextResponse.redirect(new URL("/login?error=auth_failed", request.url));
+  return NextResponse.redirect(
+    new URL("/login?error=auth_failed", request.url)
+  );
 }
-

@@ -37,7 +37,8 @@ export const mockStory = {
   user_id: mockUser.id,
   title: "Test Story",
   story_text: "As a user, I want to test so that I can verify functionality.",
-  acceptance_criteria: "Given I am testing, When I run tests, Then they should pass.",
+  acceptance_criteria:
+    "Given I am testing, When I run tests, Then they should pass.",
   tags: ["testing", "qa"],
   score: 85,
   analysis_result: {
@@ -65,7 +66,9 @@ export const mockSubscription = {
   plan_type: "pro" as const,
   status: "active" as const,
   current_period_start: new Date().toISOString(),
-  current_period_end: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(),
+  current_period_end: new Date(
+    Date.now() + 30 * 24 * 60 * 60 * 1000
+  ).toISOString(),
   created_at: new Date().toISOString(),
   updated_at: new Date().toISOString(),
 };
@@ -73,7 +76,8 @@ export const mockSubscription = {
 /**
  * Wait for async operations
  */
-export const waitForAsync = () => new Promise((resolve) => setTimeout(resolve, 0));
+export const waitForAsync = () =>
+  new Promise((resolve) => setTimeout(resolve, 0));
 
 /**
  * Create mock fetch response
@@ -87,4 +91,3 @@ export function createMockResponse(data: any, status = 200) {
     headers: new Headers(),
   } as Response;
 }
-

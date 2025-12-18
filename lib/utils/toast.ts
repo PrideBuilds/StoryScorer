@@ -71,4 +71,3 @@ export function showWarning(
     duration: options?.duration,
   });
 }
-

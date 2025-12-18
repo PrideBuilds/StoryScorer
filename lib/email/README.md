@@ -24,15 +24,18 @@ npm install resend @react-email/components @react-email/render
 ### 3. Environment Variables
 
 Required:
+
 - `RESEND_API_KEY` - Your Resend API key
 - `RESEND_FROM_EMAIL` - Email address to send from (optional, defaults to noreply@storyscorer.com)
 
 Optional:
+
 - `NEXT_PUBLIC_APP_URL` - Base URL for links in emails (defaults to https://storyscorer.com)
 
 ## Email Templates
 
 All email templates are in `/emails` directory:
+
 - `WelcomeEmail.tsx` - Sent after user signup
 - `PasswordResetEmail.tsx` - For password resets (currently using Supabase default)
 - `SubscriptionConfirmation.tsx` - Sent after successful subscription
@@ -42,6 +45,7 @@ All email templates are in `/emails` directory:
 ## Email Functions
 
 All email sending functions are in `/lib/email/send.ts`:
+
 - `sendWelcomeEmail()` - Welcome new users
 - `sendPasswordResetEmail()` - Password reset (not currently used, Supabase handles this)
 - `sendSubscriptionEmail()` - Subscription confirmation
@@ -51,15 +55,19 @@ All email sending functions are in `/lib/email/send.ts`:
 ## Integration Points
 
 ### Signup Flow
+
 - Welcome email is sent automatically after successful signup in `app/actions/auth.ts`
 
 ### Subscription Flow
+
 - Subscription confirmation email is sent in `app/api/webhooks/stripe/route.ts` when `checkout.session.completed` event is received
 
 ### Payment Failed
+
 - Payment failed email is sent in `app/api/webhooks/stripe/route.ts` when `invoice.payment_failed` event is received
 
 ### Usage Warnings
+
 - Usage warning emails should be checked periodically (e.g., via cron job)
 - Use `checkAndSendUsageWarning()` from `lib/email/usageWarnings.ts`
 - Set up a scheduled task to call this function daily or after usage tracking
@@ -80,4 +88,3 @@ This will start a preview server where you can see all email templates.
 - All email sends are logged for debugging
 - Email failures don't block user flows (they're caught and logged)
 - Consider setting up email preferences in user settings to allow opt-out
-

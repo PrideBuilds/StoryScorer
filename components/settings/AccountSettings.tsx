@@ -142,10 +142,13 @@ export function AccountSettings() {
               disabled={isLoading}
             />
             {errors.newPassword && (
-              <p className="text-sm text-red-500">{errors.newPassword.message}</p>
+              <p className="text-sm text-red-500">
+                {errors.newPassword.message}
+              </p>
             )}
             <p className="text-xs text-muted-foreground">
-              Must be at least 8 characters with uppercase, lowercase, and number
+              Must be at least 8 characters with uppercase, lowercase, and
+              number
             </p>
           </div>
 
@@ -227,4 +230,3 @@ export function AccountSettings() {
     </div>
   );
 }
-

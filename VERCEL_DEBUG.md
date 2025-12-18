@@ -29,7 +29,7 @@ If your GitHub repo has `package.json` at the root (not in a subdirectory), then
 If your GitHub repo has `package.json` in `storyscorer/package.json`, then:
 
 1. **In Vercel Dashboard:**
-   - Settings → General → Root Directory  
+   - Settings → General → Root Directory
    - Set to: `storyscorer`
    - Save
    - **Verify it saved** (should show `storyscorer` not `.`)
@@ -62,6 +62,7 @@ Look at the build logs for these clues:
 If nothing works, you can restructure so package.json is at the GitHub root:
 
 1. **On your local machine:**
+
    ```bash
    cd /Users/creativerod/Desktop/StoryScorer
    # Move everything from storyscorer/ to root
@@ -71,6 +72,7 @@ If nothing works, you can restructure so package.json is at the GitHub root:
    ```
 
 2. **Commit and push:**
+
    ```bash
    git add .
    git commit -m "Move files to repository root for Vercel"
@@ -84,6 +86,7 @@ If nothing works, you can restructure so package.json is at the GitHub root:
 ## Quick Test: Check GitHub Structure
 
 Run this to see your GitHub structure:
+
 ```bash
 # This will show you what's actually in your GitHub repo
 git ls-tree -r --name-only HEAD | grep -E "(package.json|tsconfig.json)" | head -5
@@ -102,4 +105,3 @@ Based on the logs showing dependencies installing but modules not found, I suspe
    - Fix: Set root directory to `.`
 
 **You need to verify which one matches your GitHub repository structure.**
-

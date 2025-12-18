@@ -17,6 +17,7 @@ The INVEST criteria is a framework developed by Bill Wake to help teams write be
 **Why it matters:** Dependencies create bottlenecks and make sprint planning difficult. Independent stories allow teams to work in parallel and prioritize based on value.
 
 **Example:**
+
 - ❌ Bad: "As a user, I want to view my profile (depends on login story)"
 - ✅ Good: "As a logged-in user, I want to view my profile information"
 
@@ -27,6 +28,7 @@ The INVEST criteria is a framework developed by Bill Wake to help teams write be
 **Why it matters:** Over-specification limits creativity and prevents teams from finding better solutions. Negotiable stories allow for technical innovation.
 
 **Example:**
+
 - ❌ Bad: "As a user, I want a blue button with 10px padding that opens a modal"
 - ✅ Good: "As a user, I want to see a confirmation message when I submit a form"
 
@@ -37,6 +39,7 @@ The INVEST criteria is a framework developed by Bill Wake to help teams write be
 **Why it matters:** Stories without clear value waste development time and don't contribute to business goals.
 
 **Example:**
+
 - ❌ Bad: "As a developer, I want to refactor the authentication code"
 - ✅ Good: "As a user, I want faster login so that I can access my account quickly"
 
@@ -47,6 +50,7 @@ The INVEST criteria is a framework developed by Bill Wake to help teams write be
 **Why it matters:** Estimable stories enable accurate sprint planning and help teams commit to realistic goals.
 
 **Example:**
+
 - ❌ Bad: "As a user, I want AI-powered recommendations (too vague)"
 - ✅ Good: "As a user, I want to see product recommendations based on my purchase history"
 
@@ -57,6 +61,7 @@ The INVEST criteria is a framework developed by Bill Wake to help teams write be
 **Why it matters:** Large stories are hard to estimate, difficult to test, and prevent teams from delivering value incrementally.
 
 **Example:**
+
 - ❌ Bad: "As a user, I want a complete e-commerce platform"
 - ✅ Good: "As a customer, I want to add items to my shopping cart"
 
@@ -67,6 +72,7 @@ The INVEST criteria is a framework developed by Bill Wake to help teams write be
 **Why it matters:** Testable stories ensure quality and provide clear definitions of "done."
 
 **Example:**
+
 - ❌ Bad: "As a user, I want the app to be fast"
 - ✅ Good: "As a user, I want pages to load in under 2 seconds, as measured by Lighthouse"
 
@@ -83,4 +89,3 @@ The INVEST criteria is a framework developed by Bill Wake to help teams write be
 The INVEST criteria provide a practical framework for writing better user stories. By ensuring your stories are Independent, Negotiable, Valuable, Estimable, Small, and Testable, you'll improve your agile development process and deliver better software.
 
 [Start analyzing your user stories with StoryScorer](/signup) to ensure they meet INVEST criteria automatically.
-

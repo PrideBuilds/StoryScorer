@@ -1,7 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 import type { INVESTAnalysisResult } from "@/types/database";
-import { checkRateLimit, RATE_LIMITS, getClientIP } from "@/lib/security/rateLimit";
+import {
+  checkRateLimit,
+  RATE_LIMITS,
+  getClientIP,
+} from "@/lib/security/rateLimit";
 import { validateStoryInput } from "@/lib/security/validation";
 
 async function analyzeWithOpenAI(
@@ -75,7 +79,7 @@ Provide a JSON response with this exact structure:
 
   try {
     const analysis = JSON.parse(content) as INVESTAnalysisResult;
-    
+
     // Validate the structure
     if (
       !analysis.independent ||
@@ -202,10 +206,7 @@ export async function POST(request: NextRequest) {
     } = await supabase.auth.getUser();
 
     if (authError || !user) {
-      return NextResponse.json(
-        { error: "Unauthorized" },
-        { status: 401 }
-      );
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
     // Rate limiting (per user)
@@ -257,11 +258,15 @@ export async function POST(request: NextRequest) {
 
     // Determine which AI provider to use
     // Check if keys are actually set (not just present but empty)
-    const hasAnthropicKey = process.env.ANTHROPIC_API_KEY && process.env.ANTHROPIC_API_KEY.trim().length > 0;
-    const hasOpenAIKey = process.env.OPENAI_API_KEY && process.env.OPENAI_API_KEY.trim().length > 0;
-    
+    const hasAnthropicKey =
+      process.env.ANTHROPIC_API_KEY &&
+      process.env.ANTHROPIC_API_KEY.trim().length > 0;
+    const hasOpenAIKey =
+      process.env.OPENAI_API_KEY &&
+      process.env.OPENAI_API_KEY.trim().length > 0;
+
     let analysis: INVESTAnalysisResult;
-    
+
     try {
       // Try Anthropic first if configured, otherwise use OpenAI
       if (hasAnthropicKey) {
@@ -269,7 +274,7 @@ export async function POST(request: NextRequest) {
           analysis = await analyzeWithAnthropic(storyText, acceptanceCriteria);
         } catch (anthropicError) {
           console.error("Anthropic API error:", anthropicError);
-          
+
           // If Anthropic fails and OpenAI is available, try OpenAI as fallback
           if (hasOpenAIKey) {
             console.log("Anthropic failed, falling back to OpenAI...");
@@ -278,7 +283,9 @@ export async function POST(request: NextRequest) {
             } catch (openAIError) {
               console.error("OpenAI API error:", openAIError);
               // Throw the original Anthropic error with context
-              throw new Error(`Anthropic API failed: ${anthropicError instanceof Error ? anthropicError.message : String(anthropicError)}. OpenAI fallback also failed: ${openAIError instanceof Error ? openAIError.message : String(openAIError)}`);
+              throw new Error(
+                `Anthropic API failed: ${anthropicError instanceof Error ? anthropicError.message : String(anthropicError)}. OpenAI fallback also failed: ${openAIError instanceof Error ? openAIError.message : String(openAIError)}`
+              );
             }
           } else {
             throw anthropicError; // No fallback available
@@ -289,28 +296,34 @@ export async function POST(request: NextRequest) {
         analysis = await analyzeWithOpenAI(storyText, acceptanceCriteria);
       } else {
         return NextResponse.json(
-          { 
+          {
             error: "No AI API key configured",
-            message: "Please configure either ANTHROPIC_API_KEY or OPENAI_API_KEY in your .env.local file. Make sure the key is not empty."
+            message:
+              "Please configure either ANTHROPIC_API_KEY or OPENAI_API_KEY in your .env.local file. Make sure the key is not empty.",
           },
           { status: 500 }
         );
       }
     } catch (aiError) {
       console.error("AI analysis error:", aiError);
-      const errorMessage = aiError instanceof Error ? aiError.message : "Failed to analyze story";
-      
+      const errorMessage =
+        aiError instanceof Error ? aiError.message : "Failed to analyze story";
+
       // Provide more helpful error messages
-      if (errorMessage.includes("invalid x-api-key") || errorMessage.includes("authentication_error")) {
+      if (
+        errorMessage.includes("invalid x-api-key") ||
+        errorMessage.includes("authentication_error")
+      ) {
         return NextResponse.json(
           {
             error: "Invalid API Key",
-            message: "The Anthropic API key is invalid or not properly configured. Please check your ANTHROPIC_API_KEY in .env.local and ensure it starts with 'sk-ant-'.",
+            message:
+              "The Anthropic API key is invalid or not properly configured. Please check your ANTHROPIC_API_KEY in .env.local and ensure it starts with 'sk-ant-'.",
           },
           { status: 401 }
         );
       }
-      
+
       return NextResponse.json(
         {
           error: "Analysis failed",
@@ -327,10 +340,11 @@ export async function POST(request: NextRequest) {
       {
         error: "Internal server error",
         message:
-          error instanceof Error ? error.message : "An unexpected error occurred",
+          error instanceof Error
+            ? error.message
+            : "An unexpected error occurred",
       },
       { status: 500 }
     );
   }
 }
-

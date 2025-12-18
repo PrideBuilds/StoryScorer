@@ -56,7 +56,9 @@ import { sanitizeString } from "@/lib/security/validation";
 
 describe("sanitizeString", () => {
   it("should remove angle brackets", () => {
-    expect(sanitizeString("<script>alert('xss')</script>")).toBe("scriptalert('xss')/script");
+    expect(sanitizeString("<script>alert('xss')</script>")).toBe(
+      "scriptalert('xss')/script"
+    );
   });
 });
 ```
@@ -100,7 +102,10 @@ describe("/api/analyze", () => {
 Use test helpers to create consistent mock data:
 
 ```typescript
-import { createMockStory, createMockAnalysisResult } from "@/__tests__/helpers/testHelpers";
+import {
+  createMockStory,
+  createMockAnalysisResult,
+} from "@/__tests__/helpers/testHelpers";
 
 const story = createMockStory({ title: "Custom Title" });
 const analysis = createMockAnalysisResult({ overall_score: 90 });
@@ -142,13 +147,13 @@ npm install --save-dev @playwright/test
 Example E2E test:
 
 ```typescript
-import { test, expect } from '@playwright/test';
+import { test, expect } from "@playwright/test";
 
-test('user can analyze a story', async ({ page }) => {
-  await page.goto('/analyzer');
-  await page.fill('[name="storyText"]', 'As a user, I want to test');
+test("user can analyze a story", async ({ page }) => {
+  await page.goto("/analyzer");
+  await page.fill('[name="storyText"]', "As a user, I want to test");
   await page.click('button[type="submit"]');
-  await expect(page.locator('.analysis-results')).toBeVisible();
+  await expect(page.locator(".analysis-results")).toBeVisible();
 });
 ```
 

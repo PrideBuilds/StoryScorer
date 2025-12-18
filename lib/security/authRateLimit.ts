@@ -10,9 +10,7 @@ import { NextRequest, NextResponse } from "next/server";
  * Check rate limit for authentication endpoints
  * Returns NextResponse with 429 status if rate limited, null if allowed
  */
-export function checkAuthRateLimit(
-  request: NextRequest
-): NextResponse | null {
+export function checkAuthRateLimit(request: NextRequest): NextResponse | null {
   const ip = getClientIP(request);
   const rateLimit = checkRateLimit(`auth:ip:${ip}`, RATE_LIMITS.auth);
 
@@ -35,4 +33,3 @@ export function checkAuthRateLimit(
 
   return null;
 }
-

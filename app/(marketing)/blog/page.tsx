@@ -1,16 +1,17 @@
-import { Metadata } from 'next';
-import Link from 'next/link';
-import { getAllBlogPosts } from '@/lib/blog/utils';
-import { Card, CardContent } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Search, Calendar, Clock, User } from 'lucide-react';
-import Image from 'next/image';
+import { Metadata } from "next";
+import Link from "next/link";
+import { getAllBlogPosts } from "@/lib/blog/utils";
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Search, Calendar, Clock, User } from "lucide-react";
+import Image from "next/image";
 
 export const metadata: Metadata = {
-  title: 'Blog | StoryScorer',
-  description: 'Learn about user stories, INVEST criteria, acceptance criteria, and best practices for business analysts.',
+  title: "Blog | StoryScorer",
+  description:
+    "Learn about user stories, INVEST criteria, acceptance criteria, and best practices for business analysts.",
 };
 
 export default async function BlogPage({
@@ -19,8 +20,8 @@ export default async function BlogPage({
   searchParams: { search?: string; page?: string };
 }) {
   const allPosts = await getAllBlogPosts();
-  const searchQuery = searchParams.search?.toLowerCase() || '';
-  const currentPage = parseInt(searchParams.page || '1', 10);
+  const searchQuery = searchParams.search?.toLowerCase() || "";
+  const currentPage = parseInt(searchParams.page || "1", 10);
   const postsPerPage = 10;
 
   // Filter posts by search query
@@ -37,13 +38,16 @@ export default async function BlogPage({
   // Paginate
   const totalPages = Math.ceil(filteredPosts.length / postsPerPage);
   const startIndex = (currentPage - 1) * postsPerPage;
-  const paginatedPosts = filteredPosts.slice(startIndex, startIndex + postsPerPage);
+  const paginatedPosts = filteredPosts.slice(
+    startIndex,
+    startIndex + postsPerPage
+  );
 
   const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
+    return new Date(dateString).toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
     });
   };
 
@@ -79,14 +83,17 @@ export default async function BlogPage({
           <p className="text-muted-foreground text-lg">
             {searchQuery
               ? `No posts found matching "${searchQuery}"`
-              : 'No blog posts yet. Check back soon!'}
+              : "No blog posts yet. Check back soon!"}
           </p>
         </div>
       ) : (
         <>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
             {paginatedPosts.map((post) => (
-              <Card key={post.slug} className="flex flex-col hover:shadow-lg transition-shadow">
+              <Card
+                key={post.slug}
+                className="flex flex-col hover:shadow-lg transition-shadow"
+              >
                 <Link href={`/blog/${post.slug}`}>
                   {post.featuredImage ? (
                     <div className="relative w-full h-48 overflow-hidden rounded-t-lg">
@@ -148,7 +155,7 @@ export default async function BlogPage({
                 <Button
                   asChild
                   variant="outline"
-                  href={`/blog?page=${currentPage - 1}${searchQuery ? `&search=${searchQuery}` : ''}`}
+                  href={`/blog?page=${currentPage - 1}${searchQuery ? `&search=${searchQuery}` : ""}`}
                 >
                   Previous
                 </Button>
@@ -160,7 +167,7 @@ export default async function BlogPage({
                 <Button
                   asChild
                   variant="outline"
-                  href={`/blog?page=${currentPage + 1}${searchQuery ? `&search=${searchQuery}` : ''}`}
+                  href={`/blog?page=${currentPage + 1}${searchQuery ? `&search=${searchQuery}` : ""}`}
                 >
                   Next
                 </Button>
@@ -172,4 +179,3 @@ export default async function BlogPage({
     </div>
   );
 }
-

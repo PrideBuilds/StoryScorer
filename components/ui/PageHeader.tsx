@@ -18,12 +18,9 @@ export function PageHeader({
     <div className={cn("flex items-start justify-between mb-8", className)}>
       <div className="flex-1">
         <h1 className="text-3xl font-bold mb-2">{title}</h1>
-        {description && (
-          <p className="text-muted-foreground">{description}</p>
-        )}
+        {description && <p className="text-muted-foreground">{description}</p>}
       </div>
       {action && <div className="ml-4">{action}</div>}
     </div>
   );
 }
-

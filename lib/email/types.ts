@@ -39,4 +39,3 @@ export interface PaymentFailedEmailData {
   retryDate?: string;
   supportLink?: string;
 }
-

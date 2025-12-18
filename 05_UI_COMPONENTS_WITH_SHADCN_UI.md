@@ -10,6 +10,7 @@
 
 \f0\fs24 \cf2 \expnd0\expndtw0\kerning0
 \outl0\strokewidth0 \strokec3 \shad\shadx0\shady-20\shadr0\shado0 \shadc0 Install and configure essential shadcn/ui components:\
+
 - Install button component: npx shadcn-ui@latest add button\
 - Install card component: npx shadcn-ui@latest add card\
 - Install input component: npx shadcn-ui@latest add input\
@@ -21,12 +22,13 @@
 - Install toast component: npx shadcn-ui@latest add toast\
 - Install table component: npx shadcn-ui@latest add table\
 - Verify all components render correctly\
-\pard\pardeftab720\qc\partightenfactor0
+  \pard\pardeftab720\qc\partightenfactor0
 
 \f1\fs22 \cf2 \strokec4 \shad0 \
 \pard\pardeftab720\partightenfactor0
 
 \f0\fs24 \cf2 \strokec3 \shad\shadx0\shady-20\shadr0\shado0 \shadc0 Create custom reusable components:\
+
 - Create /components/ui/LoadingSpinner.tsx with animated spinner\
 - Create /components/ui/EmptyState.tsx for empty data states\
 - Create /components/ui/ErrorMessage.tsx for error displays\
@@ -35,21 +37,22 @@
 - Create /components/ui/ConfirmDialog.tsx for delete confirmations\
 - Add proper TypeScript props interfaces for all components\
 - Ensure all components are accessible (ARIA labels)\
-\pard\pardeftab720\qc\partightenfactor0
+  \pard\pardeftab720\qc\partightenfactor0
 
 \f1\fs22 \cf2 \strokec4 \shad0 \
 \pard\pardeftab720\partightenfactor0
 
 \f0\fs24 \cf2 \strokec3 \shad\shadx0\shady-20\shadr0\shado0 \shadc0 Build a notification/toast system:\
+
 - Set up toast provider in root layout\
 - Create /lib/utils/toast.ts with helper functions:\
-  * showSuccess(message)\
-  * showError(message)\
-  * showInfo(message)\
+  - showSuccess(message)\
+  - showError(message)\
+  - showInfo(message)\
 - Implement toast throughout the app for:\
-  * Successful actions (save, update, delete)\
-  * Errors from API calls\
-  * Form validation errors\
-  * Payment confirmations\
+  - Successful actions (save, update, delete)\
+  - Errors from API calls\
+  - Form validation errors\
+  - Payment confirmations\
 - Style toasts to match your brand\
-}
+  }

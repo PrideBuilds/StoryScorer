@@ -74,4 +74,3 @@ export function createMockRequest(
     body: body ? JSON.stringify(body) : undefined,
   });
 }
-

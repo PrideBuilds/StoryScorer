@@ -1,10 +1,23 @@
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import Link from "next/link";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { getUserStats, getRecentStories } from "@/lib/db/stats";
-import { Sparkles, FileText, Calendar, CreditCard, ArrowRight, TrendingUp } from "lucide-react";
+import {
+  Sparkles,
+  FileText,
+  Calendar,
+  CreditCard,
+  ArrowRight,
+  TrendingUp,
+} from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
 export default async function DashboardHomePage() {
@@ -53,9 +66,7 @@ export default async function DashboardHomePage() {
             <div className="text-2xl font-bold">
               {stats.error ? "—" : stats.totalStories}
             </div>
-            <p className="text-xs text-muted-foreground">
-              All time analyzed
-            </p>
+            <p className="text-xs text-muted-foreground">All time analyzed</p>
           </CardContent>
         </Card>
 
@@ -91,7 +102,9 @@ export default async function DashboardHomePage() {
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Billing Period</CardTitle>
+            <CardTitle className="text-sm font-medium">
+              Billing Period
+            </CardTitle>
             <Calendar className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
@@ -115,7 +128,8 @@ export default async function DashboardHomePage() {
           <CardHeader>
             <CardTitle>Analyze a Story</CardTitle>
             <CardDescription>
-              Get AI-powered analysis of your user stories against INVEST criteria
+              Get AI-powered analysis of your user stories against INVEST
+              criteria
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -189,7 +203,15 @@ export default async function DashboardHomePage() {
                     </p>
                   </div>
                   {story.score !== null && (
-                    <Badge variant={story.score >= 80 ? "default" : story.score >= 60 ? "secondary" : "destructive"}>
+                    <Badge
+                      variant={
+                        story.score >= 80
+                          ? "default"
+                          : story.score >= 60
+                            ? "secondary"
+                            : "destructive"
+                      }
+                    >
                       {story.score}/100
                     </Badge>
                   )}
@@ -207,4 +229,3 @@ export default async function DashboardHomePage() {
     </div>
   );
 }
-

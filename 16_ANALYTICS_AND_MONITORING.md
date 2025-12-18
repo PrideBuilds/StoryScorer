@@ -10,23 +10,25 @@
 
 \f0\fs24 \cf2 \expnd0\expndtw0\kerning0
 \outl0\strokewidth0 \strokec3 \shad\shadx0\shady-20\shadr0\shado0 \shadc0 Set up analytics tracking:\
+
 - Choose analytics platform (Plausible, PostHog, or Google Analytics)\
 - Install analytics script in root layout\
 - Configure to respect user privacy (no PII)\
 - Track key pages: home, pricing, signup, login, dashboard\
 - Set up custom events for:\
-  * User signup\
-  * Feature usage (analysis started, completed)\
-  * Subscription created\
-  * Subscription canceled\
+  - User signup\
+  - Feature usage (analysis started, completed)\
+  - Subscription created\
+  - Subscription canceled\
 - Test that events are firing correctly\
 - Create custom dashboard for key metrics
-\f1\fs22 \cf2 \strokec4 \shad0 \
-\pard\pardeftab720\qc\partightenfactor0
-\cf2 \strokec4 \
-\pard\pardeftab720\partightenfactor0
+  \f1\fs22 \cf2 \strokec4 \shad0 \
+  \pard\pardeftab720\qc\partightenfactor0
+  \cf2 \strokec4 \
+  \pard\pardeftab720\partightenfactor0
 
 \f0\fs24 \cf2 \strokec3 \shad\shadx0\shady-20\shadr0\shado0 \shadc0 Implement error tracking:\
+
 - Install Sentry or similar error tracking\
 - Configure Sentry SDK in Next.js app\
 - Add source maps for production debugging\
@@ -35,12 +37,13 @@
 - Integrate with your notification system (email/Slack)\
 - Create error dashboards\
 - Set up weekly error review process
-\f1\fs22 \cf2 \strokec4 \shad0 \
-\pard\pardeftab720\qc\partightenfactor0
-\cf2 \strokec4 \
-\pard\pardeftab720\partightenfactor0
+  \f1\fs22 \cf2 \strokec4 \shad0 \
+  \pard\pardeftab720\qc\partightenfactor0
+  \cf2 \strokec4 \
+  \pard\pardeftab720\partightenfactor0
 
 \f0\fs24 \cf2 \strokec3 \shad\shadx0\shady-20\shadr0\shado0 \shadc0 Set up uptime monitoring:\
+
 - Choose uptime monitoring service (UptimeRobot, Pingdom, BetterUptime)\
 - Monitor main application URL\
 - Monitor critical API endpoints\
@@ -48,22 +51,23 @@
 - Create status page (optional)\
 - Monitor from multiple geographic locations\
 - Set alert thresholds (down for 2+ minutes)\
-\pard\pardeftab720\qc\partightenfactor0
+  \pard\pardeftab720\qc\partightenfactor0
 
 \f1\fs22 \cf2 \strokec4 \shad0 \
 \pard\pardeftab720\partightenfactor0
 
 \f0\fs24 \cf2 \strokec3 \shad\shadx0\shady-20\shadr0\shado0 \shadc0 Create internal analytics dashboard:\
+
 - Build /app/(dashboard)/admin/page.tsx (protected route)\
 - Display key business metrics:\
-  * Total users\
-  * Active subscriptions by plan\
-  * MRR (Monthly Recurring Revenue)\
-  * Churn rate\
-  * Feature usage statistics\
-  * User growth chart\
+  - Total users\
+  - Active subscriptions by plan\
+  - MRR (Monthly Recurring Revenue)\
+  - Churn rate\
+  - Feature usage statistics\
+  - User growth chart\
 - Fetch data from database\
 - Add date range filters\
 - Create export functionality for reports\
 - Restrict access to admin users only\
-}
+  }

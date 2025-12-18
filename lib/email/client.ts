@@ -1,8 +1,8 @@
-import { Resend } from 'resend';
+import { Resend } from "resend";
 
 /**
  * Initialize Resend client for sending emails
- * 
+ *
  * To set up:
  * 1. Create a Resend account at https://resend.com
  * 2. Get your API key from the dashboard
@@ -20,7 +20,7 @@ export function getResendClient(): Resend {
 
   if (!apiKey) {
     throw new Error(
-      'RESEND_API_KEY is not set. Please add it to your environment variables.'
+      "RESEND_API_KEY is not set. Please add it to your environment variables."
     );
   }
 
@@ -36,7 +36,6 @@ export function getFromEmail(): string {
   return (
     process.env.RESEND_FROM_EMAIL ||
     process.env.NEXT_PUBLIC_APP_EMAIL ||
-    'noreply@storyscorer.com'
+    "noreply@storyscorer.com"
   );
 }
-

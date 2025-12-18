@@ -36,7 +36,9 @@ const getScoreColor = (score: number) => {
   return "text-red-600";
 };
 
-const getScoreBadgeVariant = (score: number): "default" | "secondary" | "destructive" => {
+const getScoreBadgeVariant = (
+  score: number
+): "default" | "secondary" | "destructive" => {
   if (score >= 80) return "default";
   if (score >= 60) return "secondary";
   return "destructive";
@@ -100,11 +102,7 @@ ${analysis.recommendations.map((rec) => `- ${rec}`).join("\n")}
           <div className="flex items-center justify-between">
             <CardTitle>Analysis Results</CardTitle>
             <div className="flex gap-2">
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={exportToMarkdown}
-              >
+              <Button variant="outline" size="sm" onClick={exportToMarkdown}>
                 <Download className="mr-2 h-4 w-4" />
                 Export
               </Button>
@@ -178,7 +176,9 @@ ${analysis.recommendations.map((rec) => `- ${rec}`).join("\n")}
                       <Button
                         variant="outline"
                         size="sm"
-                        onClick={() => copyToClipboard(criterion.feedback, index)}
+                        onClick={() =>
+                          copyToClipboard(criterion.feedback, index)
+                        }
                       >
                         {copiedIndex === index ? (
                           <>
@@ -222,4 +222,3 @@ ${analysis.recommendations.map((rec) => `- ${rec}`).join("\n")}
     </div>
   );
 }
-

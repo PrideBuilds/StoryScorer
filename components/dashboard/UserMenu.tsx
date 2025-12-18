@@ -87,4 +87,3 @@ export function UserMenu({ user }: UserMenuProps) {
     </DropdownMenu>
   );
 }
-

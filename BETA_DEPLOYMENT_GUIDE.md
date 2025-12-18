@@ -5,6 +5,7 @@ This guide will help you deploy StoryScorer to a beta/staging environment that y
 ## Overview
 
 **Beta Environment Benefits:**
+
 - ✅ Shareable URL (e.g., `beta.storyscorer.com` or `storyscorer-beta.vercel.app`)
 - ✅ Stripe Test Mode (no real charges)
 - ✅ Separate from production data
@@ -14,10 +15,12 @@ This guide will help you deploy StoryScorer to a beta/staging environment that y
 ## Step 1: Deploy to Vercel (Recommended)
 
 ### 1.1 Create Vercel Account
+
 1. Go to [vercel.com](https://vercel.com) and sign up (free tier is perfect for beta)
 2. Connect your GitHub account (recommended) or use GitLab/Bitbucket
 
 ### 1.2 Import Your Project
+
 1. Click "Add New Project" in Vercel dashboard
 2. Import your StoryScorer repository
 3. Configure project:
@@ -58,16 +61,19 @@ NEXT_PUBLIC_APP_ENV=beta
 ```
 
 #### Important Notes:
+
 - **Stripe:** Use TEST MODE keys (starts with `sk_test_` and `pk_test_`)
 - **Supabase:** Consider creating a separate project for beta, or use the same project but be aware data will be shared
 - **Site URL:** Update this to your actual beta URL after first deployment
 
 ### 1.4 Deploy
+
 1. Click "Deploy"
 2. Wait for build to complete (usually 2-3 minutes)
 3. Your beta site will be live at: `your-project-name.vercel.app`
 
 ### 1.5 Set Up Custom Domain (Optional)
+
 1. In Vercel project settings → Domains
 2. Add your domain: `beta.storyscorer.com` (or whatever you prefer)
 3. Follow DNS instructions to point your domain to Vercel
@@ -76,6 +82,7 @@ NEXT_PUBLIC_APP_ENV=beta
 ## Step 2: Configure Stripe for Beta
 
 ### 2.1 Use Stripe Test Mode
+
 - Your Stripe keys should already be test mode (`sk_test_...` and `pk_test_...`)
 - Test mode allows you to:
   - Use test credit cards (4242 4242 4242 4242)
@@ -83,6 +90,7 @@ NEXT_PUBLIC_APP_ENV=beta
   - See all transactions in Stripe Dashboard → Test Mode
 
 ### 2.2 Set Up Test Mode Webhook
+
 1. Go to [Stripe Dashboard → Webhooks](https://dashboard.stripe.com/test/webhooks)
 2. Click "Add endpoint"
 3. Enter your beta webhook URL: `https://your-beta-url.vercel.app/api/webhooks/stripe`
@@ -97,7 +105,9 @@ NEXT_PUBLIC_APP_ENV=beta
 6. Add to Vercel environment variables as `STRIPE_WEBHOOK_SECRET`
 
 ### 2.3 Test Payment Flow
+
 Use Stripe test cards:
+
 - **Success:** `4242 4242 4242 4242`
 - **Decline:** `4000 0000 0000 0002`
 - **3D Secure:** `4000 0025 0000 3155`
@@ -105,11 +115,13 @@ Use Stripe test cards:
 ## Step 3: Set Up Supabase for Beta
 
 ### Option A: Use Same Project (Simpler)
+
 - Use your existing Supabase project
 - **Pros:** No setup needed, same database
 - **Cons:** Beta and production share data (may want to separate)
 
 ### Option B: Create Separate Beta Project (Recommended)
+
 1. Go to [supabase.com](https://supabase.com)
 2. Create a new project: "StoryScorer Beta"
 3. Run your database migrations:
@@ -144,8 +156,8 @@ export function BetaBanner() {
     <Alert className="border-yellow-500 bg-yellow-50 dark:bg-yellow-950">
       <Info className="h-4 w-4 text-yellow-600" />
       <AlertDescription className="text-yellow-800 dark:text-yellow-200">
-        <strong>Beta Version:</strong> This is a beta environment. 
-        All payments are in test mode and no real charges will occur.
+        <strong>Beta Version:</strong> This is a beta environment. All payments
+        are in test mode and no real charges will occur.
       </AlertDescription>
     </Alert>
   );
@@ -174,11 +186,13 @@ export default function RootLayout({ children }) {
 ## Step 5: Add Access Restrictions (Optional)
 
 ### Option A: Password Protection (Vercel Pro)
+
 - Requires Vercel Pro plan ($20/month)
 - Built-in password protection in Vercel dashboard
 - Easiest option
 
 ### Option B: Invite-Only Access
+
 Create middleware to check for beta access:
 
 ```typescript
@@ -199,9 +213,11 @@ export async function middleware(request: NextRequest) {
   }
 
   // Allow public pages
-  if (request.nextUrl.pathname.startsWith("/api") || 
-      request.nextUrl.pathname.startsWith("/auth") ||
-      request.nextUrl.pathname === "/") {
+  if (
+    request.nextUrl.pathname.startsWith("/api") ||
+    request.nextUrl.pathname.startsWith("/auth") ||
+    request.nextUrl.pathname === "/"
+  ) {
     return NextResponse.next();
   }
 
@@ -214,6 +230,7 @@ export async function middleware(request: NextRequest) {
 ```
 
 ### Option C: Simple Access Code
+
 Add a simple access code check on landing page:
 
 ```tsx
@@ -257,15 +274,18 @@ Once deployed and tested:
 ## Step 8: Monitor Beta Usage
 
 ### Vercel Analytics
+
 - Enable Vercel Analytics in project settings
 - Monitor page views, performance, errors
 
 ### Stripe Dashboard
+
 - Monitor test mode transactions
 - Check webhook delivery status
 - Review subscription activity
 
 ### Supabase Dashboard
+
 - Monitor database usage
 - Check authentication logs
 - Review error logs
@@ -273,27 +293,32 @@ Once deployed and tested:
 ## Step 9: Update and Iterate
 
 ### Deploy Updates
+
 1. Push changes to your Git repository
 2. Vercel automatically deploys (if connected to Git)
 3. Or manually deploy from Vercel dashboard
 
 ### Environment Variables
+
 - Update in Vercel dashboard → Settings → Environment Variables
 - Redeploy after changes
 
 ## Troubleshooting
 
 ### Build Fails
+
 - Check build logs in Vercel dashboard
 - Verify all environment variables are set
 - Check for TypeScript errors locally first
 
 ### Stripe Not Working
+
 - Verify test mode keys are set
 - Check webhook endpoint is correct
 - Verify webhook secret matches
 
 ### Database Issues
+
 - Verify Supabase keys are correct
 - Check database connection in Supabase dashboard
 - Review RLS policies are set correctly
@@ -340,8 +365,8 @@ vercel --prod  # or deploy from dashboard
 ## Support
 
 For issues:
+
 - Check Vercel deployment logs
 - Review Stripe webhook logs
 - Check Supabase logs
 - Review browser console for errors
-

@@ -26,6 +26,7 @@ stripe listen --forward-to localhost:3000/api/webhooks/stripe
 ```
 
 This will output a webhook signing secret that looks like:
+
 ```
 > Ready! Your webhook signing secret is whsec_xxxxxxxxxxxxx
 ```
@@ -107,4 +108,3 @@ STRIPE_WEBHOOK_SECRET=whsec_xxxxxxxxxxxxx
 - Check server logs for webhook processing errors
 - Verify the webhook is actually being received (check Stripe Dashboard logs)
 - Ensure `createAdminClient()` is working correctly (check Supabase service role key)
-

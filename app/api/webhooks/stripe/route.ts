@@ -2,7 +2,10 @@ import { NextRequest, NextResponse } from "next/server";
 import { headers } from "next/headers";
 import { getStripeClient } from "@/lib/stripe/client";
 import { createAdminClient } from "@/lib/supabase/server";
-import { sendSubscriptionEmail, sendPaymentFailedEmail } from "@/lib/email/send";
+import {
+  sendSubscriptionEmail,
+  sendPaymentFailedEmail,
+} from "@/lib/email/send";
 import { getPlanById } from "@/lib/config/pricing";
 import Stripe from "stripe";
 
@@ -65,16 +68,23 @@ export async function POST(request: NextRequest) {
 
         // Get subscription details from Stripe
         const stripe = getStripeClient();
-        const subscription: Stripe.Subscription = await stripe.subscriptions.retrieve(subscriptionId);
-        
+        const subscription: Stripe.Subscription =
+          await stripe.subscriptions.retrieve(subscriptionId);
+
         // Determine plan type from metadata or price ID
         let planType = planId as "free" | "pro" | "enterprise";
         if (!["free", "pro", "enterprise"].includes(planType)) {
           // Fallback: try to determine from price ID
           const priceId = subscription.items.data[0].price.id;
-          if (priceId.includes("enterprise") || priceId === "price_1SejaLKoI2CWEIGNbnbZJtLR") {
+          if (
+            priceId.includes("enterprise") ||
+            priceId === "price_1SejaLKoI2CWEIGNbnbZJtLR"
+          ) {
             planType = "enterprise";
-          } else if (priceId.includes("pro") || priceId === "price_1SejUcKoI2CWEIGNx0ju4db2") {
+          } else if (
+            priceId.includes("pro") ||
+            priceId === "price_1SejUcKoI2CWEIGNx0ju4db2"
+          ) {
             planType = "pro";
           } else {
             planType = "pro"; // Default
@@ -89,7 +99,12 @@ export async function POST(request: NextRequest) {
           .maybeSingle();
 
         // Determine status with proper type casting
-        let subscriptionStatus: "active" | "canceled" | "past_due" | "trialing" | "incomplete" = "active";
+        let subscriptionStatus:
+          | "active"
+          | "canceled"
+          | "past_due"
+          | "trialing"
+          | "incomplete" = "active";
         if (subscription.status === "active") {
           subscriptionStatus = "active";
         } else if (subscription.status === "trialing") {
@@ -107,8 +122,12 @@ export async function POST(request: NextRequest) {
           stripe_subscription_id: subscriptionId,
           plan_type: planType,
           status: subscriptionStatus,
-          current_period_start: new Date((subscription as any).current_period_start * 1000).toISOString(),
-          current_period_end: new Date((subscription as any).current_period_end * 1000).toISOString(),
+          current_period_start: new Date(
+            (subscription as any).current_period_start * 1000
+          ).toISOString(),
+          current_period_end: new Date(
+            (subscription as any).current_period_end * 1000
+          ).toISOString(),
         };
 
         let updateError;
@@ -136,18 +155,21 @@ export async function POST(request: NextRequest) {
           console.error("Error updating subscription:", updateError);
         } else {
           console.log(`Subscription created/updated for user: ${userId}`);
-          
+
           // Send subscription confirmation email
           const plan = getPlanById(planType);
           const amount = subscription.items.data[0]?.price?.unit_amount
             ? `$${(subscription.items.data[0].price.unit_amount / 100).toFixed(2)}`
             : undefined;
-          const billingPeriod = subscription.items.data[0]?.price?.recurring?.interval || "month";
-          
+          const billingPeriod =
+            subscription.items.data[0]?.price?.recurring?.interval || "month";
+
           // Get user email
-          const { data: userData } = await supabase.auth.admin.getUserById(userId);
-          const userEmail = userData?.user?.email || session.customer_email || "";
-          
+          const { data: userData } =
+            await supabase.auth.admin.getUserById(userId);
+          const userEmail =
+            userData?.user?.email || session.customer_email || "";
+
           if (userEmail) {
             sendSubscriptionEmail({
               userEmail,
@@ -182,16 +204,27 @@ export async function POST(request: NextRequest) {
         // Determine plan type from price ID
         const priceId = subscription.items.data[0].price.id;
         let planType: "free" | "pro" | "enterprise" = "pro";
-        
+
         // Match price IDs from config
-        if (priceId === "price_1SejaLKoI2CWEIGNbnbZJtLR" || priceId === "price_1SejaLKoI2CWEIGNzhsrBDJk") {
+        if (
+          priceId === "price_1SejaLKoI2CWEIGNbnbZJtLR" ||
+          priceId === "price_1SejaLKoI2CWEIGNzhsrBDJk"
+        ) {
           planType = "enterprise";
-        } else if (priceId === "price_1SejUcKoI2CWEIGNx0ju4db2" || priceId === "price_1SejXOKoI2CWEIGNg0hVXHsp") {
+        } else if (
+          priceId === "price_1SejUcKoI2CWEIGNx0ju4db2" ||
+          priceId === "price_1SejXOKoI2CWEIGNg0hVXHsp"
+        ) {
           planType = "pro";
         }
 
         // Determine status with proper type casting
-        let subscriptionStatus: "active" | "canceled" | "past_due" | "trialing" | "incomplete" = "active";
+        let subscriptionStatus:
+          | "active"
+          | "canceled"
+          | "past_due"
+          | "trialing"
+          | "incomplete" = "active";
         if (subscription.status === "active") {
           subscriptionStatus = "active";
         } else if (subscription.status === "trialing") {
@@ -209,8 +242,12 @@ export async function POST(request: NextRequest) {
           stripe_subscription_id: subscription.id,
           plan_type: planType,
           status: subscriptionStatus,
-          current_period_start: new Date((subscription as any).current_period_start * 1000).toISOString(),
-          current_period_end: new Date((subscription as any).current_period_end * 1000).toISOString(),
+          current_period_start: new Date(
+            (subscription as any).current_period_start * 1000
+          ).toISOString(),
+          current_period_end: new Date(
+            (subscription as any).current_period_end * 1000
+          ).toISOString(),
         };
         await supabase
           .from("subscriptions")
@@ -246,14 +283,17 @@ export async function POST(request: NextRequest) {
         if (subscriptionId) {
           // Update subscription period if needed
           const stripe = getStripeClient();
-          const subscription: Stripe.Subscription = await stripe.subscriptions.retrieve(
-            subscriptionId as string
-          );
+          const subscription: Stripe.Subscription =
+            await stripe.subscriptions.retrieve(subscriptionId as string);
 
           const paymentData: any = {
             status: "active",
-            current_period_start: new Date((subscription as any).current_period_start * 1000).toISOString(),
-            current_period_end: new Date((subscription as any).current_period_end * 1000).toISOString(),
+            current_period_start: new Date(
+              (subscription as any).current_period_start * 1000
+            ).toISOString(),
+            current_period_end: new Date(
+              (subscription as any).current_period_end * 1000
+            ).toISOString(),
           };
           await supabase
             .from("subscriptions")
@@ -299,10 +339,12 @@ export async function POST(request: NextRequest) {
             const lastPaymentDate = new Date(
               invoice.created * 1000
             ).toLocaleDateString();
-            
+
             // Get next retry date if available
             const nextPaymentAttempt = invoice.next_payment_attempt
-              ? new Date(invoice.next_payment_attempt * 1000).toLocaleDateString()
+              ? new Date(
+                  invoice.next_payment_attempt * 1000
+                ).toLocaleDateString()
               : undefined;
 
             sendPaymentFailedEmail({
@@ -331,4 +373,3 @@ export async function POST(request: NextRequest) {
     );
   }
 }
-

@@ -5,6 +5,7 @@ Use this checklist to manually test all features before release.
 ## Authentication Flow
 
 ### Sign Up
+
 - [ ] Can create account with valid email and password
 - [ ] Password requirements are enforced (min 8 chars, uppercase, lowercase, number)
 - [ ] Error shown for duplicate email
@@ -13,6 +14,7 @@ Use this checklist to manually test all features before release.
 - [ ] Redirects to dashboard after verification
 
 ### Login
+
 - [ ] Can login with correct credentials
 - [ ] Error shown for incorrect password
 - [ ] Error shown for non-existent email
@@ -21,6 +23,7 @@ Use this checklist to manually test all features before release.
 - [ ] Redirects to intended page after login (if redirected from protected route)
 
 ### Password Reset
+
 - [ ] Can request password reset
 - [ ] Reset email is received
 - [ ] Can reset password via link
@@ -28,6 +31,7 @@ Use this checklist to manually test all features before release.
 - [ ] Old password no longer works
 
 ### Logout
+
 - [ ] Can logout successfully
 - [ ] Redirects to home page after logout
 - [ ] Cannot access protected routes after logout
@@ -35,6 +39,7 @@ Use this checklist to manually test all features before release.
 ## Core Features
 
 ### Story Analysis
+
 - [ ] Can input story title
 - [ ] Can input user story text
 - [ ] Can input acceptance criteria (optional)
@@ -49,6 +54,7 @@ Use this checklist to manually test all features before release.
 - [ ] Error shown if API fails
 
 ### Story History
+
 - [ ] Can view list of saved stories
 - [ ] Can search stories
 - [ ] Can sort stories (by date, score, title)
@@ -60,6 +66,7 @@ Use this checklist to manually test all features before release.
 - [ ] Empty state shows when no stories
 
 ### Dashboard
+
 - [ ] Stats display correctly
 - [ ] Recent activity shows
 - [ ] Quick actions work
@@ -68,12 +75,14 @@ Use this checklist to manually test all features before release.
 ## Subscription & Billing
 
 ### Pricing Page
+
 - [ ] All plans display correctly
 - [ ] Monthly/Annual toggle works
 - [ ] "Get Started" buttons work
 - [ ] Redirects to checkout
 
 ### Checkout Flow
+
 - [ ] Can select plan
 - [ ] Redirects to Stripe checkout
 - [ ] Can complete payment
@@ -81,12 +90,14 @@ Use this checklist to manually test all features before release.
 - [ ] Subscription updates in database
 
 ### Billing Page
+
 - [ ] Current plan displays correctly
 - [ ] Usage meter shows current usage
 - [ ] "Manage Subscription" button works
 - [ ] Redirects to Stripe Customer Portal
 
 ### Subscription Management
+
 - [ ] Can view subscription details
 - [ ] Can cancel subscription
 - [ ] Can update payment method
@@ -95,6 +106,7 @@ Use this checklist to manually test all features before release.
 ## Settings
 
 ### Profile Settings
+
 - [ ] Can update full name
 - [ ] Can update company
 - [ ] Can update job title
@@ -102,6 +114,7 @@ Use this checklist to manually test all features before release.
 - [ ] Success message shown
 
 ### Account Settings
+
 - [ ] Can change password
 - [ ] Password validation works
 - [ ] Can delete account
@@ -111,12 +124,14 @@ Use this checklist to manually test all features before release.
 ## Navigation & UI
 
 ### Navigation
+
 - [ ] All navigation links work
 - [ ] Active route is highlighted
 - [ ] Mobile menu works
 - [ ] Logo links to home/dashboard
 
 ### Responsive Design
+
 - [ ] Works on desktop (1920x1080)
 - [ ] Works on tablet (768x1024)
 - [ ] Works on mobile (375x667)
@@ -125,6 +140,7 @@ Use this checklist to manually test all features before release.
 - [ ] Forms are usable on mobile
 
 ### Browser Compatibility
+
 - [ ] Chrome (latest)
 - [ ] Firefox (latest)
 - [ ] Safari (latest)
@@ -135,16 +151,19 @@ Use this checklist to manually test all features before release.
 ## Error Handling
 
 ### Network Errors
+
 - [ ] Handles network failures gracefully
 - [ ] Shows user-friendly error messages
 - [ ] Retry options available where appropriate
 
 ### Validation Errors
+
 - [ ] Form validation errors display correctly
 - [ ] Field-level error messages shown
 - [ ] Cannot submit invalid forms
 
 ### API Errors
+
 - [ ] 401 errors redirect to login
 - [ ] 403 errors show appropriate message
 - [ ] 404 errors show not found message
@@ -154,12 +173,14 @@ Use this checklist to manually test all features before release.
 ## Accessibility
 
 ### Keyboard Navigation
+
 - [ ] Can navigate with Tab key
 - [ ] Focus indicators visible
 - [ ] Can submit forms with Enter
 - [ ] Can close modals with Escape
 
 ### Screen Reader
+
 - [ ] All images have alt text
 - [ ] Form labels are associated
 - [ ] Buttons have accessible names
@@ -167,6 +188,7 @@ Use this checklist to manually test all features before release.
 - [ ] Page structure is logical
 
 ### Color Contrast
+
 - [ ] Text meets WCAG AA contrast ratios
 - [ ] Error states are clear
 - [ ] Focus states are visible
@@ -174,11 +196,13 @@ Use this checklist to manually test all features before release.
 ## Performance
 
 ### Loading States
+
 - [ ] Loading spinners show during async operations
 - [ ] Skeleton screens show during data loading
 - [ ] No layout shift during loading
 
 ### Network Performance
+
 - [ ] Works on slow 3G connection
 - [ ] Large forms don't freeze browser
 - [ ] Images load progressively
@@ -186,17 +210,20 @@ Use this checklist to manually test all features before release.
 ## Edge Cases
 
 ### Empty States
+
 - [ ] Empty state shown when no stories
 - [ ] Empty state shown when no search results
 - [ ] Empty state shown when no recent activity
 
 ### Long Content
+
 - [ ] Long story titles handled
 - [ ] Long story text handled
 - [ ] Many tags handled
 - [ ] Many stories in history handled
 
 ### Special Characters
+
 - [ ] Handles special characters in input
 - [ ] Handles emojis in input
 - [ ] Handles unicode characters
@@ -204,16 +231,19 @@ Use this checklist to manually test all features before release.
 ## Security
 
 ### Authentication
+
 - [ ] Cannot access protected routes without auth
 - [ ] Session expires after inactivity
 - [ ] Logout clears session
 
 ### Data Access
+
 - [ ] Cannot access other users' stories
 - [ ] Cannot modify other users' data
 - [ ] RLS policies enforced
 
 ### Input Validation
+
 - [ ] XSS attempts blocked
 - [ ] SQL injection attempts fail
 - [ ] Invalid inputs rejected
@@ -221,17 +251,20 @@ Use this checklist to manually test all features before release.
 ## Integration Tests
 
 ### Stripe Integration
+
 - [ ] Webhook receives events
 - [ ] Subscription updates after payment
 - [ ] Customer portal works
 
 ### Supabase Integration
+
 - [ ] Authentication works
 - [ ] Database queries work
 - [ ] RLS policies enforced
 - [ ] Real-time updates work (if implemented)
 
 ### AI Integration
+
 - [ ] OpenAI analysis works
 - [ ] Anthropic analysis works
 - [ ] Fallback works if one fails
@@ -245,4 +278,3 @@ Use this checklist to manually test all features before release.
 - [ ] No console errors
 - [ ] No console warnings
 - [ ] Documentation updated
-

@@ -3,6 +3,7 @@
 ## The Problem
 
 Build logs show:
+
 - ✅ Dependencies install successfully (378 packages)
 - ✅ Next.js is detected
 - ❌ But then "Module not found" errors occur
@@ -44,6 +45,7 @@ Based on your GitHub screenshot, `package.json` is at the repository root. The R
 After redeploy, look for these in the logs:
 
 **✅ SUCCESS - You should see:**
+
 ```
 Installing dependencies...
 added 378 packages
@@ -54,9 +56,11 @@ Creating an optimized production build ...
 ```
 
 **❌ FAILURE - If you still see:**
+
 ```
 Module not found: Can't resolve 'react-hook-form'
 ```
+
 Then the root directory is still wrong.
 
 ## About the npm Warnings
@@ -87,6 +91,7 @@ Sometimes `.npmrc` or other config files can affect how packages are installed. 
 ### Option C: Contact Vercel Support
 
 If nothing works, there might be a caching issue on Vercel's side. Contact support to:
+
 1. Clear all build caches
 2. Verify root directory setting is actually applied
 3. Check for any project-level configuration issues
@@ -103,6 +108,7 @@ If nothing works, there might be a caching issue on Vercel's side. Contact suppo
 ## Expected Behavior
 
 When root directory is correct:
+
 1. Vercel clones the repo
 2. Changes to the root directory (`.`)
 3. Runs `npm install` (installs 378 packages)
@@ -111,9 +117,9 @@ When root directory is correct:
 6. Build succeeds ✅
 
 When root directory is wrong:
+
 1. Vercel clones the repo
 2. Changes to wrong directory (e.g., `storyscorer/`)
 3. Runs `npm install` (but in wrong location)
 4. Tries to build from wrong location
 5. Can't find modules ❌
-

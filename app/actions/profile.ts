@@ -128,7 +128,7 @@ export async function deleteAccount() {
   // This would require admin privileges or a server-side admin function
   // For now, we'll delete the profile and stories, then sign out
   // The user would need to contact support to fully delete the auth account
-  
+
   // Delete all user stories
   const { error: storiesError } = await supabase
     .from("user_stories")
@@ -158,7 +158,7 @@ export async function deleteAccount() {
 
   return {
     success: true,
-    message: "Account data deleted successfully. Please contact support to fully delete your account.",
+    message:
+      "Account data deleted successfully. Please contact support to fully delete your account.",
   };
 }
-

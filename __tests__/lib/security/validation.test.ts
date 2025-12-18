@@ -116,9 +116,7 @@ describe("Validation Utilities", () => {
 
   describe("isValidUUID", () => {
     it("should validate correct UUID", () => {
-      expect(
-        isValidUUID("123e4567-e89b-12d3-a456-426614174000")
-      ).toBe(true);
+      expect(isValidUUID("123e4567-e89b-12d3-a456-426614174000")).toBe(true);
     });
 
     it("should reject invalid UUID", () => {

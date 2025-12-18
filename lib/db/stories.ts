@@ -92,9 +92,7 @@ export async function getStories(options?: {
 
     // Add search filter if provided
     if (search) {
-      query = query.or(
-        `title.ilike.%${search}%,story_text.ilike.%${search}%`
-      );
+      query = query.or(`title.ilike.%${search}%,story_text.ilike.%${search}%`);
     }
 
     const { data, error, count } = await query;
@@ -237,4 +235,3 @@ export async function deleteStory(
     };
   }
 }
-

@@ -4,14 +4,23 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import { plans } from "@/lib/config/pricing";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Check, X, Loader2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 export default function PricingPage() {
-  const [billingPeriod, setBillingPeriod] = useState<"monthly" | "annual">("monthly");
+  const [billingPeriod, setBillingPeriod] = useState<"monthly" | "annual">(
+    "monthly"
+  );
   const [loadingPlan, setLoadingPlan] = useState<string | null>(null);
   const router = useRouter();
   const { toast } = useToast();
@@ -32,7 +41,9 @@ export default function PricingPage() {
     try {
       // In a real app, you'd get the price ID from your Stripe products
       // For now, we'll use placeholder price IDs that you'll need to replace
-      const priceId = plans.find((p) => p.id === planId)?.stripePriceId?.[billingPeriod];
+      const priceId = plans.find((p) => p.id === planId)?.stripePriceId?.[
+        billingPeriod
+      ];
 
       if (!priceId) {
         toast({
@@ -59,7 +70,9 @@ export default function PricingPage() {
 
       if (!response.ok) {
         console.error("Checkout API error:", data);
-        throw new Error(data.message || data.error || "Failed to create checkout session");
+        throw new Error(
+          data.message || data.error || "Failed to create checkout session"
+        );
       }
 
       // Redirect to Stripe Checkout
@@ -73,7 +86,8 @@ export default function PricingPage() {
       toast({
         variant: "destructive",
         title: "Error",
-        description: error instanceof Error ? error.message : "Failed to start checkout",
+        description:
+          error instanceof Error ? error.message : "Failed to start checkout",
       });
       setLoadingPlan(null);
     }
@@ -111,9 +125,10 @@ export default function PricingPage() {
 
       <div className="grid gap-8 md:grid-cols-3">
         {plans.map((plan) => {
-          const price = billingPeriod === "annual" && plan.price.annual
-            ? plan.price.annual
-            : plan.price.monthly;
+          const price =
+            billingPeriod === "annual" && plan.price.annual
+              ? plan.price.annual
+              : plan.price.monthly;
           const isRecommended = plan.recommended;
 
           return (
@@ -131,7 +146,9 @@ export default function PricingPage() {
                 <CardDescription>{plan.description}</CardDescription>
                 <div className="mt-4">
                   <span className="text-4xl font-bold">${price}</span>
-                  <span className="text-muted-foreground">/{billingPeriod === "annual" ? "year" : "month"}</span>
+                  <span className="text-muted-foreground">
+                    /{billingPeriod === "annual" ? "year" : "month"}
+                  </span>
                 </div>
               </CardHeader>
               <CardContent>
@@ -170,18 +187,24 @@ export default function PricingPage() {
 
       {/* FAQ Section */}
       <div className="mt-16">
-        <h2 className="text-2xl font-bold text-center mb-8">Frequently Asked Questions</h2>
+        <h2 className="text-2xl font-bold text-center mb-8">
+          Frequently Asked Questions
+        </h2>
         <div className="grid gap-6 md:grid-cols-2 max-w-4xl mx-auto">
           <div>
             <h3 className="font-semibold mb-2">Can I change plans later?</h3>
             <p className="text-sm text-muted-foreground">
-              Yes, you can upgrade or downgrade your plan at any time from your billing settings.
+              Yes, you can upgrade or downgrade your plan at any time from your
+              billing settings.
             </p>
           </div>
           <div>
-            <h3 className="font-semibold mb-2">What happens if I exceed my limit?</h3>
+            <h3 className="font-semibold mb-2">
+              What happens if I exceed my limit?
+            </h3>
             <p className="text-sm text-muted-foreground">
-              You'll be notified when you're approaching your limit and can upgrade to continue using the service.
+              You'll be notified when you're approaching your limit and can
+              upgrade to continue using the service.
             </p>
           </div>
           <div>
@@ -193,7 +216,8 @@ export default function PricingPage() {
           <div>
             <h3 className="font-semibold mb-2">Can I cancel anytime?</h3>
             <p className="text-sm text-muted-foreground">
-              Yes, you can cancel your subscription at any time. You'll retain access until the end of your billing period.
+              Yes, you can cancel your subscription at any time. You'll retain
+              access until the end of your billing period.
             </p>
           </div>
         </div>
@@ -201,4 +225,3 @@ export default function PricingPage() {
     </div>
   );
 }
-

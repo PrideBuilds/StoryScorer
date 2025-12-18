@@ -15,7 +15,11 @@ const legalLinks = [
 
 const socialLinks = [
   { name: "Twitter", href: "https://twitter.com/storyscorer", icon: Twitter },
-  { name: "LinkedIn", href: "https://linkedin.com/company/storyscorer", icon: Linkedin },
+  {
+    name: "LinkedIn",
+    href: "https://linkedin.com/company/storyscorer",
+    icon: Linkedin,
+  },
   { name: "GitHub", href: "https://github.com/storyscorer", icon: Github },
   { name: "Email", href: "mailto:hello@storyscorer.com", icon: Mail },
 ];
@@ -102,4 +106,3 @@ export function MarketingFooter() {
     </footer>
   );
 }
-

@@ -1,12 +1,12 @@
-import { Metadata } from 'next';
-import { notFound } from 'next/navigation';
-import Link from 'next/link';
-import Image from 'next/image';
-import { getBlogPost, getRelatedPosts } from '@/lib/blog/utils';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { Separator } from '@/components/ui/separator';
-import { Card, CardContent } from '@/components/ui/card';
+import { Metadata } from "next";
+import { notFound } from "next/navigation";
+import Link from "next/link";
+import Image from "next/image";
+import { getBlogPost, getRelatedPosts } from "@/lib/blog/utils";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Separator } from "@/components/ui/separator";
+import { Card, CardContent } from "@/components/ui/card";
 import {
   Calendar,
   Clock,
@@ -16,8 +16,8 @@ import {
   Twitter,
   Linkedin,
   Facebook,
-} from 'lucide-react';
-import { MarkdownContent } from '@/components/blog/MarkdownContent';
+} from "lucide-react";
+import { MarkdownContent } from "@/components/blog/MarkdownContent";
 
 interface BlogPostPageProps {
   params: { slug: string };
@@ -30,7 +30,7 @@ export async function generateMetadata({
 
   if (!post) {
     return {
-      title: 'Post Not Found | StoryScorer',
+      title: "Post Not Found | StoryScorer",
     };
   }
 
@@ -40,7 +40,7 @@ export async function generateMetadata({
     openGraph: {
       title: post.title,
       description: post.metaDescription || post.excerpt,
-      type: 'article',
+      type: "article",
       publishedTime: post.date,
       authors: [post.author],
       images: post.featuredImage ? [post.featuredImage] : [],
@@ -57,10 +57,10 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   }
 
   const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
+    return new Date(dateString).toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
     });
   };
 
@@ -79,7 +79,10 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           </li>
           <li>/</li>
           <li>
-            <Link href="/blog" className="hover:text-foreground transition-colors">
+            <Link
+              href="/blog"
+              className="hover:text-foreground transition-colors"
+            >
               Blog
             </Link>
           </li>
@@ -156,11 +159,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             Share this article
           </h3>
           <div className="flex flex-wrap gap-3">
-            <Button
-              asChild
-              variant="outline"
-              size="sm"
-            >
+            <Button asChild variant="outline" size="sm">
               <a
                 href={`https://twitter.com/intent/tweet?text=${shareText}`}
                 target="_blank"
@@ -171,11 +170,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 Twitter
               </a>
             </Button>
-            <Button
-              asChild
-              variant="outline"
-              size="sm"
-            >
+            <Button asChild variant="outline" size="sm">
               <a
                 href={`https://www.linkedin.com/sharing/share-offsite/`}
                 target="_blank"
@@ -186,11 +181,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 LinkedIn
               </a>
             </Button>
-            <Button
-              asChild
-              variant="outline"
-              size="sm"
-            >
+            <Button asChild variant="outline" size="sm">
               <a
                 href={`https://www.facebook.com/sharer/sharer.php`}
                 target="_blank"
@@ -229,7 +220,10 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           <h2 className="text-2xl font-bold mb-6">Related Articles</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {relatedPosts.map((relatedPost) => (
-              <Card key={relatedPost.slug} className="hover:shadow-lg transition-shadow">
+              <Card
+                key={relatedPost.slug}
+                className="hover:shadow-lg transition-shadow"
+              >
                 <Link href={`/blog/${relatedPost.slug}`}>
                   {relatedPost.featuredImage ? (
                     <div className="relative w-full h-32 overflow-hidden rounded-t-lg">
@@ -260,4 +254,3 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     </div>
   );
 }
-

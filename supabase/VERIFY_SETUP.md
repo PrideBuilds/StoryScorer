@@ -7,9 +7,9 @@ This guide will help you verify that your database schema is set up correctly.
 Run this query in Supabase SQL Editor to check all tables exist:
 
 ```sql
-SELECT table_name 
-FROM information_schema.tables 
-WHERE table_schema = 'public' 
+SELECT table_name
+FROM information_schema.tables
+WHERE table_schema = 'public'
 AND table_name IN ('profiles', 'subscriptions', 'usage_tracking', 'user_stories', 'story_history')
 ORDER BY table_name;
 ```
@@ -21,9 +21,9 @@ You should see all 5 tables listed.
 Check that Row Level Security is enabled on all tables:
 
 ```sql
-SELECT tablename, rowsecurity 
-FROM pg_tables 
-WHERE schemaname = 'public' 
+SELECT tablename, rowsecurity
+FROM pg_tables
+WHERE schemaname = 'public'
 AND tablename IN ('profiles', 'subscriptions', 'usage_tracking', 'user_stories', 'story_history');
 ```
 
@@ -41,6 +41,7 @@ ORDER BY event_object_table, trigger_name;
 ```
 
 You should see:
+
 - `on_auth_user_created` on `auth.users`
 - `update_profiles_updated_at` on `profiles`
 - `update_subscriptions_updated_at` on `subscriptions`
@@ -93,7 +94,7 @@ INSERT INTO auth.users (
 Then check if profile was created:
 
 ```sql
-SELECT p.*, u.email 
+SELECT p.*, u.email
 FROM public.profiles p
 JOIN auth.users u ON p.id = u.id
 WHERE u.email = 'test@example.com';
@@ -154,13 +155,13 @@ SELECT * FROM public.user_stories WHERE user_id = auth.uid();
 
 ```sql
 -- Update a profile
-UPDATE public.profiles 
+UPDATE public.profiles
 SET full_name = 'Updated Name'
 WHERE id = auth.uid();
 
 -- Check that updated_at changed
-SELECT full_name, updated_at 
-FROM public.profiles 
+SELECT full_name, updated_at
+FROM public.profiles
 WHERE id = auth.uid();
 ```
 
@@ -181,12 +182,12 @@ INSERT INTO public.user_stories (
 ) RETURNING id;
 
 -- Save the story_id, then update it
-UPDATE public.user_stories 
+UPDATE public.user_stories
 SET story_text = 'Updated story text', score = 90
 WHERE id = 'your-story-id-here';
 
 -- Check that history was created
-SELECT * FROM public.story_history 
+SELECT * FROM public.story_history
 WHERE story_id = 'your-story-id-here'
 ORDER BY version;
 ```
@@ -198,7 +199,7 @@ You should see a history entry with version 1 containing the original text and s
 Check that indexes were created:
 
 ```sql
-SELECT 
+SELECT
   tablename,
   indexname,
   indexdef
@@ -209,6 +210,7 @@ ORDER BY tablename, indexname;
 ```
 
 You should see multiple indexes for each table, including:
+
 - Indexes on foreign keys (`user_id`, `story_id`)
 - Indexes on frequently queried columns (`created_at`, `status`, etc.)
 - Full-text search index on `user_stories.story_text`
@@ -229,6 +231,7 @@ Create a simple test script or use your app to verify:
 ### Profile Not Auto-Created
 
 If profile isn't created automatically:
+
 1. Check that the trigger exists: `SELECT * FROM pg_trigger WHERE tgname = 'on_auth_user_created';`
 2. Verify the function exists: `SELECT * FROM pg_proc WHERE proname = 'handle_new_user';`
 3. Check trigger is enabled: The trigger should be listed in Step 3 above
@@ -236,6 +239,7 @@ If profile isn't created automatically:
 ### RLS Policies Not Working
 
 If RLS seems too permissive or restrictive:
+
 1. Check policies exist: `SELECT * FROM pg_policies WHERE tablename = 'profiles';`
 2. Verify you're testing with the correct user context
 3. Remember: Service role key bypasses RLS, anon key respects RLS
@@ -243,6 +247,7 @@ If RLS seems too permissive or restrictive:
 ### Triggers Not Firing
 
 If triggers aren't working:
+
 1. Verify trigger exists (see Step 3)
 2. Check trigger is enabled (not disabled)
 3. Ensure you're updating the correct columns (e.g., `story_text` or `score` for history trigger)
@@ -261,4 +266,3 @@ If triggers aren't working:
 - [ ] Cannot access other users' data
 
 If all checks pass, your database setup is complete! ✅
-

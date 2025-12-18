@@ -13,6 +13,7 @@ Acceptance criteria are the bridge between user stories and working software. We
 ## Why Acceptance Criteria Matter
 
 Acceptance criteria serve multiple critical functions:
+
 - **Clarify requirements** for developers
 - **Enable test creation** for QA teams
 - **Define "done"** for the entire team
@@ -23,11 +24,13 @@ Acceptance criteria serve multiple critical functions:
 The Given-When-Then (GWT) format, borrowed from Behavior-Driven Development (BDD), provides structure and clarity:
 
 **Format:**
+
 - **Given:** The initial context or preconditions
 - **When:** The action the user takes
 - **Then:** The expected outcome
 
 **Example:**
+
 ```
 Given the user is logged in
 When they click the "View Profile" button
@@ -44,6 +47,7 @@ Then they should see their profile information including name, email, and avatar
 ### 2. Include Edge Cases
 
 Don't just write the happy path. Consider:
+
 - Empty states
 - Error conditions
 - Boundary values
@@ -52,12 +56,14 @@ Don't just write the happy path. Consider:
 ### 3. Write from the User's Perspective
 
 Focus on what the user experiences, not implementation details:
+
 - ❌ "The API should return a 200 status code"
 - ✅ "The user should see their data displayed successfully"
 
 ### 4. Make Criteria Testable
 
 Each criterion should be verifiable:
+
 - ❌ "The page should load quickly"
 - ✅ "The page should load in under 2 seconds on a 3G connection"
 
@@ -68,6 +74,7 @@ Avoid technical jargon when possible. Write in plain language that stakeholders 
 ## Common Patterns
 
 ### Form Validation
+
 ```
 Given the user is on the registration form
 When they submit without filling required fields
@@ -76,6 +83,7 @@ And the form should not submit
 ```
 
 ### Authentication
+
 ```
 Given the user has entered incorrect credentials
 When they attempt to log in
@@ -84,6 +92,7 @@ And they should remain on the login page
 ```
 
 ### Data Display
+
 ```
 Given the user has no previous orders
 When they navigate to the order history page
@@ -112,4 +121,3 @@ Well-written acceptance criteria should directly translate to test cases:
 Writing effective acceptance criteria is a skill that improves with practice. By following these modern best practices and using tools like [StoryScorer](/pricing) to analyze your stories, you can significantly improve your requirements process.
 
 [Start improving your acceptance criteria today](/signup) with StoryScorer's AI-powered analysis.
-

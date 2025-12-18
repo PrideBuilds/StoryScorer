@@ -130,7 +130,10 @@ export async function DELETE(
       return NextResponse.json({ error }, { status: 500 });
     }
 
-    return NextResponse.json({ message: "Story deleted successfully" }, { status: 200 });
+    return NextResponse.json(
+      { message: "Story deleted successfully" },
+      { status: 200 }
+    );
   } catch (error) {
     console.error("Error deleting story:", error);
     return NextResponse.json(
@@ -142,4 +145,3 @@ export async function DELETE(
     );
   }
 }
-

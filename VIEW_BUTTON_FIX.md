@@ -42,12 +42,14 @@ After any changes to related files, verify:
 ## Maintenance Guidelines
 
 ### DO:
+
 - ✅ Use `useStoryIdFromUrl()` hook for reading story ID from URL
 - ✅ Keep the hook logic simple and focused
 - ✅ Test thoroughly after any changes
 - ✅ Document any modifications
 
 ### DON'T:
+
 - ❌ Replace `useStoryIdFromUrl()` with `useSearchParams().get('story')`
 - ❌ Remove the `window.location` check from the hook
 - ❌ Add complex state management that might interfere
@@ -72,4 +74,3 @@ After any changes to related files, verify:
 **Date Implemented:** 2025-01-16  
 **Status:** ✅ Permanent Fix  
 **Last Tested:** [Update when tested]
-

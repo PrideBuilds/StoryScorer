@@ -46,7 +46,14 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const { title, story_text, acceptance_criteria, tags, score, analysis_result } = body;
+    const {
+      title,
+      story_text,
+      acceptance_criteria,
+      tags,
+      score,
+      analysis_result,
+    } = body;
 
     // Validate input using validation utility
     const validation = validateStoryInput({
@@ -67,7 +74,8 @@ export async function POST(request: NextRequest) {
       story_text: validation.data.storyText,
       acceptance_criteria: validation.data.acceptanceCriteria || null,
       tags: Array.isArray(tags) && tags.length > 0 ? tags.slice(0, 10) : null, // Limit to 10 tags
-      score: typeof score === "number" && score >= 0 && score <= 100 ? score : null,
+      score:
+        typeof score === "number" && score >= 0 && score <= 100 ? score : null,
       analysis_result: analysis_result || null,
     });
 
@@ -121,13 +129,18 @@ export async function GET(request: NextRequest) {
     // Parse and validate query parameters
     const searchParams = request.nextUrl.searchParams;
     const page = Math.max(1, parseInt(searchParams.get("page") || "1"));
-    const pageSize = Math.min(100, Math.max(1, parseInt(searchParams.get("pageSize") || "20")));
+    const pageSize = Math.min(
+      100,
+      Math.max(1, parseInt(searchParams.get("pageSize") || "20"))
+    );
     const search = searchParams.get("search")?.slice(0, 100) || undefined; // Limit search length
     const sortBy = (searchParams.get("sortBy") || "created_at") as
       | "created_at"
       | "score"
       | "title";
-    const sortOrder = (searchParams.get("sortOrder") || "desc") as "asc" | "desc";
+    const sortOrder = (searchParams.get("sortOrder") || "desc") as
+      | "asc"
+      | "desc";
 
     // Validate sortBy and sortOrder
     if (!["created_at", "score", "title"].includes(sortBy)) {
@@ -187,4 +200,3 @@ export async function GET(request: NextRequest) {
     );
   }
 }
-

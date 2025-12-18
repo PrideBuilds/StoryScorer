@@ -22,4 +22,3 @@ export type {
   StoryHistoryUpdate,
   INVESTAnalysisResult,
 } from "@/types/database";
-

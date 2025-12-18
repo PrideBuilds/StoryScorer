@@ -3,6 +3,7 @@
 ## Problem
 
 If you see errors like:
+
 ```
 Module not found: Can't resolve 'react-hook-form'
 Module not found: Can't resolve '@/components/ui/button'
@@ -25,6 +26,7 @@ This means Vercel is building from the wrong directory.
 ### Option 2: Check Your Repository Structure
 
 If your GitHub repository structure is:
+
 ```
 StoryScorer/
   ├── storyscorer/
@@ -37,6 +39,7 @@ StoryScorer/
 Then you need to set **Root Directory** to `storyscorer` in Vercel.
 
 If your repository structure is:
+
 ```
 storyscorer/
   ├── package.json
@@ -83,6 +86,7 @@ After setting the root directory:
 ## Quick Test
 
 After setting root directory, the build should show:
+
 ```
 ✓ Detected Next.js version: 14.2.35
 ✓ Running "npm run build"
@@ -90,4 +94,3 @@ After setting root directory, the build should show:
 ```
 
 If you still see module errors, the root directory is still wrong.
-

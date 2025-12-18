@@ -47,7 +47,8 @@ export function Sidebar() {
       <div className="flex-1 flex flex-col bg-white border-r">
         <nav className="flex-1 px-4 py-4 space-y-1">
           {navigation.map((item) => {
-            const isActive = pathname === item.href || pathname.startsWith(item.href + "/");
+            const isActive =
+              pathname === item.href || pathname.startsWith(item.href + "/");
             return (
               <Link
                 key={item.name}
@@ -69,4 +70,3 @@ export function Sidebar() {
     </aside>
   );
 }
-

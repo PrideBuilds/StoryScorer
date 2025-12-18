@@ -40,7 +40,7 @@ supabase db push
 
 - **Run migrations in order**: The migrations have dependencies, so they must be run sequentially (001 → 002 → 003 → 004 → 005)
 - **RLS Policies**: All tables have Row Level Security enabled. Users can only access their own data
-- **Triggers**: 
+- **Triggers**:
   - Profile creation is automatic when a user signs up
   - Story history is automatically created when a story is updated
   - Updated_at timestamps are automatically maintained
@@ -62,4 +62,3 @@ Make sure you have the following environment variables set in your `.env.local`:
 - `NEXT_PUBLIC_SUPABASE_URL`
 - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
 - `SUPABASE_SERVICE_ROLE_KEY` (for admin operations)
-

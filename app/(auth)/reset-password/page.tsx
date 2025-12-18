@@ -6,7 +6,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useSearchParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
-import { updatePasswordSchema, type UpdatePasswordInput } from "@/lib/validations/auth";
+import {
+  updatePasswordSchema,
+  type UpdatePasswordInput,
+} from "@/lib/validations/auth";
 import { updatePassword } from "@/app/actions/auth";
 import { AuthCard } from "@/components/auth/AuthCard";
 import { Button } from "@/components/ui/button";
@@ -34,9 +37,11 @@ export default function ResetPasswordPage() {
   useEffect(() => {
     // Check for error parameter from callback route
     const errorParam = searchParams.get("error");
-    
+
     if (errorParam === "invalid_token") {
-      setError("Invalid or expired reset link. Please request a new password reset.");
+      setError(
+        "Invalid or expired reset link. Please request a new password reset."
+      );
       setIsCheckingSession(false);
       return;
     }
@@ -44,7 +49,7 @@ export default function ResetPasswordPage() {
     // Verify session exists
     const verifySession = async () => {
       const supabase = createClient();
-      
+
       // Check if we have a valid session
       const {
         data: { user },
@@ -54,26 +59,30 @@ export default function ResetPasswordPage() {
       if (userError || !user) {
         // No session - check if there's a hash parameter we need to process
         const hash = searchParams.get("hash");
-        
+
         if (hash) {
           // Hash is present but session not created yet
           // Supabase should process the hash automatically, wait a moment
           await new Promise((resolve) => setTimeout(resolve, 1000));
-          
+
           // Check again after waiting
           const {
             data: { user: retryUser },
           } = await supabase.auth.getUser();
-          
+
           if (!retryUser) {
-            setError("Invalid or expired reset link. Please request a new password reset.");
+            setError(
+              "Invalid or expired reset link. Please request a new password reset."
+            );
           }
         } else {
           // No hash and no session - invalid
-          setError("Invalid or expired reset link. Please request a new password reset.");
+          setError(
+            "Invalid or expired reset link. Please request a new password reset."
+          );
         }
       }
-      
+
       setIsCheckingSession(false);
     };
 
@@ -200,4 +209,3 @@ export default function ResetPasswordPage() {
     </AuthCard>
   );
 }
-

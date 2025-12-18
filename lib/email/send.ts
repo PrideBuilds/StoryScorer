@@ -1,19 +1,19 @@
 "use server";
 
-import { render } from '@react-email/render';
-import { getResendClient, getFromEmail } from './client';
-import { WelcomeEmail } from '@/emails/WelcomeEmail';
-import { PasswordResetEmail } from '@/emails/PasswordResetEmail';
-import { SubscriptionConfirmation } from '@/emails/SubscriptionConfirmation';
-import { UsageLimitWarning } from '@/emails/UsageLimitWarning';
-import { PaymentFailed } from '@/emails/PaymentFailed';
+import { render } from "@react-email/render";
+import { getResendClient, getFromEmail } from "./client";
+import { WelcomeEmail } from "@/emails/WelcomeEmail";
+import { PasswordResetEmail } from "@/emails/PasswordResetEmail";
+import { SubscriptionConfirmation } from "@/emails/SubscriptionConfirmation";
+import { UsageLimitWarning } from "@/emails/UsageLimitWarning";
+import { PaymentFailed } from "@/emails/PaymentFailed";
 import type {
   WelcomeEmailData,
   PasswordResetEmailData,
   SubscriptionEmailData,
   UsageWarningEmailData,
   PaymentFailedEmailData,
-} from './types';
+} from "./types";
 
 const MAX_RETRIES = 3;
 const RETRY_DELAY = 1000; // 1 second
@@ -47,9 +47,9 @@ function logEmailSend(
 ) {
   const timestamp = new Date().toISOString();
   const logMessage = `[${timestamp}] Email ${type} to ${to}: ${
-    success ? 'SUCCESS' : 'FAILED'
-  }${error ? ` - ${error}` : ''}`;
-  
+    success ? "SUCCESS" : "FAILED"
+  }${error ? ` - ${error}` : ""}`;
+
   if (success) {
     console.log(logMessage);
   } else {
@@ -60,17 +60,19 @@ function logEmailSend(
 /**
  * Send welcome email to new users
  */
-export async function sendWelcomeEmail(data: WelcomeEmailData): Promise<boolean> {
+export async function sendWelcomeEmail(
+  data: WelcomeEmailData
+): Promise<boolean> {
   try {
     const resend = getResendClient();
     const fromEmail = getFromEmail();
-    
+
     const html = await render(
       WelcomeEmail({
         userName: data.userName,
         loginUrl: process.env.NEXT_PUBLIC_APP_URL
           ? `${process.env.NEXT_PUBLIC_APP_URL}/login`
-          : 'https://storyscorer.com/login',
+          : "https://storyscorer.com/login",
       })
     );
 
@@ -78,18 +80,18 @@ export async function sendWelcomeEmail(data: WelcomeEmailData): Promise<boolean>
       return await resend.emails.send({
         from: fromEmail,
         to: data.userEmail,
-        subject: 'Welcome to StoryScorer! 🎉',
+        subject: "Welcome to StoryScorer! 🎉",
         html,
       });
     });
 
-    logEmailSend('Welcome', data.userEmail, true);
+    logEmailSend("Welcome", data.userEmail, true);
     return true;
   } catch (error) {
     const errorMessage =
-      error instanceof Error ? error.message : 'Unknown error';
-    logEmailSend('Welcome', data.userEmail, false, errorMessage);
-    console.error('Failed to send welcome email:', error);
+      error instanceof Error ? error.message : "Unknown error";
+    logEmailSend("Welcome", data.userEmail, false, errorMessage);
+    console.error("Failed to send welcome email:", error);
     return false;
   }
 }
@@ -107,7 +109,7 @@ export async function sendPasswordResetEmail(
     const html = await render(
       PasswordResetEmail({
         resetLink: data.resetLink,
-        expiresIn: data.expiresIn || '1 hour',
+        expiresIn: data.expiresIn || "1 hour",
       })
     );
 
@@ -115,18 +117,18 @@ export async function sendPasswordResetEmail(
       return await resend.emails.send({
         from: fromEmail,
         to: data.userEmail,
-        subject: 'Reset Your StoryScorer Password',
+        subject: "Reset Your StoryScorer Password",
         html,
       });
     });
 
-    logEmailSend('Password Reset', data.userEmail, true);
+    logEmailSend("Password Reset", data.userEmail, true);
     return true;
   } catch (error) {
     const errorMessage =
-      error instanceof Error ? error.message : 'Unknown error';
-    logEmailSend('Password Reset', data.userEmail, false, errorMessage);
-    console.error('Failed to send password reset email:', error);
+      error instanceof Error ? error.message : "Unknown error";
+    logEmailSend("Password Reset", data.userEmail, false, errorMessage);
+    console.error("Failed to send password reset email:", error);
     return false;
   }
 }
@@ -145,10 +147,10 @@ export async function sendSubscriptionEmail(
       SubscriptionConfirmation({
         planName: data.planName,
         amount: data.amount,
-        billingPeriod: data.billingPeriod || 'month',
+        billingPeriod: data.billingPeriod || "month",
         dashboardUrl: process.env.NEXT_PUBLIC_APP_URL
           ? `${process.env.NEXT_PUBLIC_APP_URL}/dashboard`
-          : 'https://storyscorer.com/dashboard',
+          : "https://storyscorer.com/dashboard",
       })
     );
 
@@ -161,13 +163,13 @@ export async function sendSubscriptionEmail(
       });
     });
 
-    logEmailSend('Subscription', data.userEmail, true);
+    logEmailSend("Subscription", data.userEmail, true);
     return true;
   } catch (error) {
     const errorMessage =
-      error instanceof Error ? error.message : 'Unknown error';
-    logEmailSend('Subscription', data.userEmail, false, errorMessage);
-    console.error('Failed to send subscription email:', error);
+      error instanceof Error ? error.message : "Unknown error";
+    logEmailSend("Subscription", data.userEmail, false, errorMessage);
+    console.error("Failed to send subscription email:", error);
     return false;
   }
 }
@@ -187,16 +189,16 @@ export async function sendUsageWarningEmail(
         usage: data.usage,
         limit: data.limit,
         percentage: data.percentage,
-        featureName: data.featureName || 'story analyses',
+        featureName: data.featureName || "story analyses",
         upgradeUrl: process.env.NEXT_PUBLIC_APP_URL
           ? `${process.env.NEXT_PUBLIC_APP_URL}/pricing`
-          : 'https://storyscorer.com/pricing',
+          : "https://storyscorer.com/pricing",
       })
     );
 
     const subject =
       data.percentage >= 100
-        ? '⚠️ You\'ve Reached Your Usage Limit'
+        ? "⚠️ You've Reached Your Usage Limit"
         : `Usage Limit Warning: ${data.percentage}% Used`;
 
     const result = await retryOperation(async () => {
@@ -208,13 +210,13 @@ export async function sendUsageWarningEmail(
       });
     });
 
-    logEmailSend('Usage Warning', data.userEmail, true);
+    logEmailSend("Usage Warning", data.userEmail, true);
     return true;
   } catch (error) {
     const errorMessage =
-      error instanceof Error ? error.message : 'Unknown error';
-    logEmailSend('Usage Warning', data.userEmail, false, errorMessage);
-    console.error('Failed to send usage warning email:', error);
+      error instanceof Error ? error.message : "Unknown error";
+    logEmailSend("Usage Warning", data.userEmail, false, errorMessage);
+    console.error("Failed to send usage warning email:", error);
     return false;
   }
 }
@@ -236,10 +238,10 @@ export async function sendPaymentFailedEmail(
         retryDate: data.retryDate,
         billingUrl: process.env.NEXT_PUBLIC_APP_URL
           ? `${process.env.NEXT_PUBLIC_APP_URL}/dashboard/billing`
-          : 'https://storyscorer.com/dashboard/billing',
+          : "https://storyscorer.com/dashboard/billing",
         supportLink: process.env.NEXT_PUBLIC_APP_URL
           ? `${process.env.NEXT_PUBLIC_APP_URL}/support`
-          : 'https://storyscorer.com/support',
+          : "https://storyscorer.com/support",
       })
     );
 
@@ -247,19 +249,18 @@ export async function sendPaymentFailedEmail(
       return await resend.emails.send({
         from: fromEmail,
         to: data.userEmail,
-        subject: 'Action Required: Payment Failed',
+        subject: "Action Required: Payment Failed",
         html,
       });
     });
 
-    logEmailSend('Payment Failed', data.userEmail, true);
+    logEmailSend("Payment Failed", data.userEmail, true);
     return true;
   } catch (error) {
     const errorMessage =
-      error instanceof Error ? error.message : 'Unknown error';
-    logEmailSend('Payment Failed', data.userEmail, false, errorMessage);
-    console.error('Failed to send payment failed email:', error);
+      error instanceof Error ? error.message : "Unknown error";
+    logEmailSend("Payment Failed", data.userEmail, false, errorMessage);
+    console.error("Failed to send payment failed email:", error);
     return false;
   }
 }
-

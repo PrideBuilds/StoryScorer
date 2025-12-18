@@ -79,4 +79,3 @@ export async function signOut() {
 
   return { error: null };
 }
-

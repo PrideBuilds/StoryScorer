@@ -12,7 +12,10 @@ import { useToast } from "@/hooks/use-toast";
 import { Loader2, Save } from "lucide-react";
 
 const profileSchema = z.object({
-  fullName: z.string().min(2, "Full name must be at least 2 characters").max(100),
+  fullName: z
+    .string()
+    .min(2, "Full name must be at least 2 characters")
+    .max(100),
   company: z.string().max(100).optional().or(z.literal("")),
   jobTitle: z.string().max(100).optional().or(z.literal("")),
 });
@@ -83,17 +86,14 @@ export function ProfileSettings({ initialData }: ProfileSettingsProps) {
           className="bg-muted"
         />
         <p className="text-xs text-muted-foreground">
-          Email cannot be changed. Contact support if you need to update your email.
+          Email cannot be changed. Contact support if you need to update your
+          email.
         </p>
       </div>
 
       <div className="space-y-2">
         <Label htmlFor="fullName">Full Name *</Label>
-        <Input
-          id="fullName"
-          {...register("fullName")}
-          disabled={isLoading}
-        />
+        <Input id="fullName" {...register("fullName")} disabled={isLoading} />
         {errors.fullName && (
           <p className="text-sm text-red-500">{errors.fullName.message}</p>
         )}
@@ -101,11 +101,7 @@ export function ProfileSettings({ initialData }: ProfileSettingsProps) {
 
       <div className="space-y-2">
         <Label htmlFor="company">Company</Label>
-        <Input
-          id="company"
-          {...register("company")}
-          disabled={isLoading}
-        />
+        <Input id="company" {...register("company")} disabled={isLoading} />
         {errors.company && (
           <p className="text-sm text-red-500">{errors.company.message}</p>
         )}
@@ -113,11 +109,7 @@ export function ProfileSettings({ initialData }: ProfileSettingsProps) {
 
       <div className="space-y-2">
         <Label htmlFor="jobTitle">Job Title</Label>
-        <Input
-          id="jobTitle"
-          {...register("jobTitle")}
-          disabled={isLoading}
-        />
+        <Input id="jobTitle" {...register("jobTitle")} disabled={isLoading} />
         {errors.jobTitle && (
           <p className="text-sm text-red-500">{errors.jobTitle.message}</p>
         )}
@@ -139,4 +131,3 @@ export function ProfileSettings({ initialData }: ProfileSettingsProps) {
     </form>
   );
 }
-

@@ -7,8 +7,8 @@ import {
   Text,
   Button,
   Hr,
-} from '@react-email/components';
-import * as React from 'react';
+} from "@react-email/components";
+import * as React from "react";
 
 interface SubscriptionConfirmationProps {
   planName: string;
@@ -20,8 +20,8 @@ interface SubscriptionConfirmationProps {
 export function SubscriptionConfirmation({
   planName,
   amount,
-  billingPeriod = 'month',
-  dashboardUrl = 'https://storyscorer.com/dashboard',
+  billingPeriod = "month",
+  dashboardUrl = "https://storyscorer.com/dashboard",
 }: SubscriptionConfirmationProps) {
   return (
     <Html>
@@ -31,10 +31,10 @@ export function SubscriptionConfirmation({
           <Section style={header}>
             <Text style={logo}>StoryScorer</Text>
           </Section>
-          
+
           <Section style={content}>
             <Text style={heading}>Subscription Confirmed! 🎉</Text>
-            
+
             <Text style={paragraph}>
               Thank you for subscribing to <strong>{planName}</strong>!
             </Text>
@@ -51,7 +51,8 @@ export function SubscriptionConfirmation({
             )}
 
             <Text style={paragraph}>
-              Your subscription is now active. You can start using all the features included in your plan.
+              Your subscription is now active. You can start using all the
+              features included in your plan.
             </Text>
 
             <Section style={buttonContainer}>
@@ -61,7 +62,8 @@ export function SubscriptionConfirmation({
             </Section>
 
             <Text style={paragraph}>
-              You can manage your subscription, update billing information, and view usage from your dashboard.
+              You can manage your subscription, update billing information, and
+              view usage from your dashboard.
             </Text>
 
             <Hr style={hr} />
@@ -78,92 +80,92 @@ export function SubscriptionConfirmation({
 
 // Styles
 const main = {
-  backgroundColor: '#f6f9fc',
-  fontFamily: '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Ubuntu,sans-serif',
+  backgroundColor: "#f6f9fc",
+  fontFamily:
+    '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Ubuntu,sans-serif',
 };
 
 const container = {
-  backgroundColor: '#ffffff',
-  margin: '0 auto',
-  padding: '20px 0 48px',
-  marginBottom: '64px',
+  backgroundColor: "#ffffff",
+  margin: "0 auto",
+  padding: "20px 0 48px",
+  marginBottom: "64px",
 };
 
 const header = {
-  padding: '32px 24px',
-  backgroundColor: '#6366f1',
+  padding: "32px 24px",
+  backgroundColor: "#6366f1",
 };
 
 const logo = {
-  color: '#ffffff',
-  fontSize: '24px',
-  fontWeight: 'bold',
-  margin: '0',
-  textAlign: 'center' as const,
+  color: "#ffffff",
+  fontSize: "24px",
+  fontWeight: "bold",
+  margin: "0",
+  textAlign: "center" as const,
 };
 
 const content = {
-  padding: '0 48px',
+  padding: "0 48px",
 };
 
 const heading = {
-  fontSize: '24px',
-  lineHeight: '1.3',
-  fontWeight: '700',
-  color: '#1a1a1a',
-  margin: '32px 0 24px',
+  fontSize: "24px",
+  lineHeight: "1.3",
+  fontWeight: "700",
+  color: "#1a1a1a",
+  margin: "32px 0 24px",
 };
 
 const paragraph = {
-  fontSize: '16px',
-  lineHeight: '26px',
-  color: '#3c3f43',
-  margin: '16px 0',
+  fontSize: "16px",
+  lineHeight: "26px",
+  color: "#3c3f43",
+  margin: "16px 0",
 };
 
 const infoBox = {
-  backgroundColor: '#f6f9fc',
-  borderRadius: '8px',
-  padding: '20px',
-  margin: '24px 0',
+  backgroundColor: "#f6f9fc",
+  borderRadius: "8px",
+  padding: "20px",
+  margin: "24px 0",
 };
 
 const infoText = {
-  fontSize: '16px',
-  lineHeight: '24px',
-  color: '#3c3f43',
-  margin: '8px 0',
+  fontSize: "16px",
+  lineHeight: "24px",
+  color: "#3c3f43",
+  margin: "8px 0",
 };
 
 const buttonContainer = {
-  padding: '32px 0',
-  textAlign: 'center' as const,
+  padding: "32px 0",
+  textAlign: "center" as const,
 };
 
 const button = {
-  backgroundColor: '#6366f1',
-  borderRadius: '5px',
-  color: '#fff',
-  fontSize: '16px',
-  fontWeight: 'bold',
-  textDecoration: 'none',
-  textAlign: 'center' as const,
-  display: 'block',
-  padding: '12px 24px',
+  backgroundColor: "#6366f1",
+  borderRadius: "5px",
+  color: "#fff",
+  fontSize: "16px",
+  fontWeight: "bold",
+  textDecoration: "none",
+  textAlign: "center" as const,
+  display: "block",
+  padding: "12px 24px",
 };
 
 const hr = {
-  borderColor: '#e6ebf1',
-  margin: '32px 0',
+  borderColor: "#e6ebf1",
+  margin: "32px 0",
 };
 
 const footer = {
-  color: '#8898aa',
-  fontSize: '12px',
-  lineHeight: '16px',
-  margin: '0',
-  textAlign: 'center' as const,
+  color: "#8898aa",
+  fontSize: "12px",
+  lineHeight: "16px",
+  margin: "0",
+  textAlign: "center" as const,
 };
 
 export default SubscriptionConfirmation;
-

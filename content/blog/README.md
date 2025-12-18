@@ -44,12 +44,12 @@ Your blog post content in Markdown format...
 ## Markdown Support
 
 The blog system supports standard Markdown syntax:
+
 - Headers (# ## ###)
 - Bold (**text**)
-- Italic (*text*)
+- Italic (_text_)
 - Links ([text](url))
 - Lists (- item)
 - Code blocks (`code`)
 
 For production, consider installing a proper markdown library like `react-markdown` or `marked` for better rendering.
-

@@ -1,6 +1,12 @@
 "use client";
 
-import { useState, useEffect, useLayoutEffect, useCallback, useRef } from "react";
+import {
+  useState,
+  useEffect,
+  useLayoutEffect,
+  useCallback,
+  useRef,
+} from "react";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -20,44 +26,65 @@ const MAX_ACCEPTANCE_CRITERIA_LENGTH = 2000;
 
 export function AnalyzerContent() {
   // Log immediately - before any hooks
-  if (typeof window !== 'undefined') {
-    console.log('[AnalyzerContent] COMPONENT RENDERING - Mount/Remount');
-    console.log('[AnalyzerContent] Current URL:', window.location.href);
-    console.log('[AnalyzerContent] Search params:', window.location.search);
+  if (typeof window !== "undefined") {
+    console.log("[AnalyzerContent] COMPONENT RENDERING - Mount/Remount");
+    console.log("[AnalyzerContent] Current URL:", window.location.href);
+    console.log("[AnalyzerContent] Search params:", window.location.search);
   }
-  
+
   const router = useRouter();
   const searchParams = useSearchParams();
   const pathname = usePathname();
-  
+
   // Read storyId directly from URL - this is the source of truth
   const getStoryIdFromUrl = (): string | null => {
-    if (typeof window !== 'undefined') {
-      const storyId = new URLSearchParams(window.location.search).get('story');
-      console.log('[AnalyzerContent] getStoryIdFromUrl - window.location.search:', window.location.search, 'storyId:', storyId);
+    if (typeof window !== "undefined") {
+      const storyId = new URLSearchParams(window.location.search).get("story");
+      console.log(
+        "[AnalyzerContent] getStoryIdFromUrl - window.location.search:",
+        window.location.search,
+        "storyId:",
+        storyId
+      );
       return storyId;
     }
-    const storyId = searchParams.get('story');
-    console.log('[AnalyzerContent] getStoryIdFromUrl - SSR fallback, storyId:', storyId);
+    const storyId = searchParams.get("story");
+    console.log(
+      "[AnalyzerContent] getStoryIdFromUrl - SSR fallback, storyId:",
+      storyId
+    );
     return storyId;
   };
-  
+
   const [storyId, setStoryId] = useState<string | null>(() => {
     const id = getStoryIdFromUrl();
-    console.log('[AnalyzerContent] useState initializer - storyId:', id);
+    console.log("[AnalyzerContent] useState initializer - storyId:", id);
     return id;
   });
-  
-  console.log('[AnalyzerContent] RENDER - Current storyId state:', storyId, 'Pathname:', pathname);
-  
+
+  console.log(
+    "[AnalyzerContent] RENDER - Current storyId state:",
+    storyId,
+    "Pathname:",
+    pathname
+  );
+
   // IMMEDIATE CHECK: If we have a storyId in URL but state is null, fix it immediately
-  if (typeof window !== 'undefined') {
-    const urlStoryId = new URLSearchParams(window.location.search).get('story');
+  if (typeof window !== "undefined") {
+    const urlStoryId = new URLSearchParams(window.location.search).get("story");
     if (urlStoryId && urlStoryId !== storyId) {
-      console.log('[AnalyzerContent] RENDER-TIME FIX: URL has storyId but state is null/mismatch. URL:', urlStoryId, 'State:', storyId);
+      console.log(
+        "[AnalyzerContent] RENDER-TIME FIX: URL has storyId but state is null/mismatch. URL:",
+        urlStoryId,
+        "State:",
+        storyId
+      );
       // Use queueMicrotask to update state after render
       queueMicrotask(() => {
-        console.log('[AnalyzerContent] queueMicrotask - Setting storyId from URL:', urlStoryId);
+        console.log(
+          "[AnalyzerContent] queueMicrotask - Setting storyId from URL:",
+          urlStoryId
+        );
         setStoryId(urlStoryId);
       });
     }
@@ -69,12 +96,12 @@ export function AnalyzerContent() {
   const [error, setError] = useState<string | null>(null);
   const [tags, setTags] = useState<string[]>([]);
   const [tagInput, setTagInput] = useState("");
-  
+
   // Track the last loaded storyId to prevent duplicate API calls
   const lastLoadedStoryIdRef = useRef<string | null>(null);
   const isLoadingRef = useRef<boolean>(false);
   const lastUrlRef = useRef<string>(
-    typeof window !== 'undefined' ? window.location.href : ''
+    typeof window !== "undefined" ? window.location.href : ""
   );
 
   const {
@@ -91,197 +118,252 @@ export function AnalyzerContent() {
     },
   });
 
-  const loadStory = useCallback(async (id: string) => {
-    if (!id) {
-      console.log('[AnalyzerContent] loadStory called with no ID');
-      setIsLoadingStory(false);
-      isLoadingRef.current = false;
-      return;
-    }
-
-    console.log('[AnalyzerContent] loadStory called for:', id, 'Currently loading:', isLoadingRef.current, 'Last loaded:', lastLoadedStoryIdRef.current);
-
-    // Prevent concurrent loads of the same story
-    if (isLoadingRef.current && lastLoadedStoryIdRef.current === id) {
-      console.log('[AnalyzerContent] Already loading this story, skipping');
-      return;
-    }
-
-    console.log('[AnalyzerContent] Starting to load story:', id);
-    isLoadingRef.current = true;
-    setIsLoadingStory(true);
-    setError(null);
-    // Clear any existing analysis result while loading
-    setAnalysisResult(null);
-
-    try {
-      console.log('[AnalyzerContent] Fetching story from API:', `/api/stories/${id}`);
-      const response = await fetch(`/api/stories/${id}`, {
-        credentials: 'include', // Ensure cookies are sent
-      });
-      console.log('[AnalyzerContent] API response status:', response.status);
-      
-      if (response.status === 401) {
-        // Unauthorized - redirect to login
-        router.push('/login');
+  const loadStory = useCallback(
+    async (id: string) => {
+      if (!id) {
+        console.log("[AnalyzerContent] loadStory called with no ID");
+        setIsLoadingStory(false);
+        isLoadingRef.current = false;
         return;
       }
 
-      const result = await response.json();
-
-      if (!response.ok) {
-        throw new Error(result.error || "Failed to load story");
-      }
-
-      if (!result.data) {
-        throw new Error("Story not found");
-      }
-
-      const story: UserStory = result.data;
-
-      // Populate form with story data (in case user wants to edit)
-      setValue("title", story.title);
-      setValue("storyText", story.story_text);
-      setValue("acceptanceCriteria", story.acceptance_criteria || "");
-      
-      // Set tags if they exist
-      if (story.tags && Array.isArray(story.tags)) {
-        setTags(story.tags);
-      }
-
-      // If analysis result exists, parse and show it
-      if (story.analysis_result) {
-        // Handle case where analysis_result might be a string (JSON) or already parsed
-        let analysis: INVESTAnalysisResult;
-        if (typeof story.analysis_result === 'string') {
-          try {
-            analysis = JSON.parse(story.analysis_result);
-          } catch (parseError) {
-            console.error("Failed to parse analysis_result:", parseError);
-            setError("Failed to load analysis results. The data may be corrupted.");
-            setIsLoadingStory(false);
-            return;
-          }
-        } else {
-          analysis = story.analysis_result as unknown as INVESTAnalysisResult;
-        }
-        setAnalysisResult(analysis);
-        // Mark this story as loaded
-        lastLoadedStoryIdRef.current = id;
-      } else {
-        // If no analysis result, show informational message (not an error)
-        // The form will be shown with pre-filled data, allowing user to analyze
-        setError(null);
-        // Still mark as loaded even without analysis result
-        lastLoadedStoryIdRef.current = id;
-      }
-    } catch (err) {
-      console.error("Error loading story:", err);
-      setError(
-        err instanceof Error ? err.message : "Failed to load story"
+      console.log(
+        "[AnalyzerContent] loadStory called for:",
+        id,
+        "Currently loading:",
+        isLoadingRef.current,
+        "Last loaded:",
+        lastLoadedStoryIdRef.current
       );
-      // Don't show form if there's an error loading
+
+      // Prevent concurrent loads of the same story
+      if (isLoadingRef.current && lastLoadedStoryIdRef.current === id) {
+        console.log("[AnalyzerContent] Already loading this story, skipping");
+        return;
+      }
+
+      console.log("[AnalyzerContent] Starting to load story:", id);
+      isLoadingRef.current = true;
+      setIsLoadingStory(true);
+      setError(null);
+      // Clear any existing analysis result while loading
       setAnalysisResult(null);
-      // Don't mark as loaded if there was an error - allow retry
-      lastLoadedStoryIdRef.current = null;
-    } finally {
-      setIsLoadingStory(false);
-      isLoadingRef.current = false;
-    }
-  }, [setValue, router]);
+
+      try {
+        console.log(
+          "[AnalyzerContent] Fetching story from API:",
+          `/api/stories/${id}`
+        );
+        const response = await fetch(`/api/stories/${id}`, {
+          credentials: "include", // Ensure cookies are sent
+        });
+        console.log("[AnalyzerContent] API response status:", response.status);
+
+        if (response.status === 401) {
+          // Unauthorized - redirect to login
+          router.push("/login");
+          return;
+        }
+
+        const result = await response.json();
+
+        if (!response.ok) {
+          throw new Error(result.error || "Failed to load story");
+        }
+
+        if (!result.data) {
+          throw new Error("Story not found");
+        }
+
+        const story: UserStory = result.data;
+
+        // Populate form with story data (in case user wants to edit)
+        setValue("title", story.title);
+        setValue("storyText", story.story_text);
+        setValue("acceptanceCriteria", story.acceptance_criteria || "");
+
+        // Set tags if they exist
+        if (story.tags && Array.isArray(story.tags)) {
+          setTags(story.tags);
+        }
+
+        // If analysis result exists, parse and show it
+        if (story.analysis_result) {
+          // Handle case where analysis_result might be a string (JSON) or already parsed
+          let analysis: INVESTAnalysisResult;
+          if (typeof story.analysis_result === "string") {
+            try {
+              analysis = JSON.parse(story.analysis_result);
+            } catch (parseError) {
+              console.error("Failed to parse analysis_result:", parseError);
+              setError(
+                "Failed to load analysis results. The data may be corrupted."
+              );
+              setIsLoadingStory(false);
+              return;
+            }
+          } else {
+            analysis = story.analysis_result as unknown as INVESTAnalysisResult;
+          }
+          setAnalysisResult(analysis);
+          // Mark this story as loaded
+          lastLoadedStoryIdRef.current = id;
+        } else {
+          // If no analysis result, show informational message (not an error)
+          // The form will be shown with pre-filled data, allowing user to analyze
+          setError(null);
+          // Still mark as loaded even without analysis result
+          lastLoadedStoryIdRef.current = id;
+        }
+      } catch (err) {
+        console.error("Error loading story:", err);
+        setError(err instanceof Error ? err.message : "Failed to load story");
+        // Don't show form if there's an error loading
+        setAnalysisResult(null);
+        // Don't mark as loaded if there was an error - allow retry
+        lastLoadedStoryIdRef.current = null;
+      } finally {
+        setIsLoadingStory(false);
+        isLoadingRef.current = false;
+      }
+    },
+    [setValue, router]
+  );
 
   // CRITICAL: Monitor URL changes using multiple methods
   // 1. useLayoutEffect for immediate synchronous check
   useLayoutEffect(() => {
-    if (typeof window === 'undefined') return;
-    
+    if (typeof window === "undefined") return;
+
     const currentUrl = window.location.href;
     const currentStoryId = getStoryIdFromUrl();
-    
-    console.log('[AnalyzerContent] useLayoutEffect - URL:', currentUrl, 'storyId:', currentStoryId, 'Last loaded:', lastLoadedStoryIdRef.current);
-    
+
+    console.log(
+      "[AnalyzerContent] useLayoutEffect - URL:",
+      currentUrl,
+      "storyId:",
+      currentStoryId,
+      "Last loaded:",
+      lastLoadedStoryIdRef.current
+    );
+
     // If URL changed, update storyId
     if (currentUrl !== lastUrlRef.current) {
-      console.log('[AnalyzerContent] URL changed detected in useLayoutEffect');
+      console.log("[AnalyzerContent] URL changed detected in useLayoutEffect");
       lastUrlRef.current = currentUrl;
       setStoryId(currentStoryId);
     } else if (currentStoryId !== storyId) {
       // URL didn't change but storyId mismatch - sync it
-      console.log('[AnalyzerContent] StoryId mismatch, syncing');
+      console.log("[AnalyzerContent] StoryId mismatch, syncing");
       setStoryId(currentStoryId);
     }
   }, [pathname, searchParams, storyId]);
-  
+
   // 2. Poll URL every 50ms as backup (very aggressive)
   useEffect(() => {
-    if (typeof window === 'undefined') return;
-    
+    if (typeof window === "undefined") return;
+
     const checkUrl = () => {
       const currentStoryId = getStoryIdFromUrl();
       const currentUrl = window.location.href;
-      
+
       if (currentUrl !== lastUrlRef.current || currentStoryId !== storyId) {
-        console.log('[AnalyzerContent] Poll detected change - storyId:', currentStoryId, 'URL:', currentUrl);
+        console.log(
+          "[AnalyzerContent] Poll detected change - storyId:",
+          currentStoryId,
+          "URL:",
+          currentUrl
+        );
         lastUrlRef.current = currentUrl;
         setStoryId(currentStoryId);
       }
     };
-    
+
     // Check immediately
     checkUrl();
-    
+
     // Poll every 50ms
     const interval = setInterval(checkUrl, 50);
-    
+
     return () => clearInterval(interval);
   }, [storyId]);
-  
+
   // 3. Listen to popstate for browser back/forward
   useEffect(() => {
-    if (typeof window === 'undefined') return;
-    
+    if (typeof window === "undefined") return;
+
     const handlePopState = () => {
       const currentStoryId = getStoryIdFromUrl();
-      console.log('[AnalyzerContent] popstate event - storyId:', currentStoryId);
+      console.log(
+        "[AnalyzerContent] popstate event - storyId:",
+        currentStoryId
+      );
       lastUrlRef.current = window.location.href;
       setStoryId(currentStoryId);
     };
-    
-    window.addEventListener('popstate', handlePopState);
-    return () => window.removeEventListener('popstate', handlePopState);
+
+    window.addEventListener("popstate", handlePopState);
+    return () => window.removeEventListener("popstate", handlePopState);
   }, []);
-  
+
   // 4. Load story when storyId changes - CRITICAL EFFECT
   useEffect(() => {
-    console.log('[AnalyzerContent] useEffect [storyId] TRIGGERED');
-    console.log('[AnalyzerContent] - storyId:', storyId);
-    console.log('[AnalyzerContent] - lastLoadedStoryIdRef.current:', lastLoadedStoryIdRef.current);
-    console.log('[AnalyzerContent] - isLoadingRef.current:', isLoadingRef.current);
-    console.log('[AnalyzerContent] - window.location.search:', typeof window !== 'undefined' ? window.location.search : 'N/A (SSR)');
-    
+    console.log("[AnalyzerContent] useEffect [storyId] TRIGGERED");
+    console.log("[AnalyzerContent] - storyId:", storyId);
+    console.log(
+      "[AnalyzerContent] - lastLoadedStoryIdRef.current:",
+      lastLoadedStoryIdRef.current
+    );
+    console.log(
+      "[AnalyzerContent] - isLoadingRef.current:",
+      isLoadingRef.current
+    );
+    console.log(
+      "[AnalyzerContent] - window.location.search:",
+      typeof window !== "undefined" ? window.location.search : "N/A (SSR)"
+    );
+
     // Get fresh storyId from URL as double-check
-    const urlStoryId = typeof window !== 'undefined' 
-      ? new URLSearchParams(window.location.search).get('story')
-      : null;
-    
-    console.log('[AnalyzerContent] - urlStoryId from window.location:', urlStoryId);
-    
+    const urlStoryId =
+      typeof window !== "undefined"
+        ? new URLSearchParams(window.location.search).get("story")
+        : null;
+
+    console.log(
+      "[AnalyzerContent] - urlStoryId from window.location:",
+      urlStoryId
+    );
+
     // Use URL storyId if state is out of sync
     const effectiveStoryId = urlStoryId || storyId;
-    
+
     if (effectiveStoryId) {
       // Only load if we haven't loaded this story yet and we're not currently loading
-      if (effectiveStoryId !== lastLoadedStoryIdRef.current && !isLoadingRef.current) {
-        console.log('[AnalyzerContent] ✅ CONDITION MET - Loading story:', effectiveStoryId);
+      if (
+        effectiveStoryId !== lastLoadedStoryIdRef.current &&
+        !isLoadingRef.current
+      ) {
+        console.log(
+          "[AnalyzerContent] ✅ CONDITION MET - Loading story:",
+          effectiveStoryId
+        );
         loadStory(effectiveStoryId);
       } else {
-        console.log('[AnalyzerContent] ⚠️ SKIPPING LOAD - Already loaded or loading');
-        console.log('[AnalyzerContent]   - effectiveStoryId === lastLoaded?', effectiveStoryId === lastLoadedStoryIdRef.current);
-        console.log('[AnalyzerContent]   - isLoadingRef.current?', isLoadingRef.current);
+        console.log(
+          "[AnalyzerContent] ⚠️ SKIPPING LOAD - Already loaded or loading"
+        );
+        console.log(
+          "[AnalyzerContent]   - effectiveStoryId === lastLoaded?",
+          effectiveStoryId === lastLoadedStoryIdRef.current
+        );
+        console.log(
+          "[AnalyzerContent]   - isLoadingRef.current?",
+          isLoadingRef.current
+        );
       }
     } else {
       // No storyId - clear state
-      console.log('[AnalyzerContent] No storyId in URL, clearing state');
+      console.log("[AnalyzerContent] No storyId in URL, clearing state");
       if (lastLoadedStoryIdRef.current || analysisResult) {
         lastLoadedStoryIdRef.current = null;
         isLoadingRef.current = false;
@@ -295,51 +377,78 @@ export function AnalyzerContent() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [storyId, loadStory]);
-  
+
   // 5. AGGRESSIVE: Check URL on mount and load immediately if storyId exists
   useEffect(() => {
-    if (typeof window === 'undefined') return;
-    
-    console.log('[AnalyzerContent] MOUNT EFFECT - Checking URL for storyId');
-    
+    if (typeof window === "undefined") return;
+
+    console.log("[AnalyzerContent] MOUNT EFFECT - Checking URL for storyId");
+
     const checkAndLoad = () => {
-      const urlStoryId = new URLSearchParams(window.location.search).get('story');
-      console.log('[AnalyzerContent] AGGRESSIVE CHECK - urlStoryId:', urlStoryId);
-      console.log('[AnalyzerContent] AGGRESSIVE CHECK - lastLoaded:', lastLoadedStoryIdRef.current);
-      console.log('[AnalyzerContent] AGGRESSIVE CHECK - isLoading:', isLoadingRef.current);
-      console.log('[AnalyzerContent] AGGRESSIVE CHECK - current storyId state:', storyId);
-      
+      const urlStoryId = new URLSearchParams(window.location.search).get(
+        "story"
+      );
+      console.log(
+        "[AnalyzerContent] AGGRESSIVE CHECK - urlStoryId:",
+        urlStoryId
+      );
+      console.log(
+        "[AnalyzerContent] AGGRESSIVE CHECK - lastLoaded:",
+        lastLoadedStoryIdRef.current
+      );
+      console.log(
+        "[AnalyzerContent] AGGRESSIVE CHECK - isLoading:",
+        isLoadingRef.current
+      );
+      console.log(
+        "[AnalyzerContent] AGGRESSIVE CHECK - current storyId state:",
+        storyId
+      );
+
       if (urlStoryId) {
         // Always update state to match URL
         if (urlStoryId !== storyId) {
-          console.log('[AnalyzerContent] AGGRESSIVE CHECK - Updating storyId state from', storyId, 'to', urlStoryId);
+          console.log(
+            "[AnalyzerContent] AGGRESSIVE CHECK - Updating storyId state from",
+            storyId,
+            "to",
+            urlStoryId
+          );
           setStoryId(urlStoryId);
         }
-        
+
         // Load if we haven't loaded this story yet
-        if (urlStoryId !== lastLoadedStoryIdRef.current && !isLoadingRef.current) {
-          console.log('[AnalyzerContent] ✅ AGGRESSIVE CHECK - LOADING STORY NOW:', urlStoryId);
+        if (
+          urlStoryId !== lastLoadedStoryIdRef.current &&
+          !isLoadingRef.current
+        ) {
+          console.log(
+            "[AnalyzerContent] ✅ AGGRESSIVE CHECK - LOADING STORY NOW:",
+            urlStoryId
+          );
           loadStory(urlStoryId);
         } else {
-          console.log('[AnalyzerContent] ⚠️ AGGRESSIVE CHECK - Skipping load (already loaded or loading)');
+          console.log(
+            "[AnalyzerContent] ⚠️ AGGRESSIVE CHECK - Skipping load (already loaded or loading)"
+          );
         }
       } else {
-        console.log('[AnalyzerContent] AGGRESSIVE CHECK - No storyId in URL');
+        console.log("[AnalyzerContent] AGGRESSIVE CHECK - No storyId in URL");
       }
     };
-    
+
     // Check immediately
     checkAndLoad();
-    
+
     // Check after 50ms delay (very short, catches any timing issues)
     const timeout1 = setTimeout(checkAndLoad, 50);
-    
+
     // Check after 200ms delay (backup)
     const timeout2 = setTimeout(checkAndLoad, 200);
-    
+
     // Check after 500ms delay (final backup)
     const timeout3 = setTimeout(checkAndLoad, 500);
-    
+
     return () => {
       clearTimeout(timeout1);
       clearTimeout(timeout2);
@@ -630,4 +739,3 @@ export function AnalyzerContent() {
     </div>
   );
 }
-

@@ -58,7 +58,8 @@ export function MobileNav() {
       <SheetContent side="left" className="w-64">
         <nav className="flex flex-col gap-2 mt-8">
           {navigation.map((item) => {
-            const isActive = pathname === item.href || pathname.startsWith(item.href + "/");
+            const isActive =
+              pathname === item.href || pathname.startsWith(item.href + "/");
             return (
               <Link
                 key={item.name}
@@ -81,4 +82,3 @@ export function MobileNav() {
     </Sheet>
   );
 }
-

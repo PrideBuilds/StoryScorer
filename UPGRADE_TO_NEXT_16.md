@@ -1,6 +1,7 @@
 # Upgrading to Next.js 16 - Future Guide
 
 ## Current Status
+
 - **Current Version:** Next.js 14.2.35 ✅ (Stable, working)
 - **Recommended:** Stay on 14 for beta deployment
 - **Upgrade Timing:** After beta is stable and tested
@@ -15,6 +16,7 @@
 ## When to Upgrade
 
 Consider upgrading to Next.js 16:
+
 - ✅ After beta is deployed and stable
 - ✅ After you have time for thorough testing
 - ✅ When you need Next.js 16 specific features
@@ -46,6 +48,7 @@ This automates some migration steps.
 ### Step 4: Review Breaking Changes
 
 Check the [Next.js 16 Upgrade Guide](https://nextjs.org/docs/app/guides/upgrading/version-16) for:
+
 - API changes
 - Configuration changes
 - Behavior changes
@@ -62,6 +65,7 @@ Check the [Next.js 16 Upgrade Guide](https://nextjs.org/docs/app/guides/upgradin
 ### Step 6: Update Other Dependencies
 
 Some packages may need updates:
+
 - `@supabase/ssr` - Check for Next.js 16 compatibility
 - `@react-email/components` - May need updates
 - Other dependencies
@@ -87,4 +91,3 @@ npm list next
 ```
 
 Should show: `next@14.2.35`
-

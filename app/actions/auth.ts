@@ -32,7 +32,8 @@ export async function signUp(formData: FormData) {
   if (error) {
     if (error.message.includes("already registered")) {
       return {
-        error: "An account with this email already exists. Please sign in instead.",
+        error:
+          "An account with this email already exists. Please sign in instead.",
       };
     }
     return {
@@ -130,7 +131,9 @@ export async function resetPassword(formData: FormData) {
   if (error) {
     console.error("Password reset error:", error);
     return {
-      error: error.message || "Failed to send password reset email. Please try again.",
+      error:
+        error.message ||
+        "Failed to send password reset email. Please try again.",
     };
   }
 
@@ -179,7 +182,8 @@ export async function updatePassword(formData: FormData) {
 
   if (sessionError || !user) {
     return {
-      error: "Invalid or expired reset link. Please request a new password reset.",
+      error:
+        "Invalid or expired reset link. Please request a new password reset.",
     };
   }
 
@@ -235,6 +239,7 @@ export async function resendVerificationEmail(formData: FormData) {
   // We'll use resetPasswordForEmail as a workaround or signUp again
   // For now, we'll return an error suggesting the user to sign up again
   return {
-    error: "Please use the sign-up form again to resend the verification email.",
+    error:
+      "Please use the sign-up form again to resend the verification email.",
   };
 }

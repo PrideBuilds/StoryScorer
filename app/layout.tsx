@@ -17,7 +17,8 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
   title: "StoryScorer - AI-powered user story quality analysis",
-  description: "Analyze user stories against INVEST criteria using AI-powered analysis for Business Analysts",
+  description:
+    "Analyze user stories against INVEST criteria using AI-powered analysis for Business Analysts",
 };
 
 export default function RootLayout({

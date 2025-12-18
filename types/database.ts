@@ -47,7 +47,12 @@ export interface Database {
           stripe_customer_id: string;
           stripe_subscription_id: string | null;
           plan_type: "free" | "pro" | "enterprise";
-          status: "active" | "canceled" | "past_due" | "trialing" | "incomplete";
+          status:
+            | "active"
+            | "canceled"
+            | "past_due"
+            | "trialing"
+            | "incomplete";
           current_period_start: string;
           current_period_end: string;
           created_at: string;
@@ -59,7 +64,12 @@ export interface Database {
           stripe_customer_id: string;
           stripe_subscription_id?: string | null;
           plan_type: "free" | "pro" | "enterprise";
-          status: "active" | "canceled" | "past_due" | "trialing" | "incomplete";
+          status:
+            | "active"
+            | "canceled"
+            | "past_due"
+            | "trialing"
+            | "incomplete";
           current_period_start: string;
           current_period_end: string;
           created_at?: string;
@@ -71,7 +81,12 @@ export interface Database {
           stripe_customer_id?: string;
           stripe_subscription_id?: string | null;
           plan_type?: "free" | "pro" | "enterprise";
-          status?: "active" | "canceled" | "past_due" | "trialing" | "incomplete";
+          status?:
+            | "active"
+            | "canceled"
+            | "past_due"
+            | "trialing"
+            | "incomplete";
           current_period_start?: string;
           current_period_end?: string;
           created_at?: string;
@@ -180,7 +195,12 @@ export interface Database {
     };
     Enums: {
       plan_type: "free" | "pro" | "enterprise";
-      subscription_status: "active" | "canceled" | "past_due" | "trialing" | "incomplete";
+      subscription_status:
+        | "active"
+        | "canceled"
+        | "past_due"
+        | "trialing"
+        | "incomplete";
     };
   };
 }
@@ -191,20 +211,29 @@ export type ProfileInsert = Database["public"]["Tables"]["profiles"]["Insert"];
 export type ProfileUpdate = Database["public"]["Tables"]["profiles"]["Update"];
 
 export type Subscription = Database["public"]["Tables"]["subscriptions"]["Row"];
-export type SubscriptionInsert = Database["public"]["Tables"]["subscriptions"]["Insert"];
-export type SubscriptionUpdate = Database["public"]["Tables"]["subscriptions"]["Update"];
+export type SubscriptionInsert =
+  Database["public"]["Tables"]["subscriptions"]["Insert"];
+export type SubscriptionUpdate =
+  Database["public"]["Tables"]["subscriptions"]["Update"];
 
-export type UsageTracking = Database["public"]["Tables"]["usage_tracking"]["Row"];
-export type UsageTrackingInsert = Database["public"]["Tables"]["usage_tracking"]["Insert"];
-export type UsageTrackingUpdate = Database["public"]["Tables"]["usage_tracking"]["Update"];
+export type UsageTracking =
+  Database["public"]["Tables"]["usage_tracking"]["Row"];
+export type UsageTrackingInsert =
+  Database["public"]["Tables"]["usage_tracking"]["Insert"];
+export type UsageTrackingUpdate =
+  Database["public"]["Tables"]["usage_tracking"]["Update"];
 
 export type UserStory = Database["public"]["Tables"]["user_stories"]["Row"];
-export type UserStoryInsert = Database["public"]["Tables"]["user_stories"]["Insert"];
-export type UserStoryUpdate = Database["public"]["Tables"]["user_stories"]["Update"];
+export type UserStoryInsert =
+  Database["public"]["Tables"]["user_stories"]["Insert"];
+export type UserStoryUpdate =
+  Database["public"]["Tables"]["user_stories"]["Update"];
 
 export type StoryHistory = Database["public"]["Tables"]["story_history"]["Row"];
-export type StoryHistoryInsert = Database["public"]["Tables"]["story_history"]["Insert"];
-export type StoryHistoryUpdate = Database["public"]["Tables"]["story_history"]["Update"];
+export type StoryHistoryInsert =
+  Database["public"]["Tables"]["story_history"]["Insert"];
+export type StoryHistoryUpdate =
+  Database["public"]["Tables"]["story_history"]["Update"];
 
 // Analysis result type for INVEST criteria
 export interface INVESTAnalysisResult {
@@ -235,4 +264,3 @@ export interface INVESTAnalysisResult {
   overall_score: number;
   recommendations: string[];
 }
-

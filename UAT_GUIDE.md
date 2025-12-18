@@ -28,6 +28,7 @@ This guide is for beta testers to help test StoryScorer before launch.
 6. Save the story to history
 
 **What to Look For:**
+
 - Is the process clear and intuitive?
 - Are there any confusing steps?
 - Do error messages help you understand what went wrong?
@@ -48,6 +49,7 @@ This guide is for beta testers to help test StoryScorer before launch.
 6. Check the recommendations
 
 **What to Look For:**
+
 - Are the scores accurate?
 - Are the recommendations helpful?
 - Is the analysis fast enough?
@@ -65,6 +67,7 @@ This guide is for beta testers to help test StoryScorer before launch.
 6. Delete a story
 
 **What to Look For:**
+
 - Can you find your stories easily?
 - Is the search working correctly?
 - Is the sorting helpful?
@@ -82,6 +85,7 @@ This guide is for beta testers to help test StoryScorer before launch.
 6. Check usage limits are updated
 
 **What to Look For:**
+
 - Is the pricing clear?
 - Does checkout work smoothly?
 - Is the subscription reflected correctly?
@@ -97,6 +101,7 @@ This guide is for beta testers to help test StoryScorer before launch.
 4. Review account deletion option (don't actually delete)
 
 **What to Look For:**
+
 - Can you update your information?
 - Are changes saved correctly?
 - Is password change secure?
@@ -104,18 +109,21 @@ This guide is for beta testers to help test StoryScorer before launch.
 ## Edge Cases to Test
 
 ### Input Validation
+
 - Try submitting empty forms
 - Enter very long text
 - Use special characters
 - Enter invalid email formats
 
 ### Error Scenarios
+
 - Try to access protected pages without logging in
 - Try to analyze without being logged in
 - Try to access other users' stories (should fail)
 - Test with slow internet connection
 
 ### Browser Testing
+
 - Test in Chrome
 - Test in Firefox
 - Test in Safari
@@ -182,6 +190,7 @@ CVC: Any 3 digits (e.g., 123)
 ## Contact
 
 If you have questions or need help:
+
 - Email: hello@storyscorer.com
 - Create an issue in the feedback form
 - Reach out directly to the team

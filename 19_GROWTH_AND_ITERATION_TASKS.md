@@ -10,6 +10,7 @@
 
 \f0\fs24 \cf2 \expnd0\expndtw0\kerning0
 \outl0\strokewidth0 \strokec3 \shad\shadx0\shady-20\shadr0\shado0 \shadc0 Set up user feedback system:\
+
 - Add feedback widget to dashboard (Canny, Featurebase)\
 - Create feedback form for bug reports\
 - Set up email for support requests\
@@ -17,27 +18,29 @@
 - Prioritize feature requests\
 - Respond to all feedback within 24 hours\
 - Track feature requests in project management tool
-\f1\fs22 \cf2 \strokec4 \shad0 \
-\pard\pardeftab720\qc\partightenfactor0
-\cf2 \strokec4 \
-\pard\pardeftab720\partightenfactor0
+  \f1\fs22 \cf2 \strokec4 \shad0 \
+  \pard\pardeftab720\qc\partightenfactor0
+  \cf2 \strokec4 \
+  \pard\pardeftab720\partightenfactor0
 
 \f0\fs24 \cf2 \strokec3 \shad\shadx0\shady-20\shadr0\shado0 \shadc0 Implement A/B testing framework:\
+
 - Choose A/B testing tool (Vercel Edge Config, PostHog)\
 - Set up feature flags\
 - Create experiments for:\
-  * Pricing page variations\
-  * CTA button copy\
-  * Onboarding flow\
+  - Pricing page variations\
+  - CTA button copy\
+  - Onboarding flow\
 - Track conversion metrics\
 - Run tests for minimum 2 weeks\
 - Implement winning variations
-\f1\fs22 \cf2 \strokec4 \shad0 \
-\pard\pardeftab720\qc\partightenfactor0
-\cf2 \strokec4 \
-\pard\pardeftab720\partightenfactor0
+  \f1\fs22 \cf2 \strokec4 \shad0 \
+  \pard\pardeftab720\qc\partightenfactor0
+  \cf2 \strokec4 \
+  \pard\pardeftab720\partightenfactor0
 
 \f0\fs24 \cf2 \strokec3 \shad\shadx0\shady-20\shadr0\shado0 \shadc0 Build referral program (optional):\
+
 - Create referral system in database\
 - Generate unique referral codes per user\
 - Track referrals and conversions\
@@ -45,12 +48,13 @@
 - Build referral dashboard for users\
 - Add sharing functionality\
 - Send notification emails for successful referrals\
-\pard\pardeftab720\qc\partightenfactor0
+  \pard\pardeftab720\qc\partightenfactor0
 
 \f1\fs22 \cf2 \strokec4 \shad0 \
 \pard\pardeftab720\partightenfactor0
 
 \f0\fs24 \cf2 \strokec3 \shad\shadx0\shady-20\shadr0\shado0 \shadc0 Create integrations with popular tools:\
+
 - Research most requested integrations\
 - Build Jira integration (export to Jira)\
 - Build Confluence integration (save to Confluence)\
@@ -58,4 +62,4 @@
 - Create Zapier integration\
 - Document integration setup\
 - Test all integrations thoroughly\
-}
+  }
