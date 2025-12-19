@@ -21,17 +21,17 @@ export async function updateProfile(formData: FormData) {
   const company = formData.get("company") as string;
   const jobTitle = formData.get("jobTitle") as string;
 
-  // Type cast to fix Supabase type inference issue
-  const updateData = {
-    full_name: fullName || null,
-    company: company || null,
-    job_title: jobTitle || null,
-  };
-
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const { error } = await (
-    supabase.from("profiles").update(updateData as any) as any
-  ).eq("id", user.id);
+  const supabaseAny = supabase as any;
+
+  const { error } = await supabaseAny
+    .from("profiles")
+    .update({
+      full_name: fullName || null,
+      company: company || null,
+      job_title: jobTitle || null,
+    })
+    .eq("id", user.id);
 
   if (error) {
     return {
@@ -127,13 +127,11 @@ export async function deleteAccount() {
     };
   }
 
-  // Note: Regular users cannot delete their own account via Supabase client
-  // This would require admin privileges or a server-side admin function
-  // For now, we'll delete the profile and stories, then sign out
-  // The user would need to contact support to fully delete the auth account
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const supabaseAny = supabase as any;
 
   // Delete all user stories
-  const { error: storiesError } = await supabase
+  const { error: storiesError } = await supabaseAny
     .from("user_stories")
     .delete()
     .eq("user_id", user.id);
@@ -145,7 +143,7 @@ export async function deleteAccount() {
   }
 
   // Delete profile (cascade will handle related data)
-  const { error: profileError } = await supabase
+  const { error: profileError } = await supabaseAny
     .from("profiles")
     .delete()
     .eq("id", user.id);
