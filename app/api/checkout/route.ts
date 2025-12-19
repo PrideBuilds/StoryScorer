@@ -94,7 +94,12 @@ export async function POST(request: NextRequest) {
       );
     } catch (priceError: unknown) {
       console.error("Price verification error:", priceError);
-      if (priceError.code === "resource_missing") {
+      if (
+        priceError &&
+        typeof priceError === "object" &&
+        "code" in priceError &&
+        priceError.code === "resource_missing"
+      ) {
         return NextResponse.json(
           {
             error: "Price not found in Stripe",
@@ -111,7 +116,12 @@ export async function POST(request: NextRequest) {
         );
       }
       // If it's an authentication error, that's a different issue
-      if (priceError.type === "StripeAuthenticationError") {
+      if (
+        priceError &&
+        typeof priceError === "object" &&
+        "type" in priceError &&
+        priceError.type === "StripeAuthenticationError"
+      ) {
         return NextResponse.json(
           {
             error: "Stripe authentication failed",
@@ -122,9 +132,13 @@ export async function POST(request: NextRequest) {
         );
       }
       // For other errors, log but continue (might be temporary)
+      const errorMessage =
+        priceError && typeof priceError === "object" && "message" in priceError
+          ? String(priceError.message)
+          : String(priceError);
       console.warn(
         "Price verification warning, continuing anyway:",
-        priceError.message
+        errorMessage
       );
     }
 
