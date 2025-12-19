@@ -170,11 +170,14 @@ export async function POST(request: NextRequest) {
         customerId = customer.id;
       } catch (stripeCustomerError: unknown) {
         console.error("Error creating Stripe customer:", stripeCustomerError);
+        const errorMessage =
+          stripeCustomerError instanceof Error
+            ? stripeCustomerError.message
+            : "Stripe customer creation failed";
         return NextResponse.json(
           {
             error: "Failed to create customer",
-            message:
-              stripeCustomerError.message || "Stripe customer creation failed",
+            message: errorMessage,
           },
           { status: 500 }
         );
@@ -208,11 +211,21 @@ export async function POST(request: NextRequest) {
       });
     } catch (stripeError: unknown) {
       console.error("Stripe API error:", stripeError);
+      const errorMessage =
+        stripeError instanceof Error
+          ? stripeError.message
+          : "Stripe API error";
+      const errorType =
+        stripeError &&
+        typeof stripeError === "object" &&
+        "type" in stripeError
+          ? String(stripeError.type)
+          : "unknown";
       return NextResponse.json(
         {
           error: "Failed to create checkout session",
-          message: stripeError.message || "Stripe API error",
-          details: stripeError.type || "unknown",
+          message: errorMessage,
+          details: errorType,
         },
         { status: 500 }
       );
