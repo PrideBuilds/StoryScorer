@@ -37,9 +37,16 @@ export async function getUserStats() {
       .eq("status", "active")
       .single();
 
+    // Type assertion to fix TypeScript inference issue
+    const typedSubscription = subscription as {
+      plan_type: "free" | "pro" | "enterprise";
+      status: string;
+      current_period_end: string;
+    } | null;
+
     // Calculate days remaining in billing period
     let daysRemaining: number | null = null;
-    if (subscription?.current_period_end) {
+    if (typedSubscription?.current_period_end) {
       const endDate = new Date(subscription.current_period_end);
       const today = new Date();
       const diffTime = endDate.getTime() - today.getTime();
@@ -49,7 +56,7 @@ export async function getUserStats() {
     return {
       totalStories: totalStories || 0,
       currentMonthStories: currentMonthStories || 0,
-      planType: subscription?.plan_type || "free",
+      planType: typedSubscription?.plan_type || "free",
       daysRemaining: daysRemaining,
     };
   } catch (error) {

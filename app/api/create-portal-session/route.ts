@@ -23,7 +23,11 @@ export async function POST() {
       .eq("user_id", user.id)
       .single();
 
-    if (!subscription?.stripe_customer_id) {
+    const subscriptionData = subscription as {
+      stripe_customer_id?: string;
+    } | null;
+
+    if (!subscriptionData?.stripe_customer_id) {
       return NextResponse.json(
         { error: "No subscription found" },
         { status: 404 }
@@ -33,7 +37,7 @@ export async function POST() {
     // Create portal session
     const stripe = getStripeClient();
     const session = await stripe.billingPortal.sessions.create({
-      customer: subscription.stripe_customer_id,
+      customer: subscriptionData.stripe_customer_id,
       return_url: `${process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"}/billing`,
     });
 

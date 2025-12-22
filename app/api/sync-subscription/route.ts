@@ -113,9 +113,13 @@ export async function GET() {
       subscriptionStatus = "incomplete";
     }
 
-    // Extract period dates
-    const periodStart = stripeSubscription.current_period_start;
-    const periodEnd = stripeSubscription.current_period_end;
+    // Extract period dates - cast to access properties that exist at runtime
+    const subscriptionWithPeriod = stripeSubscription as Stripe.Subscription & {
+      current_period_start: number;
+      current_period_end: number;
+    };
+    const periodStart = subscriptionWithPeriod.current_period_start;
+    const periodEnd = subscriptionWithPeriod.current_period_end;
 
     // Check if subscription already exists for this user
     const { data: existingSub } = await adminSupabase

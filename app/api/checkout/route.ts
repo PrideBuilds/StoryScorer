@@ -212,13 +212,9 @@ export async function POST(request: NextRequest) {
     } catch (stripeError: unknown) {
       console.error("Stripe API error:", stripeError);
       const errorMessage =
-        stripeError instanceof Error
-          ? stripeError.message
-          : "Stripe API error";
+        stripeError instanceof Error ? stripeError.message : "Stripe API error";
       const errorType =
-        stripeError &&
-        typeof stripeError === "object" &&
-        "type" in stripeError
+        stripeError && typeof stripeError === "object" && "type" in stripeError
           ? String(stripeError.type)
           : "unknown";
       return NextResponse.json(

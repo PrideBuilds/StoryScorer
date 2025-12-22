@@ -44,7 +44,7 @@ export function PreferencesSettings() {
           checked={emailNotifications}
           onCheckedChange={(checked) => {
             setEmailNotifications(checked);
-            handlePreferenceChange("Email Notifications", checked);
+            handlePreferenceChange("Email Notifications");
           }}
         />
       </div>
@@ -72,7 +72,7 @@ export function PreferencesSettings() {
             checked={darkMode}
             onCheckedChange={(checked) => {
               setDarkMode(checked);
-              handlePreferenceChange("Dark Mode", checked);
+              handlePreferenceChange("Dark Mode");
             }}
             disabled
           />
@@ -97,7 +97,7 @@ export function PreferencesSettings() {
             value={language}
             onChange={(e) => {
               setLanguage(e.target.value);
-              handlePreferenceChange("Language", e.target.value);
+              handlePreferenceChange("Language");
             }}
             className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
           >

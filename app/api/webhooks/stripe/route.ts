@@ -9,6 +9,12 @@ import {
 import { getPlanById } from "@/lib/config/pricing";
 import Stripe from "stripe";
 
+// Helper type for subscription with period dates
+type SubscriptionWithPeriod = Stripe.Subscription & {
+  current_period_start: number;
+  current_period_end: number;
+};
+
 export async function POST(request: NextRequest) {
   const body = await request.text();
   const signature = (await headers()).get("stripe-signature");
@@ -68,8 +74,9 @@ export async function POST(request: NextRequest) {
 
         // Get subscription details from Stripe
         const stripe = getStripeClient();
-        const subscription: Stripe.Subscription =
-          await stripe.subscriptions.retrieve(subscriptionId);
+        const subscription = (await stripe.subscriptions.retrieve(
+          subscriptionId
+        )) as unknown as SubscriptionWithPeriod;
 
         // Determine plan type from metadata or price ID
         let planType = planId as "free" | "pro" | "enterprise";
@@ -186,7 +193,8 @@ export async function POST(request: NextRequest) {
 
       case "customer.subscription.created":
       case "customer.subscription.updated": {
-        const subscription = event.data.object as Stripe.Subscription;
+        const subscription = event.data
+          .object as unknown as SubscriptionWithPeriod;
         const customerId = subscription.customer as string;
 
         // Find user by Stripe customer ID
@@ -277,16 +285,26 @@ export async function POST(request: NextRequest) {
 
       case "invoice.payment_succeeded": {
         const invoice = event.data.object as Stripe.Invoice;
+        // Handle subscription which can be string (ID) or Subscription object or null
+        // @ts-expect-error - Stripe.Invoice subscription property exists but TypeScript types may not reflect it
+        const subscription = invoice.subscription;
         const subscriptionId =
-          typeof invoice.subscription === "string"
-            ? invoice.subscription
-            : invoice.subscription?.id || null;
+          subscription === null || subscription === undefined
+            ? null
+            : typeof subscription === "string"
+              ? subscription
+              : subscription &&
+                  typeof subscription === "object" &&
+                  "id" in subscription
+                ? subscription.id
+                : null;
 
         if (subscriptionId) {
           // Update subscription period if needed
           const stripe = getStripeClient();
-          const subscription: Stripe.Subscription =
-            await stripe.subscriptions.retrieve(subscriptionId as string);
+          const subscription = (await stripe.subscriptions.retrieve(
+            subscriptionId as string
+          )) as unknown as SubscriptionWithPeriod;
 
           const paymentData: Record<string, unknown> = {
             status: "active",
@@ -331,7 +349,7 @@ export async function POST(request: NextRequest) {
         if (subscriptionData) {
           // Get user email
           const { data: userData } = await supabase.auth.admin.getUserById(
-            subscriptionData.user_id
+            (subscriptionData as { user_id: string }).user_id
           );
 
           if (userData?.user?.email) {
