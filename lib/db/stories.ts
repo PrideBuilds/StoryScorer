@@ -24,12 +24,15 @@ export async function createStory(
       return { data: null, error: "User not authenticated" };
     }
 
-    const { data, error } = await supabase
-      .from("user_stories")
-      .insert({
-        ...storyData,
-        user_id: user.id,
-      })
+    const insertData: UserStoryInsert = {
+      ...storyData,
+      user_id: user.id,
+    };
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const { data, error } = await (
+      supabase.from("user_stories").insert(insertData as any) as any
+    )
       .select()
       .single();
 

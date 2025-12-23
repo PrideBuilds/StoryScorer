@@ -47,7 +47,7 @@ export async function getUserStats() {
     // Calculate days remaining in billing period
     let daysRemaining: number | null = null;
     if (typedSubscription?.current_period_end) {
-      const endDate = new Date(subscription.current_period_end);
+      const endDate = new Date(typedSubscription.current_period_end);
       const today = new Date();
       const diffTime = endDate.getTime() - today.getTime();
       daysRemaining = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
