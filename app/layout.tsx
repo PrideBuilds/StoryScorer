@@ -4,6 +4,9 @@ import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import { BetaBanner } from "@/components/ui/BetaBanner";
 
+// Force dynamic rendering for all pages to avoid static prerender errors
+export const dynamic = "force-dynamic";
+
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
