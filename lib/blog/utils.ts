@@ -88,6 +88,11 @@ export async function getAllBlogPosts(): Promise<BlogPost[]> {
     const posts: BlogPost[] = [];
 
     for (const file of files) {
+      // Skip README files and other non-post files
+      if (file.toUpperCase() === "README.MD" || file.startsWith(".")) {
+        continue;
+      }
+
       if (file.endsWith(".md") || file.endsWith(".mdx")) {
         const filePath = path.join(BLOG_DIR, file);
         const fileContent = fs.readFileSync(filePath, "utf-8");

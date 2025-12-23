@@ -37,7 +37,7 @@ export function AnalyzerContent() {
   const pathname = usePathname();
 
   // Read storyId directly from URL - this is the source of truth
-  const getStoryIdFromUrl = (): string | null => {
+  const getStoryIdFromUrl = useCallback((): string | null => {
     if (typeof window !== "undefined") {
       const storyId = new URLSearchParams(window.location.search).get("story");
       console.log(
@@ -54,7 +54,7 @@ export function AnalyzerContent() {
       storyId
     );
     return storyId;
-  };
+  }, [searchParams]);
 
   const [storyId, setStoryId] = useState<string | null>(() => {
     const id = getStoryIdFromUrl();
@@ -257,7 +257,7 @@ export function AnalyzerContent() {
       console.log("[AnalyzerContent] StoryId mismatch, syncing");
       setStoryId(currentStoryId);
     }
-  }, [pathname, searchParams, storyId]);
+  }, [pathname, searchParams, storyId, getStoryIdFromUrl]);
 
   // 2. Poll URL every 50ms as backup (very aggressive)
   useEffect(() => {
@@ -286,7 +286,7 @@ export function AnalyzerContent() {
     const interval = setInterval(checkUrl, 50);
 
     return () => clearInterval(interval);
-  }, [storyId]);
+  }, [storyId, getStoryIdFromUrl]);
 
   // 3. Listen to popstate for browser back/forward
   useEffect(() => {
@@ -304,7 +304,7 @@ export function AnalyzerContent() {
 
     window.addEventListener("popstate", handlePopState);
     return () => window.removeEventListener("popstate", handlePopState);
-  }, []);
+  }, [getStoryIdFromUrl]);
 
   // 4. Load story when storyId changes - CRITICAL EFFECT
   useEffect(() => {

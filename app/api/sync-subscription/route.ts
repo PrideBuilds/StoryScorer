@@ -159,17 +159,16 @@ export async function GET() {
     }
 
     if (updateError) {
-      console.error("Error updating subscription:", updateError);
+      console.error("Error updating subscription:", updateError, {
+        userId: user.id,
+        customerId,
+        subscriptionId: stripeSubscription.id,
+        planType,
+      });
       return NextResponse.json(
         {
           error: "Failed to update subscription",
           details: updateError.message,
-          debug: {
-            userId: user.id,
-            customerId,
-            subscriptionId: stripeSubscription.id,
-            planType,
-          },
         },
         { status: 500 }
       );

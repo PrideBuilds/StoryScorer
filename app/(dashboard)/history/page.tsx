@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -43,7 +43,7 @@ export default function HistoryPage() {
 
   const pageSize = 20;
 
-  const fetchStories = async () => {
+  const fetchStories = useCallback(async () => {
     setLoading(true);
     setError(null);
 
@@ -73,11 +73,11 @@ export default function HistoryPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [page, sortBy, sortOrder, search]);
 
   useEffect(() => {
     fetchStories();
-  }, [page, sortBy, sortOrder]);
+  }, [page, sortBy, sortOrder, fetchStories]);
 
   useEffect(() => {
     // Debounce search
@@ -87,7 +87,7 @@ export default function HistoryPage() {
     }, 500);
 
     return () => clearTimeout(timer);
-  }, [search]);
+  }, [search, fetchStories]);
 
   const handleDelete = async (id: string) => {
     if (!confirm("Are you sure you want to delete this story?")) {

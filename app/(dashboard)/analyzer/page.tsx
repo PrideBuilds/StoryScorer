@@ -24,7 +24,6 @@ export default function AnalyzerPage() {
   // No props needed - it will always read the current URL state
   return (
     <>
-      {/* Debug: Visible indicator that page loaded */}
       {typeof window !== "undefined" && (
         <div style={{ display: "none" }} data-testid="analyzer-page-loaded">
           Analyzer Page Loaded
