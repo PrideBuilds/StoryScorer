@@ -177,9 +177,10 @@ export async function updateStory(
       return { data: null, error: "User not authenticated" };
     }
 
-    const { data, error } = await supabase
-      .from("user_stories")
-      .update(updates)
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const { data, error } = await (
+      supabase.from("user_stories").update(updates as any) as any
+    )
       .eq("id", storyId)
       .eq("user_id", user.id)
       .select()
