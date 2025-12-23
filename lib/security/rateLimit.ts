@@ -31,11 +31,13 @@ export function checkRateLimit(
   // Clean up expired entries periodically
   if (Math.random() < 0.01) {
     // 1% chance to clean up
-    for (const [k, v] of rateLimitStore.entries()) {
+    const keysToDelete: string[] = [];
+    rateLimitStore.forEach((v, k) => {
       if (now > v.resetTime) {
-        rateLimitStore.delete(k);
+        keysToDelete.push(k);
       }
-    }
+    });
+    keysToDelete.forEach((k) => rateLimitStore.delete(k));
   }
 
   if (!stored || now > stored.resetTime) {

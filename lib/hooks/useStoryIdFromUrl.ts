@@ -14,7 +14,13 @@
  * or null if not present.
  */
 
-import { useState, useEffect, useLayoutEffect, useRef } from "react";
+import {
+  useState,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useCallback,
+} from "react";
 import { useSearchParams, usePathname } from "next/navigation";
 
 export function useStoryIdFromUrl(): string | null {
@@ -22,13 +28,13 @@ export function useStoryIdFromUrl(): string | null {
   const pathname = usePathname();
 
   // Helper to get storyId from URL - always use window.location as source of truth
-  const getStoryIdFromUrl = () => {
+  const getStoryIdFromUrl = useCallback(() => {
     if (typeof window !== "undefined") {
       const params = new URLSearchParams(window.location.search);
       return params.get("story");
     }
     return searchParams.get("story");
-  };
+  }, [searchParams]);
 
   // Initialize from URL on mount
   const [storyId, setStoryId] = useState<string | null>(() =>
@@ -36,12 +42,9 @@ export function useStoryIdFromUrl(): string | null {
   );
 
   // Use ref to track last known URL to detect changes
-  const lastUrlRef = useRef<string>(() => {
-    if (typeof window !== "undefined") {
-      return window.location.href;
-    }
-    return "";
-  });
+  const lastUrlRef = useRef<string>(
+    typeof window !== "undefined" ? window.location.href : ""
+  );
 
   // Synchronous check on mount and when pathname/searchParams change
   // useLayoutEffect runs synchronously before paint, ensuring immediate update
@@ -59,7 +62,7 @@ export function useStoryIdFromUrl(): string | null {
       // URL didn't change but storyId in state doesn't match - sync it
       setStoryId(currentStoryId);
     }
-  }, [pathname, searchParams, storyId]);
+  }, [pathname, searchParams, storyId, getStoryIdFromUrl]);
 
   // Also listen to popstate for browser back/forward
   useEffect(() => {
@@ -73,7 +76,7 @@ export function useStoryIdFromUrl(): string | null {
 
     window.addEventListener("popstate", handlePopState);
     return () => window.removeEventListener("popstate", handlePopState);
-  }, []);
+  }, [getStoryIdFromUrl]);
 
   // Backup check: verify URL matches state on every render
   // This is a safety net that runs after layout effect
@@ -85,7 +88,7 @@ export function useStoryIdFromUrl(): string | null {
       setStoryId(currentStoryId);
       lastUrlRef.current = window.location.href;
     }
-  }, [pathname, searchParams, storyId]);
+  }, [pathname, searchParams, storyId, getStoryIdFromUrl]);
 
   return storyId;
 }

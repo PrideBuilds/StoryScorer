@@ -30,9 +30,10 @@ export async function createStory(
     };
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const { data, error } = await (
-      supabase.from("user_stories").insert(insertData as any) as any
-    )
+    const supabaseAny = supabase as any;
+    const { data, error } = await supabaseAny
+      .from("user_stories")
+      .insert(insertData)
       .select()
       .single();
 
@@ -178,9 +179,10 @@ export async function updateStory(
     }
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const { data, error } = await (
-      supabase.from("user_stories").update(updates as any) as any
-    )
+    const supabaseAny = supabase as any;
+    const { data, error } = await supabaseAny
+      .from("user_stories")
+      .update(updates)
       .eq("id", storyId)
       .eq("user_id", user.id)
       .select()

@@ -67,10 +67,11 @@ export function validateStoryInput(input: unknown): {
     const data = schema.parse(input);
     return { valid: true, data };
   } catch (error) {
-    if (error instanceof z.ZodError && error.errors) {
+    if (error instanceof z.ZodError) {
+      const zodError = error as z.ZodError;
       return {
         valid: false,
-        error: error.errors.map((e) => e.message).join(", "),
+        error: zodError.issues.map((e) => e.message).join(", "),
       };
     }
     return { valid: false, error: "Invalid input" };

@@ -32,12 +32,18 @@ export async function checkUsageLimit(): Promise<UsageCheckResult> {
   }
 
   // Get user's subscription
-  const { data: subscription } = await supabase
+  const { data: subscriptionResult } = await supabase
     .from("subscriptions")
     .select("plan_type, current_period_start")
     .eq("user_id", user.id)
     .eq("status", "active")
     .single();
+
+  // Type assertion for the subscription data
+  const subscription = subscriptionResult as {
+    plan_type?: string;
+    current_period_start?: string;
+  } | null;
 
   const planType = (subscription?.plan_type || "free") as
     | "free"
@@ -99,11 +105,16 @@ export async function trackUsage(featureName: string) {
   }
 
   // Get current period
-  const { data: subscription } = await supabase
+  const { data: subscriptionResult } = await supabase
     .from("subscriptions")
     .select("current_period_start")
     .eq("user_id", user.id)
     .single();
+
+  // Type assertion for the subscription data
+  const subscription = subscriptionResult as {
+    current_period_start?: string;
+  } | null;
 
   const periodStart = subscription?.current_period_start
     ? new Date(subscription.current_period_start)
@@ -113,7 +124,7 @@ export async function trackUsage(featureName: string) {
   periodEnd.setMonth(periodEnd.getMonth() + 1);
 
   // Check if usage tracking entry exists for this period
-  const { data: existing } = await supabase
+  const { data: existingResult } = await supabase
     .from("usage_tracking")
     .select("*")
     .eq("user_id", user.id)
@@ -122,9 +133,17 @@ export async function trackUsage(featureName: string) {
     .lte("period_end", periodEnd.toISOString())
     .single();
 
+  // Type assertion for the existing data
+  const existing = existingResult as {
+    id: string;
+    usage_count: number;
+  } | null;
+
   if (existing) {
-    // Update existing entry
-    const { error } = await supabase
+    // Update existing entry - use any cast for Supabase client
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const supabaseAny = supabase as any;
+    const { error } = await supabaseAny
       .from("usage_tracking")
       .update({
         usage_count: existing.usage_count + 1,
@@ -135,8 +154,10 @@ export async function trackUsage(featureName: string) {
       return { error: error.message };
     }
   } else {
-    // Create new entry
-    const { error } = await supabase.from("usage_tracking").insert({
+    // Create new entry - use any cast for Supabase client
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const supabaseAny = supabase as any;
+    const { error } = await supabaseAny.from("usage_tracking").insert({
       user_id: user.id,
       feature_used: featureName,
       usage_count: 1,

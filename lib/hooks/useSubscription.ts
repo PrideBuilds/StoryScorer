@@ -46,15 +46,22 @@ export function useSubscription() {
         }
 
         // Fetch subscription
-        const { data: subscription, error: subscriptionError } = await supabase
-          .from("subscriptions")
-          .select("*")
-          .eq("user_id", user.id)
-          .single();
+        const { data: subscriptionResult, error: subscriptionError } =
+          await supabase
+            .from("subscriptions")
+            .select("*")
+            .eq("user_id", user.id)
+            .single();
 
         if (subscriptionError && subscriptionError.code !== "PGRST116") {
           throw subscriptionError;
         }
+
+        // Type assertion for the subscription data
+        const subscription = subscriptionResult as {
+          plan_type?: string;
+          [key: string]: unknown;
+        } | null;
 
         const planType = (subscription?.plan_type || "free") as
           | "free"
@@ -64,7 +71,7 @@ export function useSubscription() {
 
         if (mounted) {
           setSubscriptionData({
-            subscription: subscription || null,
+            subscription: (subscription as Subscription) || null,
             plan,
             loading: false,
             error: null,
