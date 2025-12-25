@@ -4,6 +4,8 @@ import { createStory, getStories } from "@/lib/db/stories";
 import { checkRateLimit, RATE_LIMITS } from "@/lib/security/rateLimit";
 import { validateStoryInput } from "@/lib/security/validation";
 
+export const dynamic = "force-dynamic";
+
 export async function POST(request: NextRequest) {
   try {
     // Authenticate user

@@ -4,6 +4,8 @@ import { getStripeClient } from "@/lib/stripe/client";
 import { getPlanById } from "@/lib/config/pricing";
 import { checkRateLimit, RATE_LIMITS } from "@/lib/security/rateLimit";
 
+export const dynamic = "force-dynamic";
+
 export async function POST(request: NextRequest) {
   try {
     // Verify Stripe is configured first

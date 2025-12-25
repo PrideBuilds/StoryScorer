@@ -10,6 +10,7 @@ import { getPlanById } from "@/lib/config/pricing";
 import Stripe from "stripe";
 
 // Helper type for subscription with period dates
+export const dynamic = "force-dynamic";
 type SubscriptionWithPeriod = Stripe.Subscription & {
   current_period_start: number;
   current_period_end: number;

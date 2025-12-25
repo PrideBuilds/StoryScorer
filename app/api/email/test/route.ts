@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 import { sendWelcomeEmail } from "@/lib/email/send";
 
+export const dynamic = "force-dynamic";
+
 /**
  * Test endpoint for email functionality
  * Only accessible in development or by authenticated admins

@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { checkUsageLimit } from "@/lib/utils/checkUsageLimit";
 
+export const dynamic = "force-dynamic";
+
 export async function GET() {
   try {
     const result = await checkUsageLimit();

@@ -3,6 +3,8 @@ import { createClient, createAdminClient } from "@/lib/supabase/server";
 import { getStripeClient } from "@/lib/stripe/client";
 import Stripe from "stripe";
 
+export const dynamic = "force-dynamic";
+
 /**
  * Manual sync endpoint to update subscription from Stripe
  * Useful for testing when webhooks aren't configured yet
