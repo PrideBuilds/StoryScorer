@@ -41,7 +41,9 @@ export default function HistoryPage() {
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [deletingIds, setDeletingIds] = useState<Set<string>>(new Set());
-  const [expandedStories, setExpandedStories] = useState<Set<string>>(new Set());
+  const [expandedStories, setExpandedStories] = useState<Set<string>>(
+    new Set()
+  );
   const router = useRouter();
 
   const pageSize = 20;
@@ -297,8 +299,9 @@ export default function HistoryPage() {
                   <CardContent>
                     <div className="relative">
                       <p
-                        className={`text-sm text-muted-foreground ${expandedStories.has(story.id) ? "" : "line-clamp-2"
-                          }`}
+                        className={`text-sm text-muted-foreground ${
+                          expandedStories.has(story.id) ? "" : "line-clamp-2"
+                        }`}
                       >
                         {story.story_text}
                       </p>

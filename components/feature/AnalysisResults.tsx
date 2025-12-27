@@ -77,12 +77,12 @@ export function AnalysisResults({
 ## Overall Score: ${analysis.overall_score}/100
 
 ${Object.entries(criteriaLabels)
-        .map(([key, label]) => {
-          const criterion = analysis[key as keyof typeof criteriaLabels];
-          return `### ${label}: ${criterion.score}/100
+  .map(([key, label]) => {
+    const criterion = analysis[key as keyof typeof criteriaLabels];
+    return `### ${label}: ${criterion.score}/100
 ${criterion.feedback}`;
-        })
-        .join("\n\n")}
+  })
+  .join("\n\n")}
 
 ## Recommendations
 ${analysis.recommendations.map((rec) => `- ${rec}`).join("\n")}
@@ -100,7 +100,9 @@ ${analysis.recommendations.map((rec) => `- ${rec}`).join("\n")}
   };
 
   return (
-    <div className="space-y-6">      {/* Original Story Card */}
+    <div className="space-y-6">
+      {" "}
+      {/* Original Story Card */}
       {(originalStory || title) && (
         <Card className="bg-muted/30">
           <CardHeader>
@@ -115,7 +117,6 @@ ${analysis.recommendations.map((rec) => `- ${rec}`).join("\n")}
           </CardContent>
         </Card>
       )}
-
       {/* Overall Score Card */}
       <Card>
         <CardHeader>
@@ -149,7 +150,6 @@ ${analysis.recommendations.map((rec) => `- ${rec}`).join("\n")}
           </div>
         </CardContent>
       </Card>
-
       {/* Individual Criteria */}
       <div className="space-y-4">
         {Object.entries(criteriaLabels).map(([key, label], index) => {
@@ -220,7 +220,6 @@ ${analysis.recommendations.map((rec) => `- ${rec}`).join("\n")}
           );
         })}
       </div>
-
       {/* Recommendations */}
       {analysis.recommendations && analysis.recommendations.length > 0 && (
         <Card>
