@@ -5,6 +5,7 @@ author: "StoryScorer Team"
 excerpt: "Learn how to maintain requirements traceability in agile projects. Discover tools and techniques that help business analysts track requirements from user stories to implementation."
 category: "Business Analysis"
 tags: ["business analysis", "requirements", "traceability", "agile"]
+featuredImage: "/images/blog/requirements-traceability.png"
 metaDescription: "Best practices for requirements traceability in agile projects. Learn how business analysts can track requirements from user stories to implementation."
 ---
 

@@ -5,6 +5,7 @@ author: "StoryScorer Team"
 excerpt: "Master the INVEST criteria framework to write better user stories. Learn what each letter means and how to apply these principles in your agile development process."
 category: "INVEST Criteria"
 tags: ["INVEST", "user stories", "agile", "scrum"]
+featuredImage: "/images/blog/invest-criteria-guide.png"
 metaDescription: "Complete guide to INVEST criteria for user stories. Learn how to write Independent, Negotiable, Valuable, Estimable, Small, and Testable user stories."
 ---
 

@@ -5,6 +5,7 @@ author: "StoryScorer Team"
 excerpt: "Learn modern best practices for writing acceptance criteria that improve collaboration, reduce ambiguity, and ensure quality delivery in agile teams."
 category: "Acceptance Criteria"
 tags: ["acceptance criteria", "user stories", "testing", "agile"]
+featuredImage: "/images/blog/acceptance-criteria-guide.png"
 metaDescription: "Best practices for writing acceptance criteria in 2026. Learn Given-When-Then format, BDD techniques, and modern approaches to requirements."
 ---
 

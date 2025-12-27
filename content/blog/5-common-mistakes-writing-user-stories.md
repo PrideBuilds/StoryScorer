@@ -5,6 +5,7 @@ author: "StoryScorer Team"
 excerpt: "Learn about the most common mistakes teams make when writing user stories and discover practical solutions to improve your requirements process."
 category: "Best Practices"
 tags: ["user stories", "requirements", "agile", "best practices"]
+featuredImage: "/images/blog/common-mistakes-user-stories.png"
 metaDescription: "Discover 5 common mistakes in writing user stories and learn how to fix them. Improve your agile requirements process with these practical tips."
 ---
 

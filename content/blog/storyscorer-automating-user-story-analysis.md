@@ -5,6 +5,7 @@ author: "StoryScorer Team"
 excerpt: "Discover how StoryScorer uses AI to automatically analyze user stories against INVEST criteria, helping teams write better requirements faster."
 category: "Product"
 tags: ["StoryScorer", "AI", "automation", "INVEST", "user stories"]
+featuredImage: "/images/blog/automating-story-analysis.png"
 metaDescription: "Learn how StoryScorer automates user story analysis using AI. Get instant feedback on your stories against INVEST criteria and improve your requirements process."
 ---
 
