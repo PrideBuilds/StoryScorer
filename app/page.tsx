@@ -394,7 +394,7 @@ export default async function Home() {
                   size="lg"
                   variant="ghost"
                   asChild
-                  className="text-lg px-8 border border-white text-white hover:bg-white/10 hover:text-white"
+                  className="text-lg px-8 border border-white text-white bg-transparent hover:bg-white/10 hover:text-white"
                 >
                   <Link href="/pricing">View Pricing</Link>
                 </Button>
