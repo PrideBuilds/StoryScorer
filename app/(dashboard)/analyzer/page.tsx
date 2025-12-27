@@ -8,6 +8,7 @@
  * This is a minimal wrapper. AnalyzerContent reads directly from window.location
  * to ensure it always has the current storyId from the URL.
  */
+import { useState, useEffect } from "react";
 import { AnalyzerContent } from "./AnalyzerContent";
 
 export default function AnalyzerPage() {
@@ -20,11 +21,17 @@ export default function AnalyzerPage() {
     console.log("[AnalyzerPage] RENDERING - SSR (server-side)");
   }
 
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
   // AnalyzerContent is self-contained and reads from URL directly
   // No props needed - it will always read the current URL state
   return (
     <>
-      {typeof window !== "undefined" && (
+      {isMounted && (
         <div style={{ display: "none" }} data-testid="analyzer-page-loaded">
           Analyzer Page Loaded
         </div>

@@ -18,6 +18,8 @@ import type { INVESTAnalysisResult } from "@/types/database";
 
 interface AnalysisResultsProps {
   analysis: INVESTAnalysisResult;
+  originalStory?: string;
+  title?: string;
 }
 
 const criteriaLabels = {
@@ -43,7 +45,11 @@ const getScoreBadgeVariant = (
   return "destructive";
 };
 
-export function AnalysisResults({ analysis }: AnalysisResultsProps) {
+export function AnalysisResults({
+  analysis,
+  originalStory,
+  title,
+}: AnalysisResultsProps) {
   const [expandedCriteria, setExpandedCriteria] = useState<string[]>([]);
   const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
 
@@ -71,12 +77,12 @@ export function AnalysisResults({ analysis }: AnalysisResultsProps) {
 ## Overall Score: ${analysis.overall_score}/100
 
 ${Object.entries(criteriaLabels)
-  .map(([key, label]) => {
-    const criterion = analysis[key as keyof typeof criteriaLabels];
-    return `### ${label}: ${criterion.score}/100
+        .map(([key, label]) => {
+          const criterion = analysis[key as keyof typeof criteriaLabels];
+          return `### ${label}: ${criterion.score}/100
 ${criterion.feedback}`;
-  })
-  .join("\n\n")}
+        })
+        .join("\n\n")}
 
 ## Recommendations
 ${analysis.recommendations.map((rec) => `- ${rec}`).join("\n")}
@@ -94,7 +100,22 @@ ${analysis.recommendations.map((rec) => `- ${rec}`).join("\n")}
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6">      {/* Original Story Card */}
+      {(originalStory || title) && (
+        <Card className="bg-muted/30">
+          <CardHeader>
+            <CardTitle>{title || "Original Story"}</CardTitle>
+          </CardHeader>
+          <CardContent>
+            {originalStory && (
+              <div className="p-4 bg-background rounded-md border text-sm whitespace-pre-wrap">
+                {originalStory}
+              </div>
+            )}
+          </CardContent>
+        </Card>
+      )}
+
       {/* Overall Score Card */}
       <Card>
         <CardHeader>

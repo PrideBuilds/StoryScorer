@@ -586,7 +586,11 @@ export function AnalyzerContent() {
         </div>
       ) : analysisResult ? (
         <div className="space-y-6">
-          <AnalysisResults analysis={analysisResult} />
+          <AnalysisResults
+            analysis={analysisResult}
+            title={watch("title")}
+            originalStory={watch("storyText")}
+          />
           <div className="flex gap-4">
             <Button onClick={handleClear} variant="outline">
               Analyze Another Story

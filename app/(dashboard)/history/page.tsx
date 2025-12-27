@@ -22,6 +22,8 @@ import {
   Eye,
   ChevronLeft,
   ChevronRight,
+  ChevronDown,
+  ChevronUp,
   FileText,
 } from "lucide-react";
 import { StoryCardSkeleton } from "@/components/ui/StoryCardSkeleton";
@@ -39,6 +41,7 @@ export default function HistoryPage() {
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [deletingIds, setDeletingIds] = useState<Set<string>>(new Set());
+  const [expandedStories, setExpandedStories] = useState<Set<string>>(new Set());
   const router = useRouter();
 
   const pageSize = 20;
@@ -88,6 +91,18 @@ export default function HistoryPage() {
 
     return () => clearTimeout(timer);
   }, [search, fetchStories]);
+
+  const toggleStory = (id: string) => {
+    setExpandedStories((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) {
+        next.delete(id);
+      } else {
+        next.add(id);
+      }
+      return next;
+    });
+  };
 
   const handleDelete = async (id: string) => {
     if (!confirm("Are you sure you want to delete this story?")) {
@@ -280,9 +295,32 @@ export default function HistoryPage() {
                 </CardHeader>
                 {story.story_text && (
                   <CardContent>
-                    <p className="text-sm text-muted-foreground line-clamp-2">
-                      {story.story_text}
-                    </p>
+                    <div className="relative">
+                      <p
+                        className={`text-sm text-muted-foreground ${expandedStories.has(story.id) ? "" : "line-clamp-2"
+                          }`}
+                      >
+                        {story.story_text}
+                      </p>
+                      {story.story_text.length > 150 && (
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          className="mt-2 h-auto p-0 text-xs text-primary hover:bg-transparent hover:text-primary/80"
+                          onClick={() => toggleStory(story.id)}
+                        >
+                          {expandedStories.has(story.id) ? (
+                            <>
+                              Show less <ChevronUp className="ml-1 h-3 w-3" />
+                            </>
+                          ) : (
+                            <>
+                              Show more <ChevronDown className="ml-1 h-3 w-3" />
+                            </>
+                          )}
+                        </Button>
+                      )}
+                    </div>
                   </CardContent>
                 )}
               </Card>
