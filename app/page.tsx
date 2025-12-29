@@ -41,17 +41,18 @@ export default async function Home() {
               <div className="flex-1 text-center lg:text-left z-10">
                 <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-violet-100 text-violet-700 text-sm font-medium mb-6">
                   <Sparkles className="h-4 w-4" />
-                  <span>AI-Powered Writing Assistant</span>
+                  <span>AI-Powered Agile Assistant</span>
                 </div>
                 <h1 className="text-4xl lg:text-6xl font-extrabold tracking-tight mb-6 leading-tight text-slate-900">
                   Instant AI feedback on your{" "}
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-blue-600">
-                    writing and storytelling.
+                    User Stories.
                   </span>
                 </h1>
                 <p className="text-lg lg:text-xl text-slate-600 mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-                  Elevate your craft with Story Scorer. Analyze quality,
-                  engagement, and style in seconds to captivate your readers.
+                  Elevate your requirements with Story Scorer. Analyze INVEST
+                  criteria, ambiguity, and acceptance criteria in seconds to
+                  align your team.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-8">
                   <Button
@@ -81,7 +82,7 @@ export default async function Home() {
                       </div>
                     ))}
                   </div>
-                  <p>Trusted by 10,000+ writers</p>
+                  <p>Trusted by Agile Teams</p>
                 </div>
               </div>
               <div className="flex-1 relative w-full max-w-[600px] lg:max-w-none">
@@ -107,19 +108,21 @@ export default async function Home() {
         <section className="py-10 border-y border-slate-100 bg-white">
           <div className="container mx-auto px-4 text-center">
             <p className="text-sm font-semibold text-slate-400 uppercase tracking-wider mb-6">
-              Empowering creators from
+              Empowering teams from
             </p>
             <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-50 grayscale transition-all hover:grayscale-0">
               {/* Simulated Logos with Text for now */}
               <span className="text-xl font-bold font-serif text-slate-600">
-                Medium
+                TechCorp
               </span>
               <span className="text-xl font-bold font-mono text-slate-600">
-                Substack
+                AgileFlow
               </span>
-              <span className="text-xl font-bold text-slate-600">Wattpad</span>
+              <span className="text-xl font-bold text-slate-600">
+                DevSprint
+              </span>
               <span className="text-xl font-bold font-serif italic text-slate-600">
-                Reedsy
+                ScrumMastery
               </span>
             </div>
           </div>
@@ -130,11 +133,11 @@ export default async function Home() {
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center mb-16">
               <h2 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-4">
-                See your story through AI eyes
+                See your requirements through AI eyes
               </h2>
               <p className="text-xl text-slate-600">
-                Get a comprehensive breakdown of what works and what needs
-                polish, instantly.
+                Get a comprehensive breakdown of INVEST criteria, ambiguity, and
+                completeness instantly.
               </p>
             </div>
             <div className="relative max-w-5xl mx-auto rounded-xl shadow-2xl border border-slate-200 bg-slate-50 p-2 lg:p-4">
@@ -148,11 +151,11 @@ export default async function Home() {
               {/* Floating Feature Badges */}
               <div className="absolute -right-4 top-20 hidden lg:flex items-center gap-2 bg-white px-4 py-2 rounded-lg shadow-lg border border-slate-100 animate-bounce delay-700">
                 <div className="w-3 h-3 rounded-full bg-green-500"></div>
-                <span className="font-medium text-sm">Tone: Optimistic</span>
+                <span className="font-medium text-sm">INVEST Score: 9/10</span>
               </div>
               <div className="absolute -left-4 bottom-20 hidden lg:flex items-center gap-2 bg-white px-4 py-2 rounded-lg shadow-lg border border-slate-100 animate-bounce delay-1000">
                 <div className="w-3 h-3 rounded-full bg-violet-500"></div>
-                <span className="font-medium text-sm">Engagement: High</span>
+                <span className="font-medium text-sm">Clarity: High</span>
               </div>
             </div>
           </div>
@@ -176,11 +179,11 @@ export default async function Home() {
                   <PenTool className="w-8 h-8 text-violet-600" />
                 </div>
                 <h3 className="text-xl font-bold mb-3 text-slate-900">
-                  1. Write or Paste
+                  1. Draft User Story
                 </h3>
                 <p className="text-slate-600">
-                  Draft your story directly in our distraction-free editor or
-                  paste existing content.
+                  Input your user story and acceptance criteria directly in our
+                  editor or paste from Jira/ADO.
                 </p>
               </div>
 
@@ -192,8 +195,8 @@ export default async function Home() {
                   2. Analyze Instantly
                 </h3>
                 <p className="text-slate-600">
-                  Our AI scans for pacing, tone, clarity, and engagement factors
-                  in seconds.
+                  Our AI scans for INVEST criteria, Gherkin syntax usage, and
+                  ambiguous terms.
                 </p>
               </div>
 
@@ -202,11 +205,11 @@ export default async function Home() {
                   <TrendingUp className="w-8 h-8 text-green-600" />
                 </div>
                 <h3 className="text-xl font-bold mb-3 text-slate-900">
-                  3. Improve
+                  3. Refine & Align
                 </h3>
                 <p className="text-slate-600">
-                  Get actionable insights and watch your Story Score climb as
-                  you refine.
+                  Get actionable suggestions to improve clarity and ensure team
+                  alignment before pointing.
                 </p>
               </div>
             </div>
@@ -218,11 +221,11 @@ export default async function Home() {
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto text-center mb-16">
               <h2 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-4">
-                Why Writers Love Us
+                Why Agile Teams Love Us
               </h2>
               <p className="text-xl text-slate-600">
-                More than just a spell checker. We analyze the soul of your
-                story.
+                More than just a grammar check. We analyze the quality of your
+                requirements.
               </p>
             </div>
 
@@ -233,11 +236,11 @@ export default async function Home() {
                     <Zap className="w-6 h-6 text-blue-600" />
                   </div>
                   <h3 className="text-xl font-bold mb-3 text-slate-900">
-                    Engagement Scoring
+                    INVEST Scoring
                   </h3>
                   <p className="text-slate-600">
-                    Know exactly when you&apos;re losing your reader&apos;s
-                    attention and how to hook them back.
+                    Ensure every story meets the INVEST standard (Independent,
+                    Negotiable, Valuable, Estimable, Small, Testable).
                   </p>
                 </CardContent>
               </Card>
@@ -248,11 +251,11 @@ export default async function Home() {
                     <Feather className="w-6 h-6 text-violet-600" />
                   </div>
                   <h3 className="text-xl font-bold mb-3 text-slate-900">
-                    Style Analysis
+                    Ambiguity Detection
                   </h3>
                   <p className="text-slate-600">
-                    Refine your unique voice with feedback on sentence variety,
-                    active voice, and imagery.
+                    Identify vague terms, passive voice, and assumptions that
+                    lead to development misunderstandings.
                   </p>
                 </CardContent>
               </Card>
@@ -263,11 +266,11 @@ export default async function Home() {
                     <BookOpen className="w-6 h-6 text-green-600" />
                   </div>
                   <h3 className="text-xl font-bold mb-3 text-slate-900">
-                    Narrative Clarity
+                    Acceptance Criteria
                   </h3>
                   <p className="text-slate-600">
-                    Ensure your plot points land and your message is clear
-                    without dumbing it down.
+                    Validate that your acceptance criteria are testable,
+                    complete, and follow Gherkin syntax where appropriate.
                   </p>
                 </CardContent>
               </Card>
@@ -295,15 +298,15 @@ export default async function Home() {
                     <Star className="fill-current w-4 h-4" />
                   </div>
                   <p className="mb-6 italic">
-                    &quot;Story Scorer detected a pacing issue in my second act
-                    that I had struggled with for weeks. Fixed it in 10
-                    minutes.&quot;
+                    &quot;Story Scorer caught missing acceptance criteria that
+                    would have caused a bug in production. It&apos;s my second
+                    pair of eyes.&quot;
                   </p>
                   <div className="flex items-center gap-4">
                     <div className="w-10 h-10 rounded-full bg-slate-600"></div>
                     <div>
                       <p className="font-bold text-white">Elena R.</p>
-                      <p className="text-sm text-slate-400">Fiction Writer</p>
+                      <p className="text-sm text-slate-400">Product Owner</p>
                     </div>
                   </div>
                 </CardContent>
@@ -319,14 +322,14 @@ export default async function Home() {
                     <Star className="fill-current w-4 h-4" />
                   </div>
                   <p className="mb-6 italic">
-                    &quot;The engagement score is addictive. It challenges me to
-                    make every paragraph punchier.&quot;
+                    &quot;The INVEST scoring forced me to split my stories
+                    better. Refinement sessions are so much faster now.&quot;
                   </p>
                   <div className="flex items-center gap-4">
                     <div className="w-10 h-10 rounded-full bg-slate-600"></div>
                     <div>
                       <p className="font-bold text-white">Marcus T.</p>
-                      <p className="text-sm text-slate-400">Content Creator</p>
+                      <p className="text-sm text-slate-400">Business Analyst</p>
                     </div>
                   </div>
                 </CardContent>
@@ -342,14 +345,14 @@ export default async function Home() {
                     <Star className="fill-current w-4 h-4" />
                   </div>
                   <p className="mb-6 italic">
-                    &quot;I use it for all my blog posts now. It&apos;s like
-                    having a ruthless editor on my shoulder, but nicer.&quot;
+                    &quot;I insist my team runs every story through this before
+                    refinement. It cuts down clarifying questions by half.&quot;
                   </p>
                   <div className="flex items-center gap-4">
                     <div className="w-10 h-10 rounded-full bg-slate-600"></div>
                     <div>
                       <p className="font-bold text-white">Jessica L.</p>
-                      <p className="text-sm text-slate-400">Freelance Editor</p>
+                      <p className="text-sm text-slate-400">Scrum Master</p>
                     </div>
                   </div>
                 </CardContent>
@@ -362,11 +365,11 @@ export default async function Home() {
         <section className="py-24 bg-gradient-to-r from-violet-600 to-blue-600 text-white text-center">
           <div className="container mx-auto px-4 max-w-4xl">
             <h2 className="text-4xl lg:text-5xl font-bold mb-6">
-              Ready to tell better stories?
+              Ready to write better User Stories?
             </h2>
             <p className="text-xl lg:text-2xl text-violet-100 mb-10">
-              Join thousands of writers who rely on Story Scorer for instant
-              feedback.
+              Join thousands of Agile professionals who rely on Story Scorer for
+              instant feedback.
             </p>
             <Button
               size="lg"
