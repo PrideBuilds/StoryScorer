@@ -30,31 +30,40 @@ Instead, split **vertically**. Each slice should touch all layers and deliver a 
 A popular framework for splitting stories is **SPIDR**:
 
 ### S - Spikes
+
 If you don't know how to build it, create a time-boxed research story (Spike) first.
 
 ### P - Paths
+
 Split by alternative paths.
-*   *Original*: "As a user, I want to pay for my order."
-*   *Split 1*: "...pay with Credit Card."
-*   *Split 2*: "...pay with PayPal."
+
+- _Original_: "As a user, I want to pay for my order."
+- _Split 1_: "...pay with Credit Card."
+- _Split 2_: "...pay with PayPal."
 
 ### I - Interfaces
+
 Split by device or interface.
-*   *Original*: "As a user, I want to view reports."
-*   *Split 1*: "...on iOS."
-*   *Split 2*: "...on Desktop Web."
+
+- _Original_: "As a user, I want to view reports."
+- _Split 1_: "...on iOS."
+- _Split 2_: "...on Desktop Web."
 
 ### D - Data
+
 Split by data types or variations.
-*   *Original*: "As a user, I want to search for products."
-*   *Split 1*: "...search by name."
-*   *Split 2*: "...search by category."
+
+- _Original_: "As a user, I want to search for products."
+- _Split 1_: "...search by name."
+- _Split 2_: "...search by category."
 
 ### R - Rules
+
 Split by business rules. Relax constraints for the first version.
-*   *Original*: "As a user, I want to buy tickets."
-*   *Split 1*: "...buy tickets (no quantity limit)."
-*   *Split 2*: "...enforce purchase limits."
+
+- _Original_: "As a user, I want to buy tickets."
+- _Split 1_: "...buy tickets (no quantity limit)."
+- _Split 2_: "...enforce purchase limits."
 
 ## Conclusion
 

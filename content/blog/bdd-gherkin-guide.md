@@ -44,7 +44,7 @@ Scenario: Successful Login
 ## Tips for Success
 
 - ** collaborate:** Don't write BDD scenarios in isolation. Write them as a team (The Three Amigos).
-- **Keep it Declarative:** Describe *what* the user does, not *how* the UI works (e.g., avoid "When I click the button with ID #btn-submit").
+- **Keep it Declarative:** Describe _what_ the user does, not _how_ the UI works (e.g., avoid "When I click the button with ID #btn-submit").
 - **One Scenario, One Behavior:** Keep scenarios focused and small.
 
 ## Conclusion

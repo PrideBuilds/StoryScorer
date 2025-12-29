@@ -17,6 +17,7 @@ Prioritizing technical debt is hard because it often lacks immediate user value.
 ## The Trap of "Developer Stories"
 
 Avoid writing stories that only make sense to engineers.
+
 - ❌ **Bad:** "Upgrade React to v18."
 - ✅ **Good:** "Improve page load performance to reduce bounce rate."
 
@@ -25,16 +26,22 @@ Avoid writing stories that only make sense to engineers.
 Focus on the **Value** or the **Risk**.
 
 ### 1. The "Risk Mitigation" Story
+
 If we don't fix this, what bad thing happens?
-*   **Template:** "As a Product Owner, I want the payments system to be secure (by updating libraries) so that we avoid data breaches and compliance fines."
+
+- **Template:** "As a Product Owner, I want the payments system to be secure (by updating libraries) so that we avoid data breaches and compliance fines."
 
 ### 2. The "Efficiency" Story
+
 If we fix this, how much faster can we move?
-*   **Template:** "As a Developer, I want to automate the build pipeline so that we can reduce deployment time from 2 hours to 10 minutes."
+
+- **Template:** "As a Developer, I want to automate the build pipeline so that we can reduce deployment time from 2 hours to 10 minutes."
 
 ### 3. The "Scalability" Story
+
 If we succeed, will the current system break?
-*   **Template:** "As a System Architect, I want to optimize the database indexing so that the app remains responsive when we hit 100k users."
+
+- **Template:** "As a System Architect, I want to optimize the database indexing so that the app remains responsive when we hit 100k users."
 
 ## Managing the Balance
 

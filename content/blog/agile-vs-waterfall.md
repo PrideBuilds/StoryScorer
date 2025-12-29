@@ -16,11 +16,13 @@ The debate between Agile and Waterfall methodologies has been a central topic in
 In a traditional Waterfall model, requirements are gathered exhaustively at the beginning of the project. Business Analysts (BAs) spend weeks or months writing detailed functional specification documents (FSDs).
 
 ### Pros:
+
 - Clear milestones and deadlines
 - Comprehensive documentation upfront
 - Easier budget estimation (in theory)
 
 ### Cons:
+
 - Inflexible to change
 - Late value delivery
 - "Analysis paralysis" where requirements become obsolete before coding begins
@@ -33,15 +35,16 @@ Agile flips the script. Instead of a massive document, requirements are broken d
 
 ### Why User Stories Matter
 
-1.  **Customer-Centric**: They focus on the *who* and *why*, not just the *what*.
+1.  **Customer-Centric**: They focus on the _who_ and _why_, not just the _what_.
 2.  **Flexible**: Details are negotiated during the sprint, allowing for innovation.
 3.  **Faster Delivery**: Small stories (that meet the [INVEST criteria](/blog/complete-guide-invest-criteria)) can be delivered in days, not months.
 
 ## Transitioning from Requirements to Stories
 
-If you are moving from Waterfall to Agile, the biggest shift is mindset. You stop trying to define *everything* perfectly upfront and start defining the *minimum valuable* thing to build next.
+If you are moving from Waterfall to Agile, the biggest shift is mindset. You stop trying to define _everything_ perfectly upfront and start defining the _minimum valuable_ thing to build next.
 
 ### Tips for Success:
+
 - **Focus on Value**: Every story should deliver value to the user.
 - **Keep it Small**: If a story takes weeks to build, it's too big. Split it.
 - **Collaborate**: Talk to developers and testers while writing stories.

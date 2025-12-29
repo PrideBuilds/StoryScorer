@@ -14,21 +14,25 @@ The Product Owner (PO) is often described as the "CEO of the Product." It's a ro
 ## Core Responsibilities
 
 ### 1. Maximizing Value
-The primary goal of the PO is to maximize the value of the work the Development Team performs. This means constantly asking: "Are we building the *right* thing?"
+
+The primary goal of the PO is to maximize the value of the work the Development Team performs. This means constantly asking: "Are we building the _right_ thing?"
 
 ### 2. Managing the Product Backlog
+
 The backlog is the PO's main tool. Managing it involves:
+
 - **Ordering** items to achieve goals and missions.
 - **Refining** stories to ensure they are clear and understood.
 - **Transparently** showing what the team will work on next.
 
 ### 3. Stakeholder Management
+
 The PO acts as the bridge between stakeholders (customers, business leaders, sales) and the technical team. They must manage expectations, say "no" to low-value requests, and align everyone on the product vision.
 
 ## Common Misconceptions
 
-- **"The PO manages the team."** False. The Scrum Master coaches the team; the PO manages the *work* (priorities).
-- **"The PO writes all the specs."** False. While the PO is accountable for the backlog, the *entire team* should collaborate on writing and refining user stories.
+- **"The PO manages the team."** False. The Scrum Master coaches the team; the PO manages the _work_ (priorities).
+- **"The PO writes all the specs."** False. While the PO is accountable for the backlog, the _entire team_ should collaborate on writing and refining user stories.
 - **"The PO accepts the work."** True, but this should be a continuous collaboration, not a final "gate" at the end of the sprint.
 
 ## Skills of a Great Product Owner
