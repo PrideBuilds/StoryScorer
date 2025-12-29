@@ -295,8 +295,9 @@ export default async function Home() {
                     <Star className="fill-current w-4 h-4" />
                   </div>
                   <p className="mb-6 italic">
-                    "Story Scorer detected a pacing issue in my second act that
-                    I had struggled with for weeks. Fixed it in 10 minutes."
+                    &quot;Story Scorer detected a pacing issue in my second act
+                    that I had struggled with for weeks. Fixed it in 10
+                    minutes.&quot;
                   </p>
                   <div className="flex items-center gap-4">
                     <div className="w-10 h-10 rounded-full bg-slate-600"></div>
@@ -318,8 +319,8 @@ export default async function Home() {
                     <Star className="fill-current w-4 h-4" />
                   </div>
                   <p className="mb-6 italic">
-                    "The engagement score is addictive. It challenges me to make
-                    every paragraph punchier."
+                    &quot;The engagement score is addictive. It challenges me to
+                    make every paragraph punchier.&quot;
                   </p>
                   <div className="flex items-center gap-4">
                     <div className="w-10 h-10 rounded-full bg-slate-600"></div>
@@ -341,8 +342,8 @@ export default async function Home() {
                     <Star className="fill-current w-4 h-4" />
                   </div>
                   <p className="mb-6 italic">
-                    "I use it for all my blog posts now. It&apos;s like having a
-                    ruthless editor on my shoulder, but nicer."
+                    &quot;I use it for all my blog posts now. It&apos;s like
+                    having a ruthless editor on my shoulder, but nicer.&quot;
                   </p>
                   <div className="flex items-center gap-4">
                     <div className="w-10 h-10 rounded-full bg-slate-600"></div>
