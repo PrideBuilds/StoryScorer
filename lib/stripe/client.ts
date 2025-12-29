@@ -18,5 +18,5 @@ export function getStripeClient(): Stripe {
   return stripeInstance;
 }
 
-// Export for backward compatibility
-export const stripe = getStripeClient();
+// Export for backward compatibility - removed to prevent build errors
+// export const stripe = getStripeClient();
